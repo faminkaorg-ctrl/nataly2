@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Для бизнеса — EWA PRODUCT</title>
+    <title>EWA PRODUCT — Для бизнеса</title>
     <link rel="icon" type="image/png" href="favicon.png">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;family=Raleway:wght@300;400;500;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap');
@@ -1988,231 +1988,7 @@
     z-index: 1;
 }
     </style>
-
-    <!-- ===================================================== -->
-    <!-- AGGRESSIVE MOBILE-ONLY STYLES — COMPLETE REDO FOR PHONES -->
-    <!-- Same block as in index.html for consistency -->
-    <!-- ===================================================== -->
-    <style>
-        @media (max-width: 768px) {
-            :root { --text-size-base: 15px; }
-            body { font-size: 15px; line-height: 1.55; }
-            .section, .glass-section-wrapper { padding-left: 16px !important; padding-right: 16px !important; }
-
-            nav .nav-inner { padding: 8px 12px !important; }
-            .logo { font-size: 1.05rem !important; }
-            .logo img { height: 20px !important; }
-            .nav-links { gap: 3px; font-size: 0.68rem; overflow-x: auto; }
-            .nav-link { padding: 5px 10px !important; font-size: 0.68rem !important; }
-            .nav-cta { padding: 6px 14px !important; font-size: 0.72rem !important; }
-
-            .hero { padding-top: 52px; }
-            .hero-content { padding: 0 14px; }
-            .hero-content h1 { font-size: 2.45rem !important; line-height: 0.92 !important; letter-spacing: -1.1px !important; }
-            .hero-content .lead { font-size: 0.98rem !important; }
-            .hero-buttons { flex-direction: column; width: 100%; }
-            .hero-buttons a, .hero-buttons button { width: 100%; padding: 13px 18px !important; }
-
-            .glass-section-wrapper { padding-top: 42px; padding-bottom: 32px; }
-            .glass-section-header h2 { font-size: 1.65rem !important; }
-            .glass-window { flex-direction: column !important; }
-            .glass-sidebar { width: 100% !important; flex-direction: row !important; overflow-x: auto; padding: 10px 8px; border-right: none !important; border-bottom: 1px solid var(--border); }
-            .glass-nav-card { min-width: 115px; padding: 8px 11px !important; }
-            .glass-main-content { padding: 20px 14px !important; }
-            .glass-tab-title { font-size: 1.22rem !important; }
-
-            .stats-bar { padding: 20px 12px; }
-            .stats-inner { grid-template-columns: repeat(2, 1fr); gap: 12px; }
-            .stat-item .num { font-size: 1.45rem; }
-
-            .reviews { padding: 32px 0 40px; }
-            .reviews-header h2 { font-size: 1.55rem !important; }
-            .video-card { width: 104px !important; }
-            .video-card video { height: 138px; }
-
-            .bonus-header h2 { font-size: 1.55rem !important; }
-            .bonus-slider { flex-direction: column !important; height: auto !important; }
-            .bonus-panel { width: 100% !important; padding: 20px 14px !important; }
-
-            .leaders-grid { grid-template-columns: 1fr; }
-            .leader-card { height: auto; min-height: 320px; }
-
-            footer { padding: 30px 14px 24px; }
-            .modal { width: 94% !important; }
-        }
-
-        @media (max-width: 480px) {
-            body { font-size: 14.2px; }
-            .hero-content h1 { font-size: 2.15rem !important; }
-            .glass-nav-card { min-width: 98px; }
-            .video-card { width: 92px !important; }
-            .video-card video { height: 122px; }
-        }
-
-        @media (max-width: 768px) {
-            * { max-width: 100vw; }
-        }
-    </style>
 </head>
-<style>
-/* Чистое правило для скрытия навигации только на мобилке */
-@media (max-width: 768px) {
-  .nav-links { display: none !important; }
-}
-</style>
-    <!-- EXTRA HARD MOBILE OVERRIDES FOR THE SECTIONS YOU MENTIONED -->
-    <style>
-        @media (max-width: 768px) {
-            /* ФИЛОСОФИЯ ПРЕВОСХОДСТВА + glass content - very tight */
-            .glass-section-header h2,
-            .glass-tab-title {
-                font-size: 0.95rem !important;
-                line-height: 1.08 !important;
-            }
-            .glass-main-content,
-            .glass-tab-text {
-                font-size: 0.76rem !important;
-                padding: 8px 4px !important;
-                max-width: 100% !important;
-                overflow: hidden !important;
-            }
-            .glass-nav-card {
-                min-width: 76px !important;
-                padding: 3px 5px !important;
-            }
-
-            /* ИСТОРИЯ КОМПАНИИ - no spreading */
-            .history-stats-grid .h-num,
-            .stats-inner .num {
-                font-size: 1.05rem !important;
-            }
-            .timeline-content h3 { font-size: 0.85rem !important; }
-            .timeline-content p { font-size: 0.72rem !important; }
-
-            /* ЛИДЕРЫ КОМПАНИИ - compact cards */
-            .leaders-grid { grid-template-columns: 1fr !important; }
-            .leader-card {
-                padding: 6px !important;
-                height: auto !important;
-                max-width: 100% !important;
-                overflow: hidden !important;
-            }
-            .leader-card h3, .leader-card .name { font-size: 0.88rem !important; }
-            .leader-card p, .leader-card .role { font-size: 0.68rem !important; }
-
-            /* АВТОБОНУС - no overflow, readable */
-            .bonus-panel {
-                padding: 8px 4px !important;
-                max-width: 100% !important;
-                overflow: hidden !important;
-            }
-            .bonus-panel h3 { font-size: 0.9rem !important; }
-            .bonus-steps { grid-template-columns: 1fr !important; gap: 5px !important; }
-            .bonus-step .step-info h4 { font-size: 0.8rem !important; }
-            .bonus-step .step-info p { font-size: 0.7rem !important; }
-
-            /* Top site */
-            .hero-content h1 { font-size: 1.85rem !important; }
-            .nav-inner { padding: 4px 6px !important; }
-
-            /* NATALYA BIO MODAL - full fix for phone and bad zoom: readable, scrollable, no ugly layout */
-            .biography-overlay {
-                background: rgba(0, 0, 0, 0.96) !important;
-            }
-            .bio-window {
-                max-width: 100% !important;
-                width: 100% !important;
-                height: 100dvh !important;
-                margin: 0 !important;
-                border-radius: 0 !important;
-                display: flex !important;
-                flex-direction: column !important;
-            }
-            .bio-sidebar {
-                padding: 0.9rem 0.9rem 0.6rem !important;
-                border-right: none !important;
-                border-bottom: 1px solid rgba(255,255,255,0.1) !important;
-                flex: 0 0 auto !important;
-            }
-            .bio-sidebar h2 {
-                font-size: 1.15rem !important;
-                line-height: 1.05 !important;
-            }
-            .bio-sidebar .brand-stamp {
-                font-size: 0.6rem !important;
-            }
-            .bio-main-content {
-                padding: 0.8rem 0.9rem 1.2rem !important;
-                flex: 1 1 auto !important;
-                overflow-y: auto !important;
-                -webkit-overflow-scrolling: touch;
-                font-size: 0.85rem !important;
-                line-height: 1.4 !important;
-            }
-            .bio-main-content p,
-            .bio-main-content li {
-                font-size: 0.82rem !important;
-                margin-bottom: 0.6rem !important;
-            }
-            .close-architect {
-                top: 6px !important;
-                right: 6px !important;
-                width: 32px !important;
-                height: 32px !important;
-            }
-
-            /* HOUSING PROGRAM / BONUS SLIDER - proper mobile: stack instead of broken flip */
-            .bonus-panels {
-                width: 100% !important;
-                display: block !important;
-                transform: none !important;
-            }
-            .bonus-panel {
-                width: 100% !important;
-                display: block !important;
-                margin-bottom: 12px !important;
-            }
-            #bonus-nav-btn {
-                display: none !important; /* on mobile show both stacked, no need to flip */
-            }
-
-            /* ХРОНОЛОГИЯ УСПЕХА / HISTORY - make text fit and readable */
-            .history-event {
-                flex-direction: column !important;
-                gap: 4px !important;
-            }
-            .history-event .date {
-                min-width: auto !important;
-                font-size: 0.75rem !important;
-            }
-            .history-event .desc h4 {
-                font-size: 0.85rem !important;
-            }
-            .history-event .desc p {
-                font-size: 0.78rem !important;
-            }
-            .glass-tab-text {
-                font-size: 0.8rem !important;
-            }
-
-            /* Extra for chronology / history events and general glass text to never be unreadable or cut off */
-            .history-events-list, .history-event .desc p {
-                font-size: 0.78rem !important;
-                line-height: 1.35 !important;
-            }
-            .glass-tab-text p, .glass-tab-text strong {
-                font-size: 0.8rem !important;
-            }
-
-            /* Make sure bio internal narrative tabs are compact on phone */
-            .narrative-tab .tab-heading-meta {
-                font-size: 0.7rem !important;
-            }
-            .narrative-tab h3 {
-                font-size: 1rem !important;
-            }
-        }
-    </style>
 <body>
 
     <!-- EWA PRODUCT official-style intro: black logo first, then the site -->
@@ -2227,7 +2003,7 @@
     <nav>
         <div class="nav-inner">
             <a href="#home" class="logo">
-                <img src="assets/img/logo.svg" alt="EWA PRODUCT" onerror="this.style.display='none'; this.parentNode.insertAdjacentHTML('beforeend','<span style=\'font-weight:700;color:#fff;font-size:1.1rem;letter-spacing:-0.5px\'>EWA</span>')">
+                <img src="assets/img/logo.svg" alt="EWA PRODUCT">
             </a>
             <div class="nav-links">
                 <a href="#history" class="nav-link">История</a>
@@ -2297,7 +2073,149 @@
     </div>
 
     <!-- BENEFITS -->
+<section class="glass-section-wrapper" id="benefits">
+    <div class="glass-section-header">
+        <h2>Философия превосходства</h2>
+        <p>EWA PRODUCT — это не просто компания. Это экосистема, где биохакинг встречается с прогрессивной бизнес-моделью.</p>
+    </div>
 
+    <div class="glass-window js-glass-container">
+        <div class="glass-sidebar">
+            <div class="glass-nav-list">
+                <div class="glass-nav-card active" data-target="ewa-tab-1">
+                    <div class="icon-box">01</div>
+                    <div class="glass-nav-details">
+                        <div class="title">Биохакинг</div>
+                        <div class="subtitle">Инновационный продукт</div>
+                    </div>
+                </div>
+                <div class="glass-nav-card" data-target="ewa-tab-2">
+                    <div class="icon-box">02</div>
+                    <div class="glass-nav-details">
+                        <div class="title">Умная экономика</div>
+                        <div class="subtitle">Товарный кэшбэк до 25%</div>
+                    </div>
+                </div>
+                <div class="glass-nav-card" data-target="ewa-tab-3">
+                    <div class="icon-box">03</div>
+                    <div class="glass-nav-details">
+                        <div class="title">Абсолютный масштаб</div>
+                        <div class="subtitle">Глобальная экспансия</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="glass-main-content">
+            <div class="glass-tab active" id="ewa-tab-1">
+                <div class="glass-tab-meta">Фундамент бизнеса</div>
+                <h3 class="glass-tab-title">Продукт, который продает себя сам</h3>
+                <div class="glass-tab-text">
+                    <p>Мы отказались от масс-маркета. Основа EWA PRODUCT — это <strong>инновационные нутрицевтики и биохакинг</strong>. Мы создаем комплексы для активации мозга, бесконечной энергии и абсолютного фокуса.</p>
+                    <p>Наш продукт — это ресурс. Когда продукт дает реальный, физически ощутимый результат за считанные дни (как Brain Storm или Shaker), ваш бизнес строится органично, без агрессивных продаж.</p>
+                </div>
+            </div>
+
+            <div class="glass-tab" id="ewa-tab-2">
+                <div class="glass-tab-meta">Инфраструктура</div>
+                <h3 class="glass-tab-title">Математика без потолка</h3>
+                <div class="glass-tab-text">
+                    <p>Самая прогрессивная система выплат в индустрии. Мы внедрили <strong>мощный кэшбэк до 25%</strong>, чтобы даже новички видели живые деньги с первого дня.</p>
+                    <p>Система устроена так, что она щедро вознаграждает тех, кто строит глубину и ширину. Прозрачный маркетинг-план, никаких скрытых условий. Вы создаете товарооборот — компания делится максимальным процентом прибыли.</p>
+                </div>
+            </div>
+
+            <div class="glass-tab" id="ewa-tab-3">
+                <div class="glass-tab-meta">География</div>
+                <h3 class="glass-tab-title">Стирая границы</h3>
+                <div class="glass-tab-text">
+                    <p>Твой бизнес больше не привязан к одному городу или стране. Официальное присутствие в <strong>7 странах</strong> и развитая сеть из складов и ПВЗ позволяют масштабироваться онлайн.</p>
+                    <p>Наше IT-решение и логистика позволяют регистрировать партнеров из других часовых поясов и получать доход, пока вы спите. Это настоящая архитектура пассивного дохода.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="glass-section-wrapper" id="how">
+    <div class="glass-section-header">
+        <h2>Траектория запуска</h2>
+        <p>От регистрации до первых серьезных чеков. Четкий алгоритм действий без воды.</p>
+    </div>
+
+    <div class="glass-window js-glass-container">
+        <div class="glass-sidebar">
+            <div class="glass-nav-list">
+                <div class="glass-nav-card active" data-target="start-tab-1">
+                    <div class="icon-box">01</div>
+                    <div class="glass-nav-details">
+                        <div class="title">Инициация</div>
+                        <div class="subtitle">Бесплатная регистрация</div>
+                    </div>
+                </div>
+                <div class="glass-nav-card" data-target="start-tab-2">
+                    <div class="icon-box">02</div>
+                    <div class="glass-nav-details">
+                        <div class="title">Активация</div>
+                        <div class="subtitle">Погружение в продукт</div>
+                    </div>
+                </div>
+                <div class="glass-nav-card" data-target="start-tab-3">
+                    <div class="icon-box">03</div>
+                    <div class="glass-nav-details">
+                        <div class="title">Прокачка</div>
+                        <div class="subtitle">Система EWA SKILLS</div>
+                    </div>
+                </div>
+                <div class="glass-nav-card" data-target="start-tab-4">
+                    <div class="icon-box">04</div>
+                    <div class="glass-nav-details">
+                        <div class="title">Дупликация</div>
+                        <div class="subtitle">Масштаб команды</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="glass-main-content">
+            <div class="glass-tab active" id="start-tab-1">
+                <div class="glass-tab-meta">Шаг первый</div>
+                <h3 class="glass-tab-title">Легальный доступ к инфраструктуре</h3>
+                <div class="glass-tab-text">
+                    <p>Всё начинается с простого шага — <strong>бесплатной регистрации</strong>. Вы получаете личный кабинет, персональный ID (реферальную ссылку) и полный доступ к аналитике бизнеса.</p>
+                    <p>Никаких скрытых платежей или "входных билетов". Вы становитесь частью системы за 2 минуты.</p>
+                </div>
+            </div>
+
+            <div class="glass-tab" id="start-tab-2">
+                <div class="glass-tab-meta">Шаг второй</div>
+                <h3 class="glass-tab-title">Личный результат — главный инструмент</h3>
+                <div class="glass-tab-text">
+                    <p>Сетевой бизнес строится на искренности. Активация контракта — это приобретение продукта для себя. Попробуйте инновационные формулы, получите энергию, сбросьте вес или улучшите кожу.</p>
+                    <p><strong>Твой результат = твой лучший кейс.</strong> Когда горят глаза от собственного самочувствия, люди сами начинают спрашивать, в чем секрет.</p>
+                </div>
+            </div>
+
+            <div class="glass-tab" id="start-tab-3">
+                <div class="glass-tab-meta">Шаг третий</div>
+                <h3 class="glass-tab-title">Академия миллионеров</h3>
+                <div class="glass-tab-text">
+                    <p>Мы не бросаем новичков. Вы получаете доступ к мощной образовательной платформе <strong>EWA SKILLS</strong>. Это пошаговые алгоритмы работы: от того, как правильно вести соцсети, до закрытия сложных сделок.</p>
+                    <p>Вас будет вести личный наставник, который материально заинтересован в вашем финансовом росте.</p>
+                </div>
+            </div>
+
+            <div class="glass-tab" id="start-tab-4">
+                <div class="glass-tab-meta">Шаг четвертый</div>
+                <h3 class="glass-tab-title">Строим империю</h3>
+                <div class="glass-tab-text">
+                    <p>Применяя алгоритмы системы, вы начинаете подключать первых партнеров и клиентов. Запускается процесс дупликации — ваши люди повторяют ваши действия.</p>
+                    <p>Товарооборот растет в геометрической прогрессии, открывая доступ к автобонусу, лидерским путешествиям за границу и пассивному доходу, который передается по наследству.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
     <!-- ЛИДЕРЫ EWA PRODUCT -->
     <!-- Два топ-лидера: Artem и Nataly. Hover: ч/б -> цвет + 3D tilt на фото. Кнопка "Подробнее" слегка сдвинута вправо. -->
@@ -4329,11 +4247,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const desc = document.getElementById('bonus-main-desc');
         const btn = document.getElementById('bonus-nav-btn');
 
-        if (!panels || !title || !desc || !btn) return; // prevent red console errors if elements missing
-
-        // On mobile we stack panels vertically (see CSS), so no flip needed
-        if (window.innerWidth < 768 || getComputedStyle(btn).display === 'none') return;
-
         if (showingCar) {
             panels.style.transform = 'translateX(-50%)';
             title.textContent = 'Жилищная программа EWA';
@@ -4353,18 +4266,6 @@ document.addEventListener('DOMContentLoaded', () => {
 <!-- ======================================================= -->
 
 <style>
-/* === LOGO FIX: force display and correct size (was not showing) === */
-.logo img,
-.hero-logo-inline,
-.logo-black {
-    display: inline-block !important;
-    height: 26px !important;
-    width: auto !important;
-    max-height: 28px;
-    vertical-align: middle;
-    object-fit: contain;
-}
-
 /* Footer Policies (added for legal compliance) */
 footer {
     background: #0a0a0a;
