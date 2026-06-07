@@ -2054,6 +2054,62 @@
         }
     </style>
 </head>
+    <!-- EXTRA HARD MOBILE OVERRIDES FOR THE SECTIONS YOU MENTIONED -->
+    <style>
+        @media (max-width: 768px) {
+            /* ФИЛОСОФИЯ ПРЕВОСХОДСТВА + glass content - very tight */
+            .glass-section-header h2,
+            .glass-tab-title {
+                font-size: 0.95rem !important;
+                line-height: 1.08 !important;
+            }
+            .glass-main-content,
+            .glass-tab-text {
+                font-size: 0.76rem !important;
+                padding: 8px 4px !important;
+                max-width: 100% !important;
+                overflow: hidden !important;
+            }
+            .glass-nav-card {
+                min-width: 76px !important;
+                padding: 3px 5px !important;
+            }
+
+            /* ИСТОРИЯ КОМПАНИИ - no spreading */
+            .history-stats-grid .h-num,
+            .stats-inner .num {
+                font-size: 1.05rem !important;
+            }
+            .timeline-content h3 { font-size: 0.85rem !important; }
+            .timeline-content p { font-size: 0.72rem !important; }
+
+            /* ЛИДЕРЫ КОМПАНИИ - compact cards */
+            .leaders-grid { grid-template-columns: 1fr !important; }
+            .leader-card {
+                padding: 6px !important;
+                height: auto !important;
+                max-width: 100% !important;
+                overflow: hidden !important;
+            }
+            .leader-card h3, .leader-card .name { font-size: 0.88rem !important; }
+            .leader-card p, .leader-card .role { font-size: 0.68rem !important; }
+
+            /* АВТОБОНУС - no overflow, readable */
+            .bonus-panel {
+                padding: 8px 4px !important;
+                max-width: 100% !important;
+                overflow: hidden !important;
+            }
+            .bonus-panel h3 { font-size: 0.9rem !important; }
+            .bonus-steps { grid-template-columns: 1fr !important; gap: 5px !important; }
+            .bonus-step .step-info h4 { font-size: 0.8rem !important; }
+            .bonus-step .step-info p { font-size: 0.7rem !important; }
+
+            /* Top site */
+            .hero-content h1 { font-size: 1.85rem !important; }
+            .nav-inner { padding: 4px 6px !important; }
+        }
+    </style>
 <body>
 
     <!-- EWA PRODUCT official-style intro: black logo first, then the site -->
