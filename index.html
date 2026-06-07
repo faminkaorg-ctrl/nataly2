@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EWA PRODUCT — Для бизнеса</title>
+    <title>Для бизнеса — EWA PRODUCT</title>
     <link rel="icon" type="image/png" href="favicon.png">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;family=Raleway:wght@300;400;500;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap');
@@ -1987,6 +1987,71 @@
     position: relative;
     z-index: 1;
 }
+    </style>
+
+    <!-- ===================================================== -->
+    <!-- AGGRESSIVE MOBILE-ONLY STYLES — COMPLETE REDO FOR PHONES -->
+    <!-- Same block as in index.html for consistency -->
+    <!-- ===================================================== -->
+    <style>
+        @media (max-width: 768px) {
+            :root { --text-size-base: 15px; }
+            body { font-size: 15px; line-height: 1.55; }
+            .section, .glass-section-wrapper { padding-left: 16px !important; padding-right: 16px !important; }
+
+            nav .nav-inner { padding: 8px 12px !important; }
+            .logo { font-size: 1.05rem !important; }
+            .logo img { height: 20px !important; }
+            .nav-links { gap: 3px; font-size: 0.68rem; overflow-x: auto; }
+            .nav-link { padding: 5px 10px !important; font-size: 0.68rem !important; }
+            .nav-cta { padding: 6px 14px !important; font-size: 0.72rem !important; }
+
+            .hero { padding-top: 52px; }
+            .hero-content { padding: 0 14px; }
+            .hero-content h1 { font-size: 2.45rem !important; line-height: 0.92 !important; letter-spacing: -1.1px !important; }
+            .hero-content .lead { font-size: 0.98rem !important; }
+            .hero-buttons { flex-direction: column; width: 100%; }
+            .hero-buttons a, .hero-buttons button { width: 100%; padding: 13px 18px !important; }
+
+            .glass-section-wrapper { padding-top: 42px; padding-bottom: 32px; }
+            .glass-section-header h2 { font-size: 1.65rem !important; }
+            .glass-window { flex-direction: column !important; }
+            .glass-sidebar { width: 100% !important; flex-direction: row !important; overflow-x: auto; padding: 10px 8px; border-right: none !important; border-bottom: 1px solid var(--border); }
+            .glass-nav-card { min-width: 115px; padding: 8px 11px !important; }
+            .glass-main-content { padding: 20px 14px !important; }
+            .glass-tab-title { font-size: 1.22rem !important; }
+
+            .stats-bar { padding: 20px 12px; }
+            .stats-inner { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+            .stat-item .num { font-size: 1.45rem; }
+
+            .reviews { padding: 32px 0 40px; }
+            .reviews-header h2 { font-size: 1.55rem !important; }
+            .video-card { width: 104px !important; }
+            .video-card video { height: 138px; }
+
+            .bonus-header h2 { font-size: 1.55rem !important; }
+            .bonus-slider { flex-direction: column !important; height: auto !important; }
+            .bonus-panel { width: 100% !important; padding: 20px 14px !important; }
+
+            .leaders-grid { grid-template-columns: 1fr; }
+            .leader-card { height: auto; min-height: 320px; }
+
+            footer { padding: 30px 14px 24px; }
+            .modal { width: 94% !important; }
+        }
+
+        @media (max-width: 480px) {
+            body { font-size: 14.2px; }
+            .hero-content h1 { font-size: 2.15rem !important; }
+            .glass-nav-card { min-width: 98px; }
+            .video-card { width: 92px !important; }
+            .video-card video { height: 122px; }
+        }
+
+        @media (max-width: 768px) {
+            * { max-width: 100vw; }
+        }
     </style>
 </head>
 <body>
