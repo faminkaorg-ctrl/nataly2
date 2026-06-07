@@ -2054,6 +2054,12 @@
         }
     </style>
 </head>
+<style>
+/* Чистое правило для скрытия навигации только на мобилке */
+@media (max-width: 768px) {
+  .nav-links { display: none !important; }
+}
+</style>
     <!-- EXTRA HARD MOBILE OVERRIDES FOR THE SECTIONS YOU MENTIONED -->
     <style>
         @media (max-width: 768px) {
@@ -2221,7 +2227,7 @@
     <nav>
         <div class="nav-inner">
             <a href="#home" class="logo">
-                <img src="assets/img/logo.svg" alt="EWA PRODUCT">
+                <img src="assets/img/logo.svg" alt="EWA PRODUCT" onerror="this.style.display='none'; this.parentNode.insertAdjacentHTML('beforeend','<span style=\'font-weight:700;color:#fff;font-size:1.1rem;letter-spacing:-0.5px\'>EWA</span>')">
             </a>
             <div class="nav-links">
                 <a href="#history" class="nav-link">История</a>
@@ -2291,149 +2297,7 @@
     </div>
 
     <!-- BENEFITS -->
-<section class="glass-section-wrapper" id="benefits">
-    <div class="glass-section-header">
-        <h2>Философия превосходства</h2>
-        <p>EWA PRODUCT — это не просто компания. Это экосистема, где биохакинг встречается с прогрессивной бизнес-моделью.</p>
-    </div>
 
-    <div class="glass-window js-glass-container">
-        <div class="glass-sidebar">
-            <div class="glass-nav-list">
-                <div class="glass-nav-card active" data-target="ewa-tab-1">
-                    <div class="icon-box">01</div>
-                    <div class="glass-nav-details">
-                        <div class="title">Биохакинг</div>
-                        <div class="subtitle">Инновационный продукт</div>
-                    </div>
-                </div>
-                <div class="glass-nav-card" data-target="ewa-tab-2">
-                    <div class="icon-box">02</div>
-                    <div class="glass-nav-details">
-                        <div class="title">Умная экономика</div>
-                        <div class="subtitle">Товарный кэшбэк до 25%</div>
-                    </div>
-                </div>
-                <div class="glass-nav-card" data-target="ewa-tab-3">
-                    <div class="icon-box">03</div>
-                    <div class="glass-nav-details">
-                        <div class="title">Абсолютный масштаб</div>
-                        <div class="subtitle">Глобальная экспансия</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="glass-main-content">
-            <div class="glass-tab active" id="ewa-tab-1">
-                <div class="glass-tab-meta">Фундамент бизнеса</div>
-                <h3 class="glass-tab-title">Продукт, который продает себя сам</h3>
-                <div class="glass-tab-text">
-                    <p>Мы отказались от масс-маркета. Основа EWA PRODUCT — это <strong>инновационные нутрицевтики и биохакинг</strong>. Мы создаем комплексы для активации мозга, бесконечной энергии и абсолютного фокуса.</p>
-                    <p>Наш продукт — это ресурс. Когда продукт дает реальный, физически ощутимый результат за считанные дни (как Brain Storm или Shaker), ваш бизнес строится органично, без агрессивных продаж.</p>
-                </div>
-            </div>
-
-            <div class="glass-tab" id="ewa-tab-2">
-                <div class="glass-tab-meta">Инфраструктура</div>
-                <h3 class="glass-tab-title">Математика без потолка</h3>
-                <div class="glass-tab-text">
-                    <p>Самая прогрессивная система выплат в индустрии. Мы внедрили <strong>мощный кэшбэк до 25%</strong>, чтобы даже новички видели живые деньги с первого дня.</p>
-                    <p>Система устроена так, что она щедро вознаграждает тех, кто строит глубину и ширину. Прозрачный маркетинг-план, никаких скрытых условий. Вы создаете товарооборот — компания делится максимальным процентом прибыли.</p>
-                </div>
-            </div>
-
-            <div class="glass-tab" id="ewa-tab-3">
-                <div class="glass-tab-meta">География</div>
-                <h3 class="glass-tab-title">Стирая границы</h3>
-                <div class="glass-tab-text">
-                    <p>Твой бизнес больше не привязан к одному городу или стране. Официальное присутствие в <strong>7 странах</strong> и развитая сеть из складов и ПВЗ позволяют масштабироваться онлайн.</p>
-                    <p>Наше IT-решение и логистика позволяют регистрировать партнеров из других часовых поясов и получать доход, пока вы спите. Это настоящая архитектура пассивного дохода.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section class="glass-section-wrapper" id="how">
-    <div class="glass-section-header">
-        <h2>Траектория запуска</h2>
-        <p>От регистрации до первых серьезных чеков. Четкий алгоритм действий без воды.</p>
-    </div>
-
-    <div class="glass-window js-glass-container">
-        <div class="glass-sidebar">
-            <div class="glass-nav-list">
-                <div class="glass-nav-card active" data-target="start-tab-1">
-                    <div class="icon-box">01</div>
-                    <div class="glass-nav-details">
-                        <div class="title">Инициация</div>
-                        <div class="subtitle">Бесплатная регистрация</div>
-                    </div>
-                </div>
-                <div class="glass-nav-card" data-target="start-tab-2">
-                    <div class="icon-box">02</div>
-                    <div class="glass-nav-details">
-                        <div class="title">Активация</div>
-                        <div class="subtitle">Погружение в продукт</div>
-                    </div>
-                </div>
-                <div class="glass-nav-card" data-target="start-tab-3">
-                    <div class="icon-box">03</div>
-                    <div class="glass-nav-details">
-                        <div class="title">Прокачка</div>
-                        <div class="subtitle">Система EWA SKILLS</div>
-                    </div>
-                </div>
-                <div class="glass-nav-card" data-target="start-tab-4">
-                    <div class="icon-box">04</div>
-                    <div class="glass-nav-details">
-                        <div class="title">Дупликация</div>
-                        <div class="subtitle">Масштаб команды</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="glass-main-content">
-            <div class="glass-tab active" id="start-tab-1">
-                <div class="glass-tab-meta">Шаг первый</div>
-                <h3 class="glass-tab-title">Легальный доступ к инфраструктуре</h3>
-                <div class="glass-tab-text">
-                    <p>Всё начинается с простого шага — <strong>бесплатной регистрации</strong>. Вы получаете личный кабинет, персональный ID (реферальную ссылку) и полный доступ к аналитике бизнеса.</p>
-                    <p>Никаких скрытых платежей или "входных билетов". Вы становитесь частью системы за 2 минуты.</p>
-                </div>
-            </div>
-
-            <div class="glass-tab" id="start-tab-2">
-                <div class="glass-tab-meta">Шаг второй</div>
-                <h3 class="glass-tab-title">Личный результат — главный инструмент</h3>
-                <div class="glass-tab-text">
-                    <p>Сетевой бизнес строится на искренности. Активация контракта — это приобретение продукта для себя. Попробуйте инновационные формулы, получите энергию, сбросьте вес или улучшите кожу.</p>
-                    <p><strong>Твой результат = твой лучший кейс.</strong> Когда горят глаза от собственного самочувствия, люди сами начинают спрашивать, в чем секрет.</p>
-                </div>
-            </div>
-
-            <div class="glass-tab" id="start-tab-3">
-                <div class="glass-tab-meta">Шаг третий</div>
-                <h3 class="glass-tab-title">Академия миллионеров</h3>
-                <div class="glass-tab-text">
-                    <p>Мы не бросаем новичков. Вы получаете доступ к мощной образовательной платформе <strong>EWA SKILLS</strong>. Это пошаговые алгоритмы работы: от того, как правильно вести соцсети, до закрытия сложных сделок.</p>
-                    <p>Вас будет вести личный наставник, который материально заинтересован в вашем финансовом росте.</p>
-                </div>
-            </div>
-
-            <div class="glass-tab" id="start-tab-4">
-                <div class="glass-tab-meta">Шаг четвертый</div>
-                <h3 class="glass-tab-title">Строим империю</h3>
-                <div class="glass-tab-text">
-                    <p>Применяя алгоритмы системы, вы начинаете подключать первых партнеров и клиентов. Запускается процесс дупликации — ваши люди повторяют ваши действия.</p>
-                    <p>Товарооборот растет в геометрической прогрессии, открывая доступ к автобонусу, лидерским путешествиям за границу и пассивному доходу, который передается по наследству.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
 
     <!-- ЛИДЕРЫ EWA PRODUCT -->
     <!-- Два топ-лидера: Artem и Nataly. Hover: ч/б -> цвет + 3D tilt на фото. Кнопка "Подробнее" слегка сдвинута вправо. -->
@@ -4465,6 +4329,11 @@ document.addEventListener('DOMContentLoaded', () => {
         const desc = document.getElementById('bonus-main-desc');
         const btn = document.getElementById('bonus-nav-btn');
 
+        if (!panels || !title || !desc || !btn) return; // prevent red console errors if elements missing
+
+        // On mobile we stack panels vertically (see CSS), so no flip needed
+        if (window.innerWidth < 768 || getComputedStyle(btn).display === 'none') return;
+
         if (showingCar) {
             panels.style.transform = 'translateX(-50%)';
             title.textContent = 'Жилищная программа EWA';
@@ -4484,6 +4353,18 @@ document.addEventListener('DOMContentLoaded', () => {
 <!-- ======================================================= -->
 
 <style>
+/* === LOGO FIX: force display and correct size (was not showing) === */
+.logo img,
+.hero-logo-inline,
+.logo-black {
+    display: inline-block !important;
+    height: 26px !important;
+    width: auto !important;
+    max-height: 28px;
+    vertical-align: middle;
+    object-fit: contain;
+}
+
 /* Footer Policies (added for legal compliance) */
 footer {
     background: #0a0a0a;
