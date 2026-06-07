@@ -2108,6 +2108,103 @@
             /* Top site */
             .hero-content h1 { font-size: 1.85rem !important; }
             .nav-inner { padding: 4px 6px !important; }
+
+            /* NATALYA BIO MODAL - full fix for phone and bad zoom: readable, scrollable, no ugly layout */
+            .biography-overlay {
+                background: rgba(0, 0, 0, 0.96) !important;
+            }
+            .bio-window {
+                max-width: 100% !important;
+                width: 100% !important;
+                height: 100dvh !important;
+                margin: 0 !important;
+                border-radius: 0 !important;
+                display: flex !important;
+                flex-direction: column !important;
+            }
+            .bio-sidebar {
+                padding: 0.9rem 0.9rem 0.6rem !important;
+                border-right: none !important;
+                border-bottom: 1px solid rgba(255,255,255,0.1) !important;
+                flex: 0 0 auto !important;
+            }
+            .bio-sidebar h2 {
+                font-size: 1.15rem !important;
+                line-height: 1.05 !important;
+            }
+            .bio-sidebar .brand-stamp {
+                font-size: 0.6rem !important;
+            }
+            .bio-main-content {
+                padding: 0.8rem 0.9rem 1.2rem !important;
+                flex: 1 1 auto !important;
+                overflow-y: auto !important;
+                -webkit-overflow-scrolling: touch;
+                font-size: 0.85rem !important;
+                line-height: 1.4 !important;
+            }
+            .bio-main-content p,
+            .bio-main-content li {
+                font-size: 0.82rem !important;
+                margin-bottom: 0.6rem !important;
+            }
+            .close-architect {
+                top: 6px !important;
+                right: 6px !important;
+                width: 32px !important;
+                height: 32px !important;
+            }
+
+            /* HOUSING PROGRAM / BONUS SLIDER - proper mobile: stack instead of broken flip */
+            .bonus-panels {
+                width: 100% !important;
+                display: block !important;
+                transform: none !important;
+            }
+            .bonus-panel {
+                width: 100% !important;
+                display: block !important;
+                margin-bottom: 12px !important;
+            }
+            #bonus-nav-btn {
+                display: none !important; /* on mobile show both stacked, no need to flip */
+            }
+
+            /* ХРОНОЛОГИЯ УСПЕХА / HISTORY - make text fit and readable */
+            .history-event {
+                flex-direction: column !important;
+                gap: 4px !important;
+            }
+            .history-event .date {
+                min-width: auto !important;
+                font-size: 0.75rem !important;
+            }
+            .history-event .desc h4 {
+                font-size: 0.85rem !important;
+            }
+            .history-event .desc p {
+                font-size: 0.78rem !important;
+            }
+            .glass-tab-text {
+                font-size: 0.8rem !important;
+            }
+
+            /* Extra for chronology / history events and general glass text to never be unreadable or cut off */
+            .history-events-list, .history-event .desc p {
+                font-size: 0.78rem !important;
+                line-height: 1.35 !important;
+            }
+            .glass-tab-text p, .glass-tab-text strong {
+                font-size: 0.8rem !important;
+            }
+
+            /* Make sure bio internal narrative tabs are compact on phone */
+            .narrative-tab .tab-heading-meta {
+                font-size: 0.7rem !important;
+            }
+            .narrative-tab h3 {
+                font-size: 1rem !important;
+            }
         }
     </style>
 <body>
