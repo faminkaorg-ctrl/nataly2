@@ -1,0 +1,4505 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EWA PRODUCT — Для бизнеса</title>
+    <link rel="icon" type="image/png" href="favicon.png">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;family=Raleway:wght@300;400;500;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap');
+
+        :root {
+            --accent: #e00076;
+            --accent-dark: #c20068;
+            --text: #f4f4f5;
+            --text-light: #a1a1aa;
+            --bg: #0f0f10;
+            --card: #1a1a1c;
+            --border: #27272a;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Raleway', system-ui, -apple-system, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* NAV - dark like original */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            background: rgba(15,15,16,0.96);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+        }
+        .nav-inner {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 18px 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: #fff;
+            font-weight: 700;
+            font-size: 1.35rem;
+            letter-spacing: -.02em;
+        }
+        .logo img { height: 28px; width: auto; }
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 0.92rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-link {
+            color: var(--text);
+            text-decoration: none;
+            padding: 10px 18px;
+            border-radius: 9999px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+            background: transparent;
+            border: 1px solid transparent;
+        }
+
+        .nav-link::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(135deg, rgba(224,0,118,0.08), rgba(255,42,154,0.05));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            border-radius: 9999px;
+            z-index: -1;
+        }
+
+        .nav-link:hover {
+            color: #fff;
+            border-color: rgba(224, 0, 118, 0.4);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 15px rgba(224, 0, 118, 0.15);
+        }
+
+        .nav-link:hover::before {
+            opacity: 1;
+        }
+
+        .nav-link.active {
+            color: #fff;
+            background: rgba(224, 0, 118, 0.15);
+            border-color: var(--accent);
+            font-weight: 600;
+        }
+
+        .nav-button {
+            background: linear-gradient(135deg, #e00076, #ff2a9a);
+            color: white;
+            padding: 12px 28px;
+            border-radius: 9999px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            letter-spacing: 0.8px;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+            box-shadow: 0 6px 20px rgba(224, 0, 118, 0.35);
+            text-transform: uppercase;
+        }
+
+        .nav-button::after {
+            content: '';
+            position: absolute;
+            top: -50%; left: -50%;
+            width: 40%; height: 200%;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(255,255,255,0.4),
+                transparent
+            );
+            transform: skewX(-25deg);
+            transition: left 0.7s ease;
+            opacity: 0;
+        }
+
+        .nav-button:hover {
+            transform: translateY(-2px) scale(1.03);
+            box-shadow: 0 10px 30px rgba(224, 0, 118, 0.5);
+        }
+
+        .nav-button:hover::after {
+            left: 150%;
+            opacity: 1;
+        }
+
+        .nav-button:active {
+            transform: translateY(0) scale(0.98);
+            box-shadow: 0 4px 15px rgba(224, 0, 118, 0.4);
+        }
+
+/* =========================================
+   HERO БЛОК: СЕТЕВОЙ БИЗНЕС
+========================================= */
+.hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 0 40px;
+    overflow: hidden;
+    background: #0d0d0f; /* Темно-серый базовый цвет бетона */
+}
+
+.hero-video-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+}
+
+.hero-video-bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* Фокус на правой стороне, где стоит человек.
+       Сильно опускаем по вертикали, чтобы голова девушки была полностью ниже тёмной шапки и не съедалась панелью.
+       Чем меньше число — тем ниже будет голова. */
+    object-position: 80% 28%; 
+}
+
+/* Градиент спасает мобильную версию: затемняет левую часть для текста */
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, rgba(15,15,16,0.95) 0%, rgba(15,15,16,0.6) 45%, rgba(0,0,0,0) 100%);
+    z-index: 2;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 3;
+    max-width: 1280px;
+    width: 100%;
+    margin: 0 auto;
+    padding-top: 110px;   /* больше воздуха под шапкой, чтобы текст и голова девушки не прижимались к панели */
+}
+
+/* Декоративная линия слева, как на вашем макете */
+.hero-content-inner {
+    max-width: 600px; 
+    border-left: 2px solid rgba(255, 255, 255, 0.8);
+    padding-left: 30px;
+    position: relative;
+}
+
+/* Светящиеся точки на концах линии (эффект из макета) */
+.hero-content-inner::before,
+.hero-content-inner::after {
+    content: '';
+    position: absolute;
+    left: -5px;
+    width: 8px;
+    height: 8px;
+    background: #fff;
+    border-radius: 50%;
+    box-shadow: 0 0 10px 2px rgba(255,255,255,0.5);
+}
+.hero-content-inner::before { top: 0; }
+.hero-content-inner::after { bottom: 0; }
+
+.hero-logo-inline {
+    width: 220px;
+    margin-bottom: 30px;
+}
+
+.hero-content h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 5.5rem;
+    line-height: 1;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+    color: #fff;
+    text-transform: uppercase;
+}
+
+.hero-content .lead {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.3rem;
+    font-weight: 500;
+    color: #e4e4e7;
+    margin-bottom: 40px;
+    line-height: 1.5;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.hero-actions {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+/* Кнопки */
+.btn-primary-hero {
+    background: #fff;
+    color: #000;
+    padding: 16px 36px;
+    border-radius: 8px; /* Более строгие углы под стиль бетона */
+    font-weight: 700;
+    font-size: 1.05rem;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: all .2s;
+    border: none;
+    cursor: pointer;
+}
+.btn-primary-hero:hover { background: #e00076; color: #fff; transform: translateY(-2px); }
+
+.btn-secondary-hero {
+    background: transparent;
+    color: #fff;
+    padding: 16px 36px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 1.05rem;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: all .2s;
+    border: 1px solid rgba(255,255,255,0.3);
+}
+.btn-secondary-hero:hover { border-color: #fff; background: rgba(255,255,255,0.1); }
+
+/* Адаптация под мобильные устройства */
+@media (max-width: 900px) {
+    .hero-content h1 { font-size: 4rem; }
+    .hero-content .lead { font-size: 1.1rem; }
+    .hero-content { padding-top: 90px; } /* чуть меньше отступа на мобилке */
+    /* На мобилках затемняем весь фон, чтобы белый текст читался поверх фото */
+    .hero-overlay { background: linear-gradient(180deg, rgba(15,15,16,0.95) 0%, rgba(15,15,16,0.7) 100%); }
+    .hero-video-bg img { object-position: 65% 30%; } /* опускаем голову ниже шапки */
+    .hero-actions { flex-direction: column; width: 100%; }
+    .btn-primary-hero, .btn-secondary-hero { width: 100%; text-align: center; }
+}
+
+        /* STATS BAR - dark */
+        .stats-bar {
+            background: #161618;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            padding: 28px 40px;
+        }
+        .stats-inner {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            text-align: center;
+        }
+        .stat-item .num {
+            font-size: 2.1rem;
+            font-weight: 700;
+            color: var(--accent);
+            line-height: 1;
+        }
+        .stat-item .label {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            margin-top: 6px;
+            text-transform: uppercase;
+            letter-spacing: .5px;
+        }
+
+        /* SECTION */
+        .section {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 90px 40px;
+        }
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        .section-header h2 {
+            font-size: 2.6rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            letter-spacing: -.025em;
+        }
+        .section-header p {
+            color: var(--text-light);
+            font-size: 1.1rem;
+            max-width: 520px;
+            margin: 0 auto;
+        }
+
+        /* BENEFITS / WHY US */
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 24px;
+        }
+        .benefit-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 32px 28px;
+            transition: transform .2s, box-shadow .2s;
+        }
+        .benefit-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 45px -12px rgb(0 0 0 / 0.4);
+        }
+        .benefit-card .icon {
+            width: 52px;
+            height: 52px;
+            background: #3a1a2a;
+            color: var(--accent);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+            margin-bottom: 22px;
+        }
+        .benefit-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        .benefit-card p {
+            color: var(--text-light);
+            font-size: 0.97rem;
+        }
+
+        /* HOW IT WORKS */
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 28px;
+            position: relative;
+        }
+        .step {
+            position: relative;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 32px 26px;
+        }
+        .step-num {
+            position: absolute;
+            top: -14px;
+            left: 26px;
+            background: var(--accent);
+            color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.95rem;
+        }
+        .step h3 { margin: 18px 0 10px; font-size: 1.15rem; }
+        .step p { color: var(--text-light); font-size: 0.95rem; }
+
+        /* EVENTS / RECOGNITION */
+        .events-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+        .event-card {
+            position: relative;
+            height: 320px;
+            border-radius: 20px;
+            overflow: hidden;
+            color: white;
+            box-shadow: 0 10px 30px -10px rgb(0 0 0 / 0.5);
+        }
+        .event-card img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .event-card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, transparent 35%, rgba(0,0,0,0.75));
+        }
+        .event-card .content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 28px;
+            z-index: 2;
+        }
+        .event-card .tag {
+            display: inline-block;
+            font-size: 0.75rem;
+            background: rgba(255,255,255,0.2);
+            padding: 2px 10px;
+            border-radius: 999px;
+            margin-bottom: 10px;
+            backdrop-filter: blur(4px);
+        }
+        .event-card h3 {
+            font-size: 1.45rem;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        /* HISTORY + STATS */
+        .history-stats {
+            background: var(--card);
+            border-radius: 24px;
+            padding: 60px;
+            border: 1px solid var(--border);
+        }
+        .big-numbers {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 40px;
+            text-align: center;
+        }
+        .big-num {
+            font-size: 3.1rem;
+            font-weight: 700;
+            line-height: 1;
+            color: var(--accent);
+        }
+        .big-label {
+            margin-top: 8px;
+            font-size: 0.95rem;
+            color: var(--text-light);
+        }
+
+        /* FOUNDER / CEO */
+        .founder {
+            display: grid;
+            grid-template-columns: 420px 1fr;
+            gap: 70px;
+            align-items: center;
+            background: var(--card);
+            border-radius: 24px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+        }
+        .founder-photo {
+            height: 100%;
+            min-height: 460px;
+            background-size: cover;
+            background-position: center;
+        }
+        .founder-content {
+            padding: 50px 60px 50px 20px;
+        }
+        .founder-content h2 {
+            font-size: 1.9rem;
+            line-height: 1.15;
+            margin-bottom: 24px;
+            font-weight: 600;
+        }
+        .founder-content p {
+            color: var(--text-light);
+            margin-bottom: 18px;
+            font-size: 1.02rem;
+        }
+        .founder-name {
+            margin-top: 30px;
+            font-weight: 700;
+            font-size: 1.15rem;
+        }
+        .founder-role {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        /* PRODUCTS */
+        .products {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+            gap: 20px;
+        }
+        .product {
+            background: var(--card);
+            border-radius: 18px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            transition: transform .2s;
+        }
+        .product:hover { transform: translateY(-4px); }
+        .product img {
+            width: 100%;
+            height: 210px;
+            object-fit: cover;
+        }
+        .product-info {
+            padding: 20px 20px 24px;
+        }
+        .product-info h4 {
+            font-size: 1.05rem;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+        .product-info span {
+            font-size: 0.85rem;
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        /* FINAL CTA */
+        .final-cta {
+            background: #111113;
+            color: white;
+            text-align: center;
+            padding: 90px 40px;
+            border-radius: 24px;
+            margin: 40px 40px 100px;
+        }
+        .final-cta h2 {
+            font-size: 2.4rem;
+            margin-bottom: 14px;
+        }
+        .final-cta p {
+            color: #a1a1aa;
+            max-width: 440px;
+            margin: 0 auto 32px;
+        }
+
+        /* FOOTER */
+        footer {
+            padding: 40px;
+            text-align: center;
+            color: #71717a;
+            font-size: 0.85rem;
+            border-top: 1px solid var(--border);
+        }
+
+        @media (max-width: 900px) {
+            .founder { grid-template-columns: 1fr; }
+            .founder-photo { min-height: 320px; }
+            .stats-inner { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        /* OFFICIAL-STYLE SPLASH / INTRO — logo first, then site */
+        #splash {
+            position: fixed;
+            inset: 0;
+            background: #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 99999;
+        }
+        .splash-inner {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 14px;
+            animation: splashIn 680ms cubic-bezier(0.23, 1.0, 0.32, 1);
+        }
+        @keyframes splashIn {
+            from { opacity: 0; transform: scale(0.94); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        .splash-mark {
+            height: 112px;
+            width: auto;
+            display: block;
+        }
+        .splash-text {
+            color: #fff;
+            font-family: 'Raleway', system-ui, -apple-system, sans-serif;
+            font-size: 14.5px;
+            font-weight: 600;
+            letter-spacing: 6.8px;
+            text-transform: uppercase;
+            margin-top: 1px;
+            opacity: 0.98;
+        }
+
+        /* === АВТОБОНУС MODULE (адаптировано под тёмный сайт из ewa_autobonus_integration.html) === */
+        .autobonus {
+            padding-top: 60px;
+        }
+
+        .autobonus-hero {
+            position: relative;
+            border-radius: 24px;
+            overflow: hidden;
+            margin-bottom: 50px;
+            box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.5);
+        }
+
+        .autobonus-car {
+            width: 100%;
+            height: auto;
+            display: block;
+            min-height: 420px;
+            object-fit: cover;
+        }
+
+        .autobonus-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to right, rgba(15,15,16,0.85) 0%, rgba(15,15,16,0.4) 50%, rgba(15,15,16,0.2) 100%);
+            display: flex;
+            align-items: center;
+        }
+
+        .overlay-content {
+            max-width: 520px;
+            padding-left: 50px;
+        }
+
+        .overlay-content .badge {
+            display: inline-block;
+            background: var(--accent);
+            color: #000;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 4px 14px;
+            border-radius: 999px;
+            letter-spacing: 1px;
+            margin-bottom: 16px;
+        }
+
+        .overlay-content h3 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            line-height: 1.05;
+            margin-bottom: 12px;
+            color: #fff;
+        }
+
+        .overlay-content p {
+            font-size: 1.05rem;
+            color: #a1a1aa;
+            max-width: 420px;
+        }
+
+        .autobonus-mechanics {
+            margin-bottom: 40px;
+        }
+
+        .mechanics-header h3 {
+            font-size: 1.6rem;
+            margin-bottom: 28px;
+            font-weight: 600;
+        }
+
+        .autobonus-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 20px;
+        }
+
+        .autobonus-step {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            padding: 24px 22px;
+            display: flex;
+            gap: 18px;
+            align-items: flex-start;
+        }
+
+        .autobonus-step .step-num {
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: var(--accent);
+            min-width: 42px;
+        }
+
+        .autobonus-step .step-info h4 {
+            font-size: 1.1rem;
+            margin-bottom: 6px;
+            font-weight: 600;
+        }
+
+        .autobonus-step .step-info p {
+            font-size: 0.95rem;
+            color: var(--text-light);
+            line-height: 1.5;
+        }
+
+        .autobonus-brands {
+            overflow: hidden;
+            padding: 22px 0;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            margin: 30px 0;
+        }
+
+        .autobonus-brands .brands-track {
+            display: flex;
+            gap: 42px;
+            animation: autobonus-marquee 25s linear infinite;
+            white-space: nowrap;
+        }
+
+        .autobonus-brands .brands-track span {
+            font-size: 0.95rem;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            color: var(--text-light);
+            text-transform: uppercase;
+        }
+
+        @keyframes autobonus-marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .autobonus-terms {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+        }
+
+        .autobonus-terms .term {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 24px;
+        }
+
+        .autobonus-terms .term h4 {
+            font-size: 1.05rem;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .autobonus-terms .term p {
+            font-size: 0.92rem;
+            color: var(--text-light);
+            line-height: 1.55;
+        }
+
+        /* Bonus Slider for Car + Housing */
+        .bonus-slider {
+            overflow: hidden;
+            position: relative;
+        }
+
+        .bonus-panels {
+            display: flex;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            width: 200%;
+        }
+
+        .bonus-panel {
+            width: 50%;
+            flex-shrink: 0;
+            box-sizing: border-box;
+        }
+
+        @media (max-width: 900px) {
+            .autobonus-hero {
+                margin-bottom: 30px;
+            }
+            .overlay-content h3 {
+                font-size: 2rem;
+            }
+            .autobonus-steps {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* === ЛИДЕРЫ (Артём Касумов + Наталья Касумова) === */
+        .leaders {
+            padding-bottom: 20px;
+        }
+
+        .leaders-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .leader-card {
+            position: relative;
+            background: #111113;
+            border-radius: 20px;
+            overflow: hidden;
+            height: 420px;
+            box-shadow: 0 10px 30px -8px rgba(0, 0, 0, 0.45);
+        }
+
+        .leader-photo {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            perspective: 900px;
+        }
+
+        .leader-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            filter: grayscale(100%);
+            transform: scale(1.1);
+            transition: filter 0.4s ease;
+            will-change: transform;
+        }
+
+        .leader-card:hover .leader-photo img {
+            filter: grayscale(0%);
+        }
+
+        /* Кнопка "Подробнее" — слегка сдвинута вправо */
+        .leader-more-btn {
+            position: absolute;
+            bottom: 30px;
+            right: 30px;
+            z-index: 10;
+            background: rgba(20, 20, 22, 0.4);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: #fff;
+            padding: 12px 28px;
+            border-radius: 999px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all .3s ease;
+        }
+
+        .leader-more-btn:hover {
+            background: var(--accent);
+            color: #fff;
+            border-color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 900px) {
+            .leaders-grid {
+                grid-template-columns: 1fr;
+            }
+            .leader-card {
+                height: 380px;
+            }
+        }
+
+        /* =========================================
+           БИОГРАФИЯ НАТАЛЬИ КАСУМОВОЙ 
+           Точно как в предоставленном коде (стеклянный премиум манифест)
+        ========================================= */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap');
+
+        .ambient-layer {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            pointer-events: none;
+            z-index: 9999;
+            overflow: hidden;
+        }
+
+        .glow-sphere {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(255,255,255,0.03) 0%, rgba(0,0,0,0) 70%);
+            top: -200px;
+            left: -200px;
+            border-radius: 50%;
+            filter: blur(40px);
+            animation: floatGlow 12s ease-in-out infinite alternate;
+        }
+
+        @keyframes floatGlow {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(100px, 80px) scale(1.1); }
+        }
+
+        .biography-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            background: rgba(3, 3, 5, 0.85);
+            backdrop-filter: blur(35px);
+            -webkit-backdrop-filter: blur(35px);
+            z-index: 10000;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+        }
+
+        .biography-overlay.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .bio-window {
+            width: 100%;
+            max-width: 1300px;
+            height: 85vh;
+            background: rgba(15, 15, 20, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 24px;
+            display: grid;
+            grid-template-columns: 420px 1fr;
+            overflow: hidden;
+            position: relative;
+            transform: translateY(60px) scale(0.98);
+            opacity: 0;
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 50px 100px rgba(0,0,0,0.8), inset 0 1px 0 rgba(255,255,255,0.05);
+        }
+
+        .biography-overlay.active .bio-window {
+            transform: translateY(0) scale(1);
+            opacity: 1;
+        }
+
+        .close-architect {
+            position: absolute;
+            top: 2rem; right: 2rem;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            width: 44px; height: 44px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            z-index: 50;
+            transition: all 0.4s ease;
+        }
+
+        .close-architect svg {
+            width: 14px; height: 14px;
+            fill: none; stroke: #c5c5c9; stroke-width: 1.5;
+            transition: all 0.4s ease;
+        }
+
+        .close-architect:hover {
+            background: rgba(255,255,255,0.1);
+            border-color: rgba(255,255,255,0.3);
+            transform: rotate(90deg);
+        }
+
+        .close-architect:hover svg {
+            stroke: #ffffff;
+        }
+
+        .bio-sidebar {
+            background: linear-gradient(180deg, rgba(20,20,25,0.2) 0%, rgba(10,10,12,0.6) 100%);
+            border-right: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 4rem 3rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+        }
+
+        .sidebar-header .brand-stamp {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.4em;
+            color: #52525b;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+
+        .sidebar-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
+            font-weight: 400;
+            line-height: 1.15;
+            color: #ffffff;
+        }
+
+        .sidebar-header h2 span {
+            display: block;
+            font-family: 'Inter', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 300;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: #52525b;
+            margin-top: 0.5rem;
+        }
+
+        .navigation-scroller {
+            margin-top: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .nav-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 1rem 1.2rem;
+            border-radius: 14px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .nav-card .icon-box {
+            width: 36px; height: 36px;
+            border-radius: 10px;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            display: flex; align-items: center; justify-content: center;
+            transition: all 0.4s ease;
+            flex-shrink: 0;
+        }
+
+        .nav-card .icon-box svg {
+            width: 18px; height: 18px; fill: none; stroke: #c5c5c9; stroke-width: 1.5;
+        }
+
+        .nav-card .nav-details .title {
+            font-size: 0.95rem; font-weight: 600; color: #c5c5c9;
+            transition: all 0.3s ease;
+        }
+
+        .nav-card .nav-details .subtitle {
+            font-size: 0.75rem; color: #52525b; margin-top: 0.1rem;
+        }
+
+        .nav-card:hover {
+            background: rgba(255,255,255,0.05);
+            border-color: rgba(255,255,255,0.15);
+            transform: translateX(4px);
+        }
+
+        .nav-card.active {
+            background: rgba(255, 255, 255, 0.07);
+            border-color: rgba(255, 255, 255, 0.25);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .nav-card.active .icon-box {
+            background: #ffffff;
+            border-color: #ffffff;
+        }
+
+        .nav-card.active .icon-box svg {
+            stroke: #060608;
+        }
+
+        .nav-card.active .nav-details .title {
+            color: #ffffff;
+        }
+
+        .bio-main-content {
+            padding: 4.5rem 5rem;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .bio-main-content::-webkit-scrollbar {
+            width: 5px;
+        }
+        .bio-main-content::-webkit-scrollbar-thumb {
+            background: rgba(255,255,255,0.05);
+            border-radius: 10px;
+        }
+
+        .narrative-tab {
+            display: none;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .narrative-tab.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .tab-heading-meta {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 1.3rem;
+            color: #52525b;
+            margin-bottom: 0.5rem;
+        }
+
+        .tab-title {
+            font-size: 2.2rem;
+            font-weight: 300;
+            letter-spacing: -0.02em;
+            color: #ffffff;
+            margin-bottom: 2rem;
+        }
+
+        .tab-text {
+            font-size: 1.15rem;
+            line-height: 1.9;
+            font-weight: 300;
+            color: #c5c5c9;
+        }
+
+        .tab-text p {
+            margin-bottom: 1.8rem;
+        }
+
+        .tab-text strong {
+            color: #ffffff;
+            font-weight: 600;
+        }
+
+        .luxury-stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-top: 2.5rem;
+        }
+
+        .luxury-stat-card {
+            background: rgba(255,255,255,0.01);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .luxury-stat-card::before {
+            content: '';
+            position: absolute;
+            top:0; left:0; width: 100%; height: 2px;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+        }
+
+        .stat-num {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            font-weight: 400;
+            color: #ffffff;
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-desc {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #52525b;
+            font-weight: 600;
+        }
+
+        .manifesto-quote {
+            border-left: 2px solid #ffffff;
+            padding-left: 2rem;
+            margin: 3rem 0;
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 1.4rem;
+            line-height: 1.7;
+            color: #ffffff;
+        }
+
+        .marquee-wrapper {
+            margin-top: 3rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+            mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+            -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+        }
+
+        .marquee-track-container {
+            width: 100%;
+            overflow: hidden;
+            display: flex;
+        }
+
+        .marquee-track {
+            display: flex;
+            gap: 1.5rem;
+            width: max-content;
+        }
+
+        .track-left {
+            animation: scroll-left 40s linear infinite;
+        }
+
+        .track-right {
+            animation: scroll-right 40s linear infinite;
+        }
+
+        @keyframes scroll-left {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        @keyframes scroll-right {
+            0% { transform: translateX(-50%); }
+            100% { transform: translateX(0); }
+        }
+
+        .marquee-video-placeholder {
+            width: 280px;
+            height: 160px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #52525b;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            position: relative;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .marquee-video-placeholder::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.05), transparent);
+            pointer-events: none;
+        }
+        
+        .marquee-video-placeholder video {
+            width: 100%; height: 100%; object-fit: cover; opacity: 0.8;
+        }
+
+        @media (max-width: 1100px) {
+            .bio-window {
+                grid-template-columns: 1fr;
+                height: 90vh;
+            }
+            .bio-sidebar {
+                padding: 2rem;
+                border-right: none;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            }
+            .navigation-scroller {
+                flex-direction: row;
+                overflow-x: auto;
+                padding-bottom: 0.5rem;
+            }
+            .nav-card {
+                flex-shrink: 0;
+                padding: 0.8rem 1.2rem;
+            }
+            .bio-main-content {
+                padding: 2.5rem 2rem;
+            }
+        }
+
+        /* =========================================
+   PREMIUM GLASS SECTIONS (Интеграция референса)
+========================================= */
+.glass-section-wrapper {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 60px 40px;
+}
+.glass-section-header {
+    margin-bottom: 40px;
+}
+.glass-section-header h2 {
+    font-size: 2.8rem;
+    font-family: 'Bebas Neue', sans-serif;
+    letter-spacing: 1px;
+    color: #fff;
+}
+.glass-section-header p {
+    color: var(--text-light);
+    font-size: 1.1rem;
+    max-width: 600px;
+}
+.glass-window {
+    background: rgba(15, 15, 20, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 24px;
+    display: grid;
+    grid-template-columns: 360px 1fr;
+    overflow: hidden;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.6);
+}
+.glass-sidebar {
+    background: linear-gradient(180deg, rgba(20,20,25,0.4) 0%, rgba(10,10,12,0.8) 100%);
+    border-right: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 40px 30px;
+}
+.glass-nav-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+.glass-nav-card {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 16px 20px;
+    border-radius: 14px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    transition: all 0.3s ease;
+}
+.glass-nav-card:hover {
+    background: rgba(255,255,255,0.05);
+    border-color: rgba(224, 0, 118, 0.3);
+    transform: translateX(4px);
+}
+.glass-nav-card.active {
+    background: rgba(224, 0, 118, 0.1);
+    border-color: var(--accent);
+}
+.glass-nav-card .icon-box {
+    width: 36px; height: 36px;
+    border-radius: 10px;
+    background: rgba(255,255,255,0.03);
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700; color: #fff;
+    transition: all 0.3s ease;
+}
+.glass-nav-card.active .icon-box {
+    background: var(--accent);
+}
+.glass-nav-details .title {
+    font-size: 1rem; font-weight: 600; color: #c5c5c9; transition: color 0.3s;
+}
+.glass-nav-details .subtitle {
+    font-size: 0.8rem; color: #777; margin-top: 2px;
+}
+.glass-nav-card.active .glass-nav-details .title {
+    color: #fff;
+}
+.glass-main-content {
+    padding: 50px 60px;
+    position: relative;
+    background: radial-gradient(circle at top right, rgba(224,0,118,0.03), transparent 50%);
+}
+.glass-tab {
+    display: none;
+    animation: fadeSlideUp 0.5s ease forwards;
+}
+.glass-tab.active {
+    display: block;
+}
+@keyframes fadeSlideUp {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+.glass-tab-meta {
+    font-size: 0.85rem;
+    color: var(--accent);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+.glass-tab-title {
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin-bottom: 24px;
+    line-height: 1.2;
+}
+.glass-tab-text {
+    font-size: 1.05rem;
+    color: #a1a1aa;
+    line-height: 1.7;
+}
+.glass-tab-text p {
+    margin-bottom: 16px;
+}
+.glass-tab-text strong {
+    color: #fff;
+}
+/* Специфично для блока истории (цифры) */
+.history-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+.h-stat-box .h-num { font-size: 2.5rem; font-family: 'Bebas Neue'; color: var(--accent); line-height: 1; }
+.h-stat-box .h-label { font-size: 0.8rem; text-transform: uppercase; color: #888; font-weight: 600; margin-top: 5px; }
+.history-events-list {
+    display: flex; flex-direction: column; gap: 16px;
+}
+.history-event {
+    display: flex; gap: 20px; align-items: flex-start;
+}
+.history-event .date { font-weight: 700; color: #fff; min-width: 90px; font-size: 0.9rem; padding-top: 3px;}
+.history-event .desc h4 { font-size: 1rem; margin-bottom: 4px; color: var(--accent); }
+.history-event .desc p { font-size: 0.9rem; color: #aaa; margin: 0; line-height: 1.4;}
+
+@media (max-width: 900px) {
+    .glass-window { grid-template-columns: 1fr; }
+    .glass-sidebar { padding: 20px; border-right: none; border-bottom: 1px solid rgba(255,255,255,0.05); }
+    .glass-nav-list { flex-direction: row; overflow-x: auto; padding-bottom: 10px; }
+    .glass-nav-card { flex-shrink: 0; padding: 12px 16px; }
+    .glass-main-content { padding: 30px 20px; }
+    .history-stats-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* =========================================
+   EPIC HISTORY — КАРДИНАЛЬНЫЙ ВАУ-АПГРЕЙД
+   (Анимированные счётчики + неон + субтильная графика)
+========================================= */
+.history-glass .glass-main-content {
+    background: 
+        radial-gradient(circle at 30% 20%, rgba(224,0,118,0.06) 0%, transparent 50%),
+        linear-gradient(180deg, rgba(10,10,12,0.6) 0%, rgba(15,15,20,0.3) 100%);
+    position: relative;
+}
+
+.history-glass .glass-main-content::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: 
+        linear-gradient(rgba(255,255,255,0.012) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.012) 1px, transparent 1px);
+    background-size: 26px 26px;
+    pointer-events: none;
+    animation: subtleGrid 22s linear infinite;
+    z-index: 0;
+    opacity: 0.6;
+}
+
+@keyframes subtleGrid {
+    0% { background-position: 0 0; }
+    100% { background-position: 26px 26px; }
+}
+
+.history-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin: 24px 0 32px;
+    position: relative;
+    z-index: 1;
+}
+
+.h-stat-box {
+    background: rgba(255,255,255,0.018);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 14px;
+    padding: 18px 14px;
+    text-align: center;
+    transition: transform 0.35s cubic-bezier(0.23,1,0.32,1), 
+                border-color 0.35s ease,
+                box-shadow 0.35s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.h-stat-box::after {
+    content: '';
+    position: absolute;
+    top: -100%;
+    left: -30%;
+    width: 30%;
+    height: 400%;
+    background: linear-gradient(
+        115deg,
+        transparent 20%,
+        rgba(224,0,118,0.18) 50%,
+        transparent 80%
+    );
+    transform: skewX(-20deg);
+    transition: left 0.9s ease;
+    pointer-events: none;
+}
+
+.h-stat-box:hover {
+    border-color: rgba(224, 0, 118, 0.45);
+    transform: translateY(-3px) scale(1.01);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.35);
+}
+
+.h-stat-box:hover::after {
+    left: 140%;
+}
+
+.h-stat-box .h-num {
+    font-size: 2.85rem;
+    font-family: 'Bebas Neue', system-ui, sans-serif;
+    font-weight: 800;
+    color: #fff;
+    line-height: .95;
+    letter-spacing: -2px;
+    text-shadow: 
+        0 0 8px rgba(224,0,118,0.6),
+        0 0 24px rgba(224,0,118,0.35);
+    transition: all .4s ease;
+}
+
+.h-stat-box .h-label {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    color: #777;
+    font-weight: 700;
+    letter-spacing: 1.8px;
+    margin-top: 6px;
+}
+
+.h-stat-box .h-growth {
+    display: inline-block;
+    margin-top: 4px;
+    font-size: 0.68rem;
+    font-weight: 700;
+    color: #00ff9d;
+    letter-spacing: .5px;
+}
+
+.history-event {
+    display: flex;
+    gap: 18px;
+    padding: 16px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    transition: background .2s ease;
+}
+
+.history-event:last-child { border-bottom: none; }
+
+.history-event:hover {
+    background: rgba(255,255,255,0.015);
+    margin-left: -12px;
+    margin-right: -12px;
+    padding-left: 12px;
+    padding-right: 12px;
+    border-radius: 6px;
+}
+
+.history-event .date {
+    font-family: 'Bebas Neue', monospace;
+    font-size: 0.98rem;
+    font-weight: 700;
+    color: #fff;
+    min-width: 88px;
+    padding-top: 1px;
+    letter-spacing: 0.5px;
+    flex-shrink: 0;
+}
+
+.history-event .desc h4 {
+    font-size: 1.01rem;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 5px;
+    line-height: 1.25;
+}
+
+.history-event .desc p {
+    font-size: 0.9rem;
+    color: #a1a1aa;
+    line-height: 1.45;
+}
+
+/* Год как огромный водяной знак */
+.glass-tab .glass-tab-title {
+    position: relative;
+}
+
+.glass-tab .glass-tab-title::after {
+    content: attr(data-year);
+    position: absolute;
+    right: -8px;
+    top: -22px;
+    font-size: 7.2rem;
+    font-family: 'Bebas Neue', sans-serif;
+    color: rgba(255,255,255,0.028);
+    font-weight: 900;
+    line-height: 1;
+    pointer-events: none;
+    z-index: -1;
+    user-select: none;
+}
+
+@media (max-width: 900px) {
+    .glass-window { grid-template-columns: 1fr; }
+    .glass-sidebar { padding: 20px; border-right: none; border-bottom: 1px solid rgba(255,255,255,0.05); }
+    .glass-nav-list { flex-direction: row; overflow-x: auto; padding-bottom: 10px; }
+    .glass-nav-card { flex-shrink: 0; padding: 12px 16px; }
+    .glass-main-content { padding: 30px 20px; }
+    .history-stats-grid { grid-template-columns: repeat(2, 1fr); }
+    .h-stat-box .h-num { font-size: 2.15rem; }
+}
+
+/* =========================================
+   ОХУЕННО БОЛЬШОЙ БЛОК ОТЗЫВОВ
+   6 чередующихся бегущих строк + мощный низ
+========================================= */
+.reviews-block {
+    background: #0a0a0a;
+    padding: 80px 0 100px;
+    position: relative;
+    overflow: hidden;
+}
+
+.reviews-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 40px;
+}
+
+.reviews-header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.reviews-header .reviews-badge {
+    display: inline-block;
+    background: rgba(224, 0, 118, 0.1);
+    color: var(--accent);
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    padding: 6px 18px;
+    border-radius: 50px;
+    margin-bottom: 16px;
+    text-transform: uppercase;
+}
+
+.reviews-header h2 {
+    font-size: 3.2rem;
+    line-height: 1.05;
+    font-weight: 800;
+    margin-bottom: 18px;
+    color: #fff;
+    letter-spacing: -1px;
+}
+
+.reviews-header p {
+    font-size: 1.15rem;
+    color: #a1a1aa;
+    max-width: 620px;
+    margin: 0 auto;
+    line-height: 1.5;
+}
+
+.reviews-marquees {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    margin-bottom: 70px;
+}
+
+.marquee-row {
+    overflow: hidden;
+    white-space: nowrap;
+    background: #111;
+    border-radius: 16px;
+    border: 1px solid #1f1f1f;
+    padding: 12px 0;
+    /* лёгкое затемнение по краям, куда уходят видео */
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%);
+    mask-image: linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%);
+}
+
+.marquee-row .marquee-track {
+    display: inline-flex;
+    gap: 16px;
+    align-items: center;
+    will-change: transform;
+}
+
+.marquee-left .marquee-track {
+    animation: reviews-marquee-left 55s linear infinite;
+}
+
+.marquee-right .marquee-track {
+    animation: reviews-marquee-right 55s linear infinite;
+}
+
+@keyframes reviews-marquee-left {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+}
+
+@keyframes reviews-marquee-right {
+    from { transform: translateX(-50%); }
+    to { transform: translateX(0); }
+}
+
+.review-video {
+    flex-shrink: 0;
+    width: 168px;
+    height: 238px;           /* вертикальный формат */
+    background: linear-gradient(145deg, #1a1a1a, #0f0f0f);
+    border: 1px solid #282828;
+    border-radius: 14px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    transform: scale(1.06);   /* слегка масштабируем */
+}
+
+.review-video:hover {
+    transform: scale(1.12);
+    box-shadow: 0 12px 35px rgba(0,0,0,0.55);
+}
+
+.review-video .play-btn {
+    width: 48px;
+    height: 48px;
+    background: rgba(255,255,255,0.95);
+    color: #000;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    margin-bottom: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+
+.review-video .review-label {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: #fff;
+    text-align: center;
+    line-height: 1.25;
+}
+
+.review-video .review-label span {
+    display: block;
+    font-size: 0.68rem;
+    color: #888;
+    font-weight: 500;
+    margin-top: 2px;
+}
+
+.reviews-bottom {
+    background: rgba(15,15,16,0.6);
+    border: 1px solid #222;
+    border-radius: 20px;
+    padding: 50px 60px;
+    text-align: center;
+}
+
+.reviews-bottom .bottom-content h3 {
+    font-size: 1.85rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 14px;
+}
+
+.reviews-bottom .bottom-content p {
+    font-size: 1.05rem;
+    color: #a1a1aa;
+    max-width: 620px;
+    margin: 0 auto 28px;
+    line-height: 1.55;
+}
+
+.reviews-bottom .bottom-cta {
+    display: flex;
+    gap: 14px;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.reviews-bottom .btn-primary-hero,
+.reviews-bottom .btn-secondary-hero {
+    padding: 15px 36px;
+    font-size: 0.95rem;
+}
+
+.reviews-bottom .or-text {
+    color: #666;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+@media (max-width: 900px) {
+    .reviews-block {
+        padding: 60px 0 70px;
+    }
+    .reviews-header h2 {
+        font-size: 2.2rem;
+    }
+    .marquee-row .marquee-track {
+        gap: 12px;
+    }
+    .review-video {
+        width: 210px;
+        height: 120px;
+    }
+}
+
+/* === PREMIUM ELEGANT HISTORY ENHANCEMENTS === */
+.history-glass .glass-nav-card {
+    position: relative;
+    overflow: hidden;
+}
+
+.history-glass .glass-nav-card::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: var(--accent);
+    transform: scaleY(0);
+    transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.history-glass .glass-nav-card.active::before {
+    transform: scaleY(1);
+}
+
+.history-glass .glass-nav-card .icon-box {
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    font-family: 'Bebas Neue', sans-serif;
+    letter-spacing: 1px;
+}
+
+.history-glass .glass-nav-card.active .icon-box {
+    transform: scale(1.1);
+    box-shadow: 0 0 0 4px rgba(224, 0, 118, 0.2);
+}
+
+.glass-tab {
+    transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.glass-tab.active {
+    animation: elegantReveal 0.7s cubic-bezier(0.23, 1, 0.32, 1) both;
+}
+
+@keyframes elegantReveal {
+    from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.985);
+        filter: blur(4px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        filter: blur(0);
+    }
+}
+
+.history-stats-grid {
+    animation: statsContainerIn 0.6s ease both;
+}
+
+.h-stat-box {
+    animation: statBoxIn 0.5s cubic-bezier(0.23, 1, 0.32, 1) both;
+    animation-delay: calc(var(--i, 0) * 80ms);
+}
+
+.h-stat-box:nth-child(1) { --i: 0; }
+.h-stat-box:nth-child(2) { --i: 1; }
+.h-stat-box:nth-child(3) { --i: 2; }
+.h-stat-box:nth-child(4) { --i: 3; }
+.h-stat-box:nth-child(5) { --i: 4; }
+.h-stat-box:nth-child(6) { --i: 5; }
+
+@keyframes statBoxIn {
+    from {
+        opacity: 0;
+        transform: translateY(15px) scale(0.96);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.h-stat-box .h-num {
+    font-feature-settings: "tnum";
+    font-variant-numeric: tabular-nums;
+}
+
+.history-event {
+    position: relative;
+}
+
+.history-event::before {
+    content: '';
+    position: absolute;
+    left: 44px;
+    top: 0;
+    bottom: -16px;
+    width: 1px;
+    background: linear-gradient(to bottom, rgba(224,0,118,0.15), transparent);
+    opacity: 0.3;
+}
+
+.history-event:last-child::before {
+    display: none;
+}
+
+.history-event .date {
+    font-feature-settings: "tnum";
+    position: relative;
+    z-index: 1;
+    background: #0f0f10;
+    padding-right: 8px;
+}
+
+.history-event .desc {
+    position: relative;
+    z-index: 1;
+}
+    </style>
+</head>
+<body>
+
+    <!-- EWA PRODUCT official-style intro: black logo first, then the site -->
+    <div id="splash">
+        <div class="splash-inner">
+            <img src="favicon.png" class="splash-mark" alt="EWA">
+            <div class="splash-text">PRODUCT</div>
+        </div>
+    </div>
+
+    <!-- NAV -->
+    <nav>
+        <div class="nav-inner">
+            <a href="#home" class="logo">
+                <img src="assets/img/logo.svg" alt="EWA PRODUCT">
+            </a>
+            <div class="nav-links">
+                <a href="#history" class="nav-link">История</a>
+                <a href="#leaders" class="nav-link">Лидеры</a>
+                <a href="#reviews" class="nav-link">Отзывы</a>
+                <a href="#autobonus" class="nav-link">Бонусы</a>
+            </div>
+            <button id="openEliteFunnel" class="nav-cta nav-button">
+                Стать партнером
+            </button>
+        </div>
+    </nav>
+
+<!-- ========================================================= -->
+<!-- HERO БЛОК СЕТЕВОЙ БИЗНЕС   -->
+<!-- ========================================================= -->
+<section class="hero" id="home">
+    <div class="hero-video-bg">
+        <!-- ВАЖНО: Сюда вставляем сгенерированное фото БЕЗ текста -->
+        <img src="hero-bg-clean.jpg" alt="EWA PRODUCT Business">
+        
+        <!-- Защитный градиент для контрастности текста -->
+        <div class="hero-overlay"></div>
+    </div>
+
+    <div class="hero-content">
+        <div class="hero-content-inner">
+            <!-- Логотип из макета -->
+            <img src="assets/img/logo.svg" alt="EWA PRODUCT" class="hero-logo-inline">
+            
+            <!-- Типографика Bebas Neue -->
+            <h1>СЕТЕВОЙ БИЗНЕС:<br>ТВОЙ УСПЕХ!</h1>
+            
+            <p class="lead">EWA PRODUCT:<br>РАЗВИВАЙСЯ И ЗАРАБАТЫВАЙ!</p>
+            
+            <!-- Кнопки расположены сразу под призывом -->
+            <div class="hero-actions">
+                <button class="btn-primary-hero js-open-elite-funnel">Я хочу в команду</button>
+                <a href="#benefits" class="btn-secondary-hero">Узнать подробнее</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+    <!-- STATS BAR -->
+    <div class="stats-bar">
+        <div class="stats-inner">
+            <div class="stat-item">
+                <div class="num">7</div>
+                <div class="label">стран присутствия</div>
+            </div>
+            <div class="stat-item">
+                <div class="num">37</div>
+                <div class="label">офисов и складов</div>
+            </div>
+            <div class="stat-item">
+                <div class="num">163</div>
+                <div class="label">продукта в линейке</div>
+            </div>
+            <div class="stat-item">
+                <div class="num">400k+</div>
+                <div class="label">активных партнёров</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- BENEFITS -->
+<section class="glass-section-wrapper" id="benefits">
+    <div class="glass-section-header">
+        <h2>Философия превосходства</h2>
+        <p>EWA PRODUCT — это не просто компания. Это экосистема, где биохакинг встречается с прогрессивной бизнес-моделью.</p>
+    </div>
+
+    <div class="glass-window js-glass-container">
+        <div class="glass-sidebar">
+            <div class="glass-nav-list">
+                <div class="glass-nav-card active" data-target="ewa-tab-1">
+                    <div class="icon-box">01</div>
+                    <div class="glass-nav-details">
+                        <div class="title">Биохакинг</div>
+                        <div class="subtitle">Инновационный продукт</div>
+                    </div>
+                </div>
+                <div class="glass-nav-card" data-target="ewa-tab-2">
+                    <div class="icon-box">02</div>
+                    <div class="glass-nav-details">
+                        <div class="title">Умная экономика</div>
+                        <div class="subtitle">Товарный кэшбэк до 25%</div>
+                    </div>
+                </div>
+                <div class="glass-nav-card" data-target="ewa-tab-3">
+                    <div class="icon-box">03</div>
+                    <div class="glass-nav-details">
+                        <div class="title">Абсолютный масштаб</div>
+                        <div class="subtitle">Глобальная экспансия</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="glass-main-content">
+            <div class="glass-tab active" id="ewa-tab-1">
+                <div class="glass-tab-meta">Фундамент бизнеса</div>
+                <h3 class="glass-tab-title">Продукт, который продает себя сам</h3>
+                <div class="glass-tab-text">
+                    <p>Мы отказались от масс-маркета. Основа EWA PRODUCT — это <strong>инновационные нутрицевтики и биохакинг</strong>. Мы создаем комплексы для активации мозга, бесконечной энергии и абсолютного фокуса.</p>
+                    <p>Наш продукт — это ресурс. Когда продукт дает реальный, физически ощутимый результат за считанные дни (как Brain Storm или Shaker), ваш бизнес строится органично, без агрессивных продаж.</p>
+                </div>
+            </div>
+
+            <div class="glass-tab" id="ewa-tab-2">
+                <div class="glass-tab-meta">Инфраструктура</div>
+                <h3 class="glass-tab-title">Математика без потолка</h3>
+                <div class="glass-tab-text">
+                    <p>Самая прогрессивная система выплат в индустрии. Мы внедрили <strong>мощный кэшбэк до 25%</strong>, чтобы даже новички видели живые деньги с первого дня.</p>
+                    <p>Система устроена так, что она щедро вознаграждает тех, кто строит глубину и ширину. Прозрачный маркетинг-план, никаких скрытых условий. Вы создаете товарооборот — компания делится максимальным процентом прибыли.</p>
+                </div>
+            </div>
+
+            <div class="glass-tab" id="ewa-tab-3">
+                <div class="glass-tab-meta">География</div>
+                <h3 class="glass-tab-title">Стирая границы</h3>
+                <div class="glass-tab-text">
+                    <p>Твой бизнес больше не привязан к одному городу или стране. Официальное присутствие в <strong>7 странах</strong> и развитая сеть из складов и ПВЗ позволяют масштабироваться онлайн.</p>
+                    <p>Наше IT-решение и логистика позволяют регистрировать партнеров из других часовых поясов и получать доход, пока вы спите. Это настоящая архитектура пассивного дохода.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="glass-section-wrapper" id="how">
+    <div class="glass-section-header">
+        <h2>Траектория запуска</h2>
+        <p>От регистрации до первых серьезных чеков. Четкий алгоритм действий без воды.</p>
+    </div>
+
+    <div class="glass-window js-glass-container">
+        <div class="glass-sidebar">
+            <div class="glass-nav-list">
+                <div class="glass-nav-card active" data-target="start-tab-1">
+                    <div class="icon-box">01</div>
+                    <div class="glass-nav-details">
+                        <div class="title">Инициация</div>
+                        <div class="subtitle">Бесплатная регистрация</div>
+                    </div>
+                </div>
+                <div class="glass-nav-card" data-target="start-tab-2">
+                    <div class="icon-box">02</div>
+                    <div class="glass-nav-details">
+                        <div class="title">Активация</div>
+                        <div class="subtitle">Погружение в продукт</div>
+                    </div>
+                </div>
+                <div class="glass-nav-card" data-target="start-tab-3">
+                    <div class="icon-box">03</div>
+                    <div class="glass-nav-details">
+                        <div class="title">Прокачка</div>
+                        <div class="subtitle">Система EWA SKILLS</div>
+                    </div>
+                </div>
+                <div class="glass-nav-card" data-target="start-tab-4">
+                    <div class="icon-box">04</div>
+                    <div class="glass-nav-details">
+                        <div class="title">Дупликация</div>
+                        <div class="subtitle">Масштаб команды</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="glass-main-content">
+            <div class="glass-tab active" id="start-tab-1">
+                <div class="glass-tab-meta">Шаг первый</div>
+                <h3 class="glass-tab-title">Легальный доступ к инфраструктуре</h3>
+                <div class="glass-tab-text">
+                    <p>Всё начинается с простого шага — <strong>бесплатной регистрации</strong>. Вы получаете личный кабинет, персональный ID (реферальную ссылку) и полный доступ к аналитике бизнеса.</p>
+                    <p>Никаких скрытых платежей или "входных билетов". Вы становитесь частью системы за 2 минуты.</p>
+                </div>
+            </div>
+
+            <div class="glass-tab" id="start-tab-2">
+                <div class="glass-tab-meta">Шаг второй</div>
+                <h3 class="glass-tab-title">Личный результат — главный инструмент</h3>
+                <div class="glass-tab-text">
+                    <p>Сетевой бизнес строится на искренности. Активация контракта — это приобретение продукта для себя. Попробуйте инновационные формулы, получите энергию, сбросьте вес или улучшите кожу.</p>
+                    <p><strong>Твой результат = твой лучший кейс.</strong> Когда горят глаза от собственного самочувствия, люди сами начинают спрашивать, в чем секрет.</p>
+                </div>
+            </div>
+
+            <div class="glass-tab" id="start-tab-3">
+                <div class="glass-tab-meta">Шаг третий</div>
+                <h3 class="glass-tab-title">Академия миллионеров</h3>
+                <div class="glass-tab-text">
+                    <p>Мы не бросаем новичков. Вы получаете доступ к мощной образовательной платформе <strong>EWA SKILLS</strong>. Это пошаговые алгоритмы работы: от того, как правильно вести соцсети, до закрытия сложных сделок.</p>
+                    <p>Вас будет вести личный наставник, который материально заинтересован в вашем финансовом росте.</p>
+                </div>
+            </div>
+
+            <div class="glass-tab" id="start-tab-4">
+                <div class="glass-tab-meta">Шаг четвертый</div>
+                <h3 class="glass-tab-title">Строим империю</h3>
+                <div class="glass-tab-text">
+                    <p>Применяя алгоритмы системы, вы начинаете подключать первых партнеров и клиентов. Запускается процесс дупликации — ваши люди повторяют ваши действия.</p>
+                    <p>Товарооборот растет в геометрической прогрессии, открывая доступ к автобонусу, лидерским путешествиям за границу и пассивному доходу, который передается по наследству.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <!-- ЛИДЕРЫ EWA PRODUCT -->
+    <!-- Два топ-лидера: Artem и Nataly. Hover: ч/б -> цвет + 3D tilt на фото. Кнопка "Подробнее" слегка сдвинута вправо. -->
+    <section class="section leaders" id="leaders">
+        <div style="text-align: center; margin-bottom: 28px;">
+            <h2 style="font-size: 28px; font-weight: 700; color: #fff; letter-spacing: 0.5px;">Лидеры EWA PRODUCT</h2>
+        </div>
+
+        <div class="leaders-grid">
+            <div class="leader-card">
+                <div class="leader-photo">
+                    <img src="artem.jpeg" alt="Артём Касумов">
+                </div>
+                <button class="leader-more-btn" id="artem-more">Подробнее</button>
+            </div>
+
+            <div class="leader-card">
+                <div class="leader-photo">
+                    <img src="nataly.jpeg" alt="Наталья Касумова">
+                </div>
+                <button class="leader-more-btn" id="natalya-more">Подробнее</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- АВТОБОНУС / EWA CAR PROGRAM -->
+    <!-- Внедрено по запросу: модуль про получение автомобиля. Использованы загруженные фото (car.jpeg) и адаптирован код из ewa_autobonus_integration.html под тёмную тему и стиль сайта -->
+    <section class="section autobonus" id="autobonus">
+        <div class="section-header">
+            <h2 id="bonus-main-title">Автобонус EWA</h2>
+            <p id="bonus-main-desc">Получи премиальный автомобиль за счет компании. Программа для лидеров, которые строят масштабный бизнес.</p>
+            <button id="bonus-nav-btn" onclick="toggleBonus()" style="margin-top: 12px; background: linear-gradient(135deg, #e00076, #ff0a8b); color: #fff; padding: 10px 20px; border: none; border-radius: 999px; cursor: pointer; font-weight: 700; display: inline-flex; align-items: center; gap: 8px; font-size: 0.9rem;">
+                Жилищная программа <span style="font-size: 1.3em;">→</span>
+            </button>
+        </div>
+
+        <div class="bonus-slider">
+            <div class="bonus-panels" id="bonus-panels">
+                <!-- Car Panel -->
+                <div class="bonus-panel" id="car-panel">
+                    <div class="autobonus-hero">
+                        <img src="car.jpeg" alt="Автобонус — премиальный автомобиль EWA Product" class="autobonus-car">
+                        <div class="autobonus-overlay">
+                            <div class="overlay-content">
+                                <div class="badge">EWA CAR PROGRAM</div>
+                                <h3>Автомобиль мечты<br>от 3 до 10 млн ₽</h3>
+                                <p>Компания полностью оплачивает твой премиум-автомобиль при выполнении условий программы.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="autobonus-mechanics">
+                        <div class="mechanics-header">
+                            <h3>Как получить автомобиль</h3>
+                        </div>
+
+                        <div class="autobonus-steps">
+                            <div class="autobonus-step">
+                                <div class="step-num">01</div>
+                                <div class="step-info">
+                                    <h4>Квалификация</h4>
+                                    <p>Достигни статуса <strong>Gold Pro</strong> и выше. Это твой входной билет в программу.</p>
+                                </div>
+                            </div>
+
+                            <div class="autobonus-step">
+                                <div class="step-num">02</div>
+                                <div class="step-info">
+                                    <h4>Масштаб структуры</h4>
+                                    <p>Построй 4 сильные ветки. Каждая ветка должна генерировать не менее <strong>3 000 баллов</strong> товарооборота.</p>
+                                </div>
+                            </div>
+
+                            <div class="autobonus-step">
+                                <div class="step-num">03</div>
+                                <div class="step-info">
+                                    <h4>Стабильность</h4>
+                                    <p>Удерживай квалификацию и объём в течение <strong>3 месяцев подряд</strong>. Стабильность — ключ к успеху.</p>
+                                </div>
+                            </div>
+
+                            <div class="autobonus-step">
+                                <div class="step-num">04</div>
+                                <div class="step-info">
+                                    <h4>Выбор автомобиля</h4>
+                                    <p>Выбирай из 12 топовых брендов. Компания оплачивает автомобиль стоимостью от 3 до 10 миллионов рублей.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="autobonus-brands">
+                        <div class="brands-track">
+                            <span>Mercedes-Benz</span>
+                            <span>BMW</span>
+                            <span>Audi</span>
+                            <span>Tesla</span>
+                            <span>Geely</span>
+                            <span>Voyah</span>
+                            <span>BYD</span>
+                            <span>Omoda</span>
+                            <span>Changan</span>
+                            <span>Jaecoo</span>
+                            <span>Mercedes-Benz</span>
+                            <span>BMW</span>
+                            <span>Audi</span>
+                            <span>Tesla</span>
+                            <span>Geely</span>
+                            <span>Voyah</span>
+                            <span>BYD</span>
+                            <span>Omoda</span>
+                            <span>Changan</span>
+                            <span>Jaecoo</span>
+                        </div>
+                    </div>
+
+                    <div class="autobonus-terms">
+                        <div class="term">
+                            <h4>Оплата за счет компании</h4>
+                            <p>Тебе не нужно брать кредит. При выполнении условий EWA Product полностью покрывает платежи за автомобиль.</p>
+                        </div>
+                        <div class="term">
+                            <h4>Свобода выбора</h4>
+                            <p>12 марок. От классики BMW и Mercedes до инноваций Tesla, Zeekr и Voyah. Выбирай под свой статус.</p>
+                        </div>
+                        <div class="term">
+                            <h4>Прозрачные условия</h4>
+                            <p>1 балл = 100 рублей. Чёткие цифры, понятный расчёт, реальный результат.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- House Panel -->
+                <div class="bonus-panel" id="house-panel">
+                    <div class="autobonus-hero">
+                        <img src="house.jpeg" alt="Жилищная программа EWA Product" class="autobonus-car">
+                        <div class="autobonus-overlay">
+                            <div class="overlay-content">
+                                <div class="badge">EWA HOUSING PROGRAM</div>
+                                <h3>Жилье мечты<br>до 10 млн ₽</h3>
+                                <p>Компания полностью оплачивает покупку квартиры или дома при выполнении условий программы.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="autobonus-mechanics">
+                        <div class="mechanics-header">
+                            <h3>Как получить жилье</h3>
+                        </div>
+
+                        <div class="autobonus-steps">
+                            <div class="autobonus-step">
+                                <div class="step-num">01</div>
+                                <div class="step-info">
+                                    <h4>Квалификация</h4>
+                                    <p>Достигни высокого лидерского статуса (после автобонуса). Построй мощную структуру.</p>
+                                </div>
+                            </div>
+
+                            <div class="autobonus-step">
+                                <div class="step-num">02</div>
+                                <div class="step-info">
+                                    <h4>Масштаб структуры</h4>
+                                    <p>Построй 6 сильных веток. Каждая ветка должна генерировать не менее <strong>5 000 баллов</strong> товарооборота.</p>
+                                </div>
+                            </div>
+
+                            <div class="autobonus-step">
+                                <div class="step-num">03</div>
+                                <div class="step-info">
+                                    <h4>Стабильность</h4>
+                                    <p>Удерживай высокий уровень квалификации и объём в течение <strong>6 месяцев подряд</strong>.</p>
+                                </div>
+                            </div>
+
+                            <div class="autobonus-step">
+                                <div class="step-num">04</div>
+                                <div class="step-info">
+                                    <h4>Выбор жилья</h4>
+                                    <p>Выбирай квартиру или загородный дом. Компания выдает сертификат на жилье стоимостью до 10 миллионов рублей.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="autobonus-brands">
+                        <div class="brands-track">
+                            <span>Москва</span>
+                            <span>Санкт-Петербург</span>
+                            <span>Новосибирск</span>
+                            <span>Алматы</span>
+                            <span>Минск</span>
+                            <span>Ташкент</span>
+                            <span>Ереван</span>
+                            <span>Бишкек</span>
+                            <span>Казань</span>
+                            <span>Краснодар</span>
+                            <span>Москва</span>
+                            <span>Санкт-Петербург</span>
+                            <span>Новосибирск</span>
+                            <span>Алматы</span>
+                            <span>Минск</span>
+                            <span>Ташкент</span>
+                            <span>Ереван</span>
+                            <span>Бишкек</span>
+                            <span>Казань</span>
+                            <span>Краснодар</span>
+                        </div>
+                    </div>
+
+                    <div class="autobonus-terms">
+                        <div class="term">
+                            <h4>Сертификат на покупку</h4>
+                            <p>Тебе не нужно копить годами. При выполнении условий EWA Product выдает сертификат на приобретение жилья.</p>
+                        </div>
+                        <div class="term">
+                            <h4>Свобода выбора</h4>
+                            <p>Квартира в городе или загородный дом. Выбирай под свой статус и регион.</p>
+                        </div>
+                        <div class="term">
+                            <h4>Прозрачные условия</h4>
+                            <p>1 балл = 100 рублей. Чёткие цифры, понятный расчёт, реальный результат.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+<section class="glass-section-wrapper history-glass" id="history">
+    <div class="glass-section-header">
+        <h2>Хронология успеха</h2>
+        <p>Факты говорят громче слов. Мы переписали правила рынка и показали рекордную динамику за несколько лет.</p>
+    </div>
+
+    <div class="glass-window js-glass-container">
+        <div class="glass-sidebar">
+            <div class="glass-nav-list">
+                <div class="glass-nav-card active" data-target="hist-2022">
+                    <div class="icon-box">22</div>
+                    <div class="glass-nav-details">
+                        <div class="title">2022 год</div>
+                        <div class="subtitle">Зарождение легенды</div>
+                    </div>
+                </div>
+                <div class="glass-nav-card" data-target="hist-2023">
+                    <div class="icon-box">23</div>
+                    <div class="glass-nav-details">
+                        <div class="title">2023 год</div>
+                        <div class="subtitle">Стремительный взлёт</div>
+                    </div>
+                </div>
+                <div class="glass-nav-card" data-target="hist-2024">
+                    <div class="icon-box">24</div>
+                    <div class="glass-nav-details">
+                        <div class="title">2024 год</div>
+                        <div class="subtitle">Масштаб и экспансия</div>
+                    </div>
+                </div>
+                <div class="glass-nav-card" data-target="hist-2025">
+                    <div class="icon-box">25</div>
+                    <div class="glass-nav-details">
+                        <div class="title">2025 год</div>
+                        <div class="subtitle">Международное признание</div>
+                    </div>
+                </div>
+                <div class="glass-nav-card" data-target="hist-2026">
+                    <div class="icon-box">26</div>
+                    <div class="glass-nav-details">
+                        <div class="title">2026 год</div>
+                        <div class="subtitle">Нейросети и будущее</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="glass-main-content" style="max-height: 550px; overflow-y: auto;">
+            
+            <div class="glass-tab active" id="hist-2022">
+                <h3 class="glass-tab-title">Зарождение легенды</h3>
+                <div class="history-stats-grid">
+                    <div class="h-stat-box"><div class="h-num" data-target="3">0</div><div class="h-label">Продукта</div></div>
+                    <div class="h-stat-box"><div class="h-num" data-target="7">0</div><div class="h-label">Складов</div></div>
+                    <div class="h-stat-box"><div class="h-num" data-target="1">0</div><div class="h-label">Страна</div><div class="h-growth">Старт</div></div>
+                </div>
+
+                <div class="history-events-list">
+                    <!-- Ассортимент -->
+                    <div class="history-event">
+                        <div class="date">01.05.2022</div>
+                        <div class="desc">
+                            <h4>Запуск первых продуктов EWA Product</h4>
+                            <p>Мы стали первыми в России, кто создал натуральные БАДы для мозга, концентрации и продуктивности – и этим изменили рынок. Вместо искусственных стимуляторов мы первыми сделали ставку на природные компоненты, фокус и ясность мышления. Так появился один из первых натуральных продуктов нового поколения для работы мозга. EWA PRODUCT – первые, кто задал новый стандарт: натурально и эффективно.</p>
+                        </div>
+                    </div>
+
+                    <!-- События -->
+                    <div class="history-event">
+                        <div class="date">04.05.2022</div>
+                        <div class="desc">
+                            <h4>ТЕХНОПРОМ 2022</h4>
+                            <p>EWA стала единственной сетевой компанией на международном форуме ТЕХНОПРОМ-2022, где представила инновационный продукт BRAINSTORM для развития креативности, генерации идей и повышения эффективности мышления.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="glass-tab" id="hist-2023">
+                <h3 class="glass-tab-title">Квантовый скачок</h3>
+                <div class="history-stats-grid">
+                    <div class="h-stat-box"><div class="h-num" data-target="40">0</div><div class="h-label">Продуктов</div></div>
+                    <div class="h-stat-box"><div class="h-num" data-target="40000">0</div><div class="h-label">Партнеров</div><div class="h-growth">+40k</div></div>
+                    <div class="h-stat-box"><div class="h-num" data-target="2">0</div><div class="h-label">Страны</div></div>
+                </div>
+
+                <div class="history-events-list">
+                    <!-- Ассортимент -->
+                    <div class="history-event">
+                        <div class="date">25.04.2023</div>
+                        <div class="desc">
+                            <h4>Запуск нового направления: EWA BEAUTY</h4>
+                            <p>Появление beauty-линейки стало важным этапом развития бренда. Первым продуктом стала линейка скрабов EWA SCRUB, созданная для домашнего SPA-ухода, питания кожи и ежедневных ритуалов красности.</p>
+                        </div>
+                    </div>
+                    <div class="history-event">
+                        <div class="date">16.05.2023</div>
+                        <div class="desc">
+                            <h4>Новая глава: EWA PROTEIN BAR</h4>
+                            <p>Запуск EWA PROTEIN BAR – новая глава в развитии бренда: выход в категорию функциональных перекусов для энергии и активного образа жизни.</p>
+                        </div>
+                    </div>
+
+                    <!-- События -->
+                    <div class="history-event">
+                        <div class="date">16.03.2023</div>
+                        <div class="desc">
+                            <h4>Незабываемые лидерские каникулы в Шри-Ланке</h4>
+                            <p>Первые лидерские каникулы на острове Цейлон. Партнеры провели яркое время на берегу Индийского океана, получили мотивацию, обменялись опытом и зарядились новыми идеями.</p>
+                        </div>
+                    </div>
+                    <div class="history-event">
+                        <div class="date">02.07.2023</div>
+                        <div class="desc">
+                            <h4>EWA BOOST CAMP</h4>
+                            <p>Запустили летний обучающий проект для выхода на GOLD-уровень. Участие было доступно после квалификации SILVER. Лучшие участники получили призы – путешествие в Таиланд и технику Apple.</p>
+                        </div>
+                    </div>
+                    <div class="history-event">
+                        <div class="date">16.10.2023</div>
+                        <div class="desc">
+                            <h4>Грандиозный первый день рождения компании в LIVE ARENA</h4>
+                            <p>Отметили первый год работы – год стремительного роста, запуска продуктов и масштабного расширения сообщества.</p>
+                        </div>
+                    </div>
+                    <div class="history-event">
+                        <div class="date">31.12.2023</div>
+                        <div class="desc">
+                            <h4>100 + бизнес-встреч, презентаций и событий</h4>
+                            <p>Провели более сотни мероприятий, объединяя партнеров и развивая сильное сообщество по всей сети.</p>
+                        </div>
+                    </div>
+
+                    <!-- Новости -->
+                    <div class="history-event">
+                        <div class="date">01.06.2023</div>
+                        <div class="desc">
+                            <h4>Международная научно-практическая конференция</h4>
+                            <p>Выступили на конференции «Вода как лекарство» в Москве, представив разработки на основе фульвовых и гуминовых кислот, включая EWA PROTECT.</p>
+                        </div>
+                    </div>
+                    <div class="history-event">
+                        <div class="date">01.07.2023</div>
+                        <div class="desc">
+                            <h4>EWA PRODUCT теперь в твоем смартфоне</h4>
+                            <p>Запуск мобильного приложения для быстрого и удобного доступа ко всем возможностям сервиса. Оформляй заказы, оплачивай покупки и управляй бизнес-инструментами прямо со смартфона.</p>
+                        </div>
+                    </div>
+                    <div class="history-event">
+                        <div class="date">10.07.2023</div>
+                        <div class="desc">
+                            <h4>EWA PRODUCT обновляем сайт: +70 новых функций</h4>
+                            <p>Масштабное обновление официального сайта: добавлено более 70 новых функций, которые делают работу с платформой быстрее, удобнее и эффективнее.</p>
+                        </div>
+                    </div>
+                    <div class="history-event">
+                        <div class="date">09.10.2023</div>
+                        <div class="desc">
+                            <h4>Новая страна на карте EWA. Казахстан</h4>
+                            <p>Официально открыли новую страну присутствия, продолжая активное международное расширение.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="glass-tab" id="hist-2024">
+                <h3 class="glass-tab-title">Масштаб и экспансия</h3>
+                <div class="history-stats-grid">
+                    <div class="h-stat-box"><div class="h-num" data-target="80">0</div><div class="h-label">Продуктов</div></div>
+                    <div class="h-stat-box"><div class="h-num" data-target="200000">0</div><div class="h-label">Партнеров</div><div class="h-growth">+160k</div></div>
+                    <div class="h-stat-box"><div class="h-num">6</div><div class="h-label">Стран</div></div>
+                </div>
+
+                <div class="history-events-list">
+                    <!-- Ассортимент -->
+                    <div class="history-event">
+                        <div class="date">30.01.2024</div>
+                        <div class="desc">
+                            <h4>Базовая линейка ухода за лицом</h4>
+                            <p>Выпустили новую линейку базового ухода для лица – полноценную систему ежедневной заботы о коже, закрывающую все ключевые этапы: очищение, тонизирование, увлажнение и восстановление.</p>
+                        </div>
+                    </div>
+                    <div class="history-event">
+                        <div class="date">28.02.2024</div>
+                        <div class="desc">
+                            <h4>EWA HOME: запуск линейки нового поколения</h4>
+                            <p>7 инновационных средств для дома, которые меняют сам подход к уборке. Это система, которая быстро убирает жир, въевшуюся грязь и запахи, оставляя ощущение идеальной чистоты до 72 часов.</p>
+                        </div>
+                    </div>
+                    <div class="history-event">
+                        <div class="date">28.06.2024</div>
+                        <div class="desc">
+                            <h4>FLAME: новое направление для пробуждения мужской и женской энергии</h4>
+                            <p>Инновационный комплекс для него и для нее, соединивший в себе знания аюрведы, тибетских практик и природные афродизиаки.</p>
+                        </div>
+                    </div>
+                    <div class="history-event">
+                        <div class="date">25.07.2024</div>
+                        <div class="desc">
+                            <h4>Линейка SMART-уход для волос</h4>
+                            <p>Представили новую линейку SMART-ухода для волос – современные средства для восстановления, увлажнения и защиты волос в ежедневном уходе.</p>
+                        </div>
+                    </div>
+                    <div class="history-event">
+                        <div class="date">13.10.2024</div>
+                        <div class="desc">
+                            <h4>Представили линейку KEEP SMILE</h4>
+                            <p>Долгожданная новинка – линейка зубных паст KEEP SMILE, созданная для максимальной защиты, бережного ухода и сияющей улыбки.</p>
+                        </div>
+                    </div>
+
+                    <!-- События -->
+                    <div class="history-event">
+                        <div class="date">14.02.2024</div>
+                        <div class="desc">
+                            <h4>EWA BUSINESS COMMUNITY</h4>
+                            <p>Тысячи участников, сильнейшая энергия и максимум пользы: EWA BUSINESS COMMUNITY объединил 4 города, чтобы помочь новичкам и партнерам выйти на новый уровень.</p>
+                        </div>
+                    </div>
+                    <div class="history-event">
+                        <div class="date">05.04.2024</div>
+                        <div class="desc">
+                            <h4>Лидерские каникулы в Египте</h4>
+                            <p>Провели стратегическую сессию в Египте с участием президента компании и лидеров сообщества.</p>
+                        </div>
+                    </div>
+                    <div class="history-event">
+                        <div class="date">13.05.2024</div>
+                        <div class="desc">
+                            <h4>СТАРТ марафона трансформации тела: 1-й поток</h4>
+                            <p>Проект «Дело в теле | Марафон стройности» – стартовал первый поток. 14 дней мощной трансформации тела и мышления через систему питания, спорт и поддержку.</p>
+                        </div>
+                    </div>
+                    <div class="history-event">
+                        <div class="date">09.07.2024</div>
+                        <div class="desc">
+                            <h4>EWA EDUCATION & EWA SKILLS</h4>
+                            <p>Запуск образовательных платформ для роста партнеров и развития ключевых навыков. Более 30 000 человек уже прошли обучение.</p>
+                        </div>
+                    </div>
+                    <div class="history-event">
+                        <div class="date">01.08.2024</div>
+                        <div class="desc">
+                            <h4>Первый онлайн-квест в MLM с призовым фондом 1 000 000₽</h4>
+                            <p>THE GAME перевернул представление о сетевом бизнесе, превратив развитие партнеров в масштабную онлайн-игру с денежными призами.</p>
+                        </div>
+                    </div>
+                    <div class="history-event">
+                        <div class="date">12.10.2024</div>
+                        <div class="desc">
+                            <h4>2 года EWA – время больших побед</h4>
+                            <p>Компания отметила свое двухлетие грандиозным событием в LIVE ARENA, объединив партнеров и лидеров.</p>
+                        </div>
+                    </div>
+
+                    <!-- Новости -->
+                    <div class="history-event">
+                        <div class="date">12.01.2024</div>
+                        <div class="desc">
+                            <h4>Роскошный розыгрыш поездки на Мальдивы</h4>
+                            <p>Организовали масштабный розыгрыш премиального отдыха: 7 дней на Мальдивах в люксовом отеле для двоих, где все включено.</p>
+                        </div>
+                    </div>
+                    <div class="history-event">
+                        <div class="date">22.02.2024</div>
+                        <div class="desc">
+                            <h4>Открытие новой страны: Беларусь</h4>
+                            <p>География EWA продолжает расширяться. Открытие нового склада в Беларуси усиливает международное присутствие компании.</p>
+                        </div>
+                    </div>
+                    <div class="history-event">
+                        <div class="date">14.05.2024</div>
+                        <div class="desc">
+                            <h4>Новое промо EWA PRODUCT: разыграли путешествие в Турцию</h4>
+                            <p>В рамках промо участники активировали партнеров и вошли в розыгрыш. Главный приз – путешествие в Турцию на двоих в отель 5*.</p>
+                        </div>
+                    </div>
+                    <div class="history-event">
+                        <div class="date">26.07.2024</div>
+                        <div class="desc">
+                            <h4>Қош келіңіздер! Кыргызстан!</h4>
+                            <p>Расширяем географию: теперь мы официально в Кыргызстане. Это новые возможности, новые партнеры и еще больше роста для каждого, кто с нами.</p>
+                        </div>
+                    </div>
+                    <div class="history-event">
+                        <div class="date">14.08.2024</div>
+                        <div class="desc">
+                            <h4>Новый этап развития: Армения</h4>
+                            <p>Расширяем географию присутствия и выходим на новый рынок в регионе. EWA продолжает последовательное масштабирование на новых территориях.</p>
+                        </div>
+                    </div>
+                    <div class="history-event">
+                        <div class="date">01.08.2024</div>
+                        <div class="desc">
+                            <h4>Новые бонусы в маркетинг-плане: "Быстрый старт" и "Быстрая активация"</h4>
+                            <p>Обновлена система мотивации: бонус «Золотой стандарт» за закрытие Gold, «Серебряный стандарт» за Silver и Silver Pro в первый месяц.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="glass-tab" id="hist-2025" data-year="2025">
+                <h3 class="glass-tab-title" data-year="25">Инновации и международное признание</h3>
+
+                <div class="history-stats-grid">
+                    <div class="h-stat-box"><div class="h-num" data-target="130">0</div><div class="h-label">Продуктов</div></div>
+                    <div class="h-stat-box"><div class="h-num" data-target="7">0</div><div class="h-label">Стран</div></div>
+                    <div class="h-stat-box"><div class="h-num" data-target="350">0</div><div class="h-label">Тыс. партнёров</div><div class="h-growth">+150k за год</div></div>
+                    <div class="h-stat-box"><div class="h-num" data-target="28">0</div><div class="h-label">Офисов</div></div>
+                    <div class="h-stat-box"><div class="h-num" data-target="18">0</div><div class="h-label">ПВЗ</div></div>
+                    <div class="h-stat-box"><div class="h-num" data-target="10">0</div><div class="h-label">Складов</div></div>
+                </div>
+
+                <div class="history-events-list">
+                    <!-- Ассортимент -->
+                    <div class="history-event">
+                        <div class="date">21.02.2025</div>
+                        <div class="desc">
+                            <h4>Новая линейка EWA EXPERT</h4>
+                            <p>Представили космецевтическую линейку EWA EXPERT - уход нового поколения. Серия ANTI ACNE - 4-этапная система для проблемной кожи с AHA + BHA + PHA, PDRN и пептидами.</p>
+                        </div>
+                    </div>
+                    <div class="history-event">
+                        <div class="date">13.06.2025</div>
+                        <div class="desc">
+                            <h4>Запуск серии ANTI-AGE в EWA EXPERT</h4>
+                            <p>Запуск профессиональной линейки ANTI-AGE для сохранения молодости кожи. Комплекс с PDRN и пептидами уменьшает морщины, повышает упругость и глубоко увлажняет кожу.</p>
+                        </div>
+                    </div>
+                    <div class="history-event">
+                        <div class="date">14.10.2025</div>
+                        <div class="desc">
+                            <h4>EWA SENSE: новая парфюмерная линейка</h4>
+                            <p>Представили новую линейку ароматов. 7 премиальных французских композиций для свободы выбора настроения – от «Светиться изнутри» до «Двигайся вперед».</p>
+                        </div>
+                    </div>
+
+                    <!-- События -->
+                    <div class="history-event">
+                        <div class="date">15.01.2025</div>
+                        <div class="desc">
+                            <h4>EWA PRODUCT выходит в тур по 5 странам! 20.000+ участников</h4>
+                            <p>Новый оффлайн-формат мероприятий в более 30 городах. Мощное погружение в продукт и бизнес с топ-лидерами.</p>
+                        </div>
+                    </div>
+                    <div class="history-event">
+                        <div class="date">18.05.2025</div>
+                        <div class="desc">
+                            <h4>LEADERSHIP CAMP TURKEY</h4>
+                            <p>LEADERSHIP CAMP TURKEY собрал сильнейших партнеров в Турции 18-23 мая.</p>
+                        </div>
+                    </div>
+                    <div class="history-event">
+                        <div class="date">14.07.2025</div>
+                        <div class="desc">
+                            <h4>Старт проекта ДЕЛО В ТЕЛЕ DETOX – полная перезагрузка</h4>
+                            <p>Система обновления тела и мышления с поддержкой нутрициологов и наставников.</p>
+                        </div>
+                    </div>
+                    <div class="history-event">
+                        <div class="date">01.10.2025</div>
+                        <div class="desc">
+                            <h4>Запуск флагманского марафона REBRAIN</h4>
+                            <p>Флагманский марафон REBRAIN на 2500+ участников – масштабная система нейроперезагрузки для перехода к энергии, ясности и контролю над жизнью.</p>
+                        </div>
+                    </div>
+                    <div class="history-event">
+                        <div class="date">04.11.2025</div>
+                        <div class="desc">
+                            <h4>EWA MASTER CLASS: новый образовательный проект</h4>
+                            <p>Трехнедельная система прокачки от топ-лидеров компании.</p>
+                        </div>
+                    </div>
+
+                    <!-- Новости -->
+                    <div class="history-event">
+                        <div class="date">23.01.2025</div>
+                        <div class="desc">
+                            <h4>Мы стали лауреатами премии «Эффективное образование»</h4>
+                            <p>EWA SKILLS и EWA EDUCATION стали лауреатами премии «Эффективное образование», подтвердив силу образовательной системы EWA PRODUCT.</p>
+                        </div>
+                    </div>
+                    <div class="history-event">
+                        <div class="date">10.06.2025</div>
+                        <div class="desc">
+                            <h4>EWA PRODUCT выходит в Монголию</h4>
+                            <p>Официально открываем новую страну – Монголию. Теперь бренд представлен в шести странах: Россия, Казахстан, Беларусь, Кыргызстан, Узбекистан и Монголия.</p>
+                        </div>
+                    </div>
+                    <div class="history-event">
+                        <div class="date">01.07.2025</div>
+                        <div class="desc">
+                            <h4>Открытие флагманского партнёрского офиса в Москве</h4>
+                            <p>Открываем новый партнёрский офис в Москве – центре деловой активности страны.</p>
+                        </div>
+                    </div>
+                    <div class="history-event">
+                        <div class="date">15.07.2025</div>
+                        <div class="desc">
+                            <h4>BODYBOX 2.0 – лауреат всероссийской премии "Здоровое питание"</h4>
+                            <p>В категории "Витамины и БАД" в номинации "Лучшее функциональное питание". Инновации, качество и забота о здоровье дают реальный результат.</p>
+                        </div>
+                    </div>
+                    <div class="history-event">
+                        <div class="date">21.07.2025</div>
+                        <div class="desc">
+                            <h4>ZEROZEFIR – выбор потребителей 2025</h4>
+                            <p>ZEROZEFIR получил награду «Выбор потребителей 2025» на фестивале «Вкус лета».</p>
+                        </div>
+                    </div>
+                    <div class="history-event">
+                        <div class="date">20.08.2025</div>
+                        <div class="desc">
+                            <h4>Дубай за счёт EWA</h4>
+                            <p>Разыграли 7 ночей в Дубае в 5* отеле с полностью оплаченной поездкой из Москвы.</p>
+                        </div>
+                    </div>
+                    <div class="history-event">
+                        <div class="date">03.12.2025</div>
+                        <div class="desc">
+                            <h4>Победа на «Медиакульт» в номинации «MLM-маркетинг года»</h4>
+                            <p>Победа на премии «Медиакульт» и финал национальной премии «Бренд года в России».</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="glass-tab" id="hist-2026" data-year="2026">
+                <h3 class="glass-tab-title" data-year="26">Искусственный интеллект и будущее</h3>
+
+                <div class="history-stats-grid">
+                    <div class="h-stat-box"><div class="h-num" data-target="163">0</div><div class="h-label">Продуктов</div></div>
+                    <div class="h-stat-box"><div class="h-num" data-target="7">0</div><div class="h-label">Стран</div></div>
+                    <div class="h-stat-box"><div class="h-num" data-target="400">0</div><div class="h-label">Тыс. партнёров</div><div class="h-growth">+50k за год</div></div>
+                    <div class="h-stat-box"><div class="h-num" data-target="37">0</div><div class="h-label">Офисов</div></div>
+                    <div class="h-stat-box"><div class="h-num" data-target="20">0</div><div class="h-label">ПВЗ</div></div>
+                    <div class="h-stat-box"><div class="h-num" data-target="10">0</div><div class="h-label">Складов</div></div>
+                </div>
+
+                <div class="history-events-list">
+                    <!-- Ассортимент -->
+                    <div class="history-event">
+                        <div class="date">15.01.2026</div>
+                        <div class="desc">
+                            <h4>EWA FACE BASE: новая эра базового ухода</h4>
+                            <p>EWA представила FACE BASE – систему базового ухода нового поколения с 5 грибными адаптогенами.</p>
+                        </div>
+                    </div>
+                    <div class="history-event">
+                        <div class="date">16.01.2026</div>
+                        <div class="desc">
+                            <h4>BODYBOX HOT: горячая новинка питания</h4>
+                            <p>Функциональный суп-коктейль нового поколения – полноценный прием пищи в удобном формате.</p>
+                        </div>
+                    </div>
+                    <div class="history-event">
+                        <div class="date">05.02.2026</div>
+                        <div class="desc">
+                            <h4>Новый уровень стиля - запуск мерча</h4>
+                            <p>Спортивная коллекция одежды для активного ритма жизни – костюмы и футболки из премиальных материалов.</p>
+                        </div>
+                    </div>
+                    <div class="history-event">
+                        <div class="date">10.03.2026</div>
+                        <div class="desc">
+                            <h4>EWA KIDS: детская линейка заботы и здоровья</h4>
+                            <p>Детская линейка KIDSTER: Омега-3 и зубная паста KEEP SMILE для формирования полезных привычек у детей.</p>
+                        </div>
+                    </div>
+
+                    <!-- События -->
+                    <div class="history-event">
+                        <div class="date">24.01.2026</div>
+                        <div class="desc">
+                            <h4>EWA CLIENT DAY: запуск нового формата для клиентов</h4>
+                            <p>Масштабное событие для новых клиентов компании – обучение, биохакинг и сильное комьюнити.</p>
+                        </div>
+                    </div>
+                    <div class="history-event">
+                        <div class="date">23.04.2026</div>
+                        <div class="desc">
+                            <h4>НУТРИЦИОЛОГИЯ 2.0: запуск курса нового уровня</h4>
+                            <p>Мощная программа системных знаний по нутрициологии для уверенной работы с продуктом EWA.</p>
+                        </div>
+                    </div>
+                    <div class="history-event">
+                        <div class="date">12.05.2026</div>
+                        <div class="desc">
+                            <h4>Недельный ИНТЕНСИВ по продажам для партнеров</h4>
+                            <p>Интенсив от EWA, который превращает хаотичные продажи в систему с понятной стратегией.</p>
+                        </div>
+                    </div>
+                    <div class="history-event">
+                        <div class="date">18.05.2026</div>
+                        <div class="desc">
+                            <h4>LEADERSHIP CAMP MOROCCO 2026: главное путешествие года</h4>
+                            <p>Пять дней в Марокко для сильнейших партнеров EWA.</p>
+                        </div>
+                    </div>
+                    <div class="history-event">
+                        <div class="date">10.08.2026</div>
+                        <div class="desc">
+                            <h4>Старт мощной программы «АКАДЕМИЯ ЛИДЕРОВ»</h4>
+                            <p>Программа от EWA, где формируется мышление лидера, усиливается команда и растут результаты.</p>
+                        </div>
+                    </div>
+
+                    <!-- Новости -->
+                    <div class="history-event">
+                        <div class="date">09.02.2026</div>
+                        <div class="desc">
+                            <h4>EWA расширила географию путешествий</h4>
+                            <p>Запуск розыгрыша путешествия на Кубу для двоих в 5* отеле.</p>
+                        </div>
+                    </div>
+                    <div class="history-event">
+                        <div class="date">01.05.2026</div>
+                        <div class="desc">
+                            <h4>EWA HELPER: AI-прорыв в технологиях</h4>
+                            <p>EWA HELPER – внедрение искусственного интеллекта в экосистему EWA для быстрого доступа к знаниям, инструментам и росту.</p>
+                        </div>
+                    </div>
+                    <div class="history-event">
+                        <div class="date">14.05.2026</div>
+                        <div class="desc">
+                            <h4>EWA получила образовательную лицензию</h4>
+                            <p>EWA официально получила образовательную лицензию, подтвердив уровень своих обучающих программ.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 0.9rem; color: #888;">
+                    <strong>Итоги 2025:</strong> 130 продуктов, 7 стран, 350 тыс. партнеров, 28 офисов, 18 ПВЗ, 10 складов.<br>
+                    <strong>Итоги 2026:</strong> 163 продукта, 7 стран, 400 тыс. партнеров, 37 офисов, 20 ПВЗ, 10 складов.
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+
+    <!-- ОХУЕННО БОЛЬШОЙ БЛОК ОТЗЫВОВ -->
+    <section class="reviews-block" id="reviews">
+        <div class="reviews-container">
+            <!-- Header -->
+            <div class="reviews-header">
+                <div class="reviews-badge">Реальные люди • Реальные результаты</div>
+                <h2>Что говорят наши партнёры<br>и клиенты по всему миру</h2>
+                <p>Более 400 000 человек уже изменили свою жизнь с EWA PRODUCT.<br>Вот их истории — честно, без прикрас.</p>
+            </div>
+
+            <!-- 3 бегущие строки с видео (чередующиеся направления) -->
+            <div class="reviews-marquees">
+                <!-- Row 1: налево -->
+                <div class="marquee-row marquee-left">
+                    <div class="marquee-track">
+                        <!-- 10 видео + дубликат для бесконечности -->
+                        <div class="review-video"><div class="play-btn">▶</div><div class="review-label">Отзыв #1<br><span>Москва • +320k за год</span></div></div>
+                        <div class="review-video"><div class="play-btn">▶</div><div class="review-label">Отзыв #2<br><span>Алматы • Команда 180 чел.</span></div></div>
+                        <div class="review-video"><div class="play-btn">▶</div><div class="review-label">Отзыв #3<br><span>Минск • Авто от компании</span></div></div>
+                        <div class="review-video"><div class="play-btn">▶</div><div class="review-label">Отзыв #4<br><span>Ташкент • Новый уровень</span></div></div>
+                        <div class="review-video"><div class="play-btn">▶</div><div class="review-label">Отзыв #5<br><span>Екатеринбург • 7 стран</span></div></div>
+                        <div class="review-video"><div class="play-btn">▶</div><div class="review-label">Отзыв #6<br><span>Киев • Пассивный доход</span></div></div>
+                        <div class="review-video"><div class="play-btn">▶</div><div class="review-label">Отзыв #7<br><span>Новосибирск • Лидер Gold</span></div></div>
+                        <div class="review-video"><div class="play-btn">▶</div><div class="review-label">Отзыв #8<br><span>Бишкек • 3 авто в команде</span></div></div>
+                        <div class="review-video"><div class="play-btn">▶</div><div class="review-label">Отзыв #9<br><span>Астана • EWA SKILLS</span></div></div>
+                        <div class="review-video"><div class="play-btn">▶</div><div class="review-label">Отзыв #10<br><span>Санкт-Петербург • Наследство</span></div></div>
+
+                        <!-- Дубликат для seamless loop -->
+                        <div class="review-video"><div class="play-btn">▶</div><div class="review-label">Отзыв #1<br><span>Москва • +320k за год</span></div></div>
+                        <div class="review-video"><div class="play-btn">▶</div><div class="review-label">Отзыв #2<br><span>Алматы • Команда 180 чел.</span></div></div>
+                        <div class="review-video"><div class="play-btn">▶</div><div class="review-label">Отзыв #3<br><span>Минск • Авто от компании</span></div></div>
+                        <div class="review-video"><div class="play-btn">▶</div><div class="review-label">Отзыв #4<br><span>Ташкент • Новый уровень</span></div></div>
+                        <div class="review-video"><div class="play-btn">▶</div><div class="review-label">Отзыв #5<br><span>Екатеринбург • 7 стран</span></div></div>
+                        <div class="review-video"><div class="play-btn">▶</div><div class="review-label">Отзыв #6<br><span>Киев • Пассивный доход</span></div></div>
+                        <div class="review-video"><div class="play-btn">▶</div><div class="review-label">Отзыв #7<br><span>Новосибирск • Лидер Gold</span></div></div>
+                        <div class="review-video"><div class="play-btn">▶</div><div class="review-label">Отзыв #8<br><span>Бишкек • 3 авто в команде</span></div></div>
+                        <div class="review-video"><div class="play-btn">▶</div><div class="review-label">Отзыв #9<br><span>Астана • EWA SKILLS</span></div></div>
+                        <div class="review-video"><div class="play-btn">▶</div><div class="review-label">Отзыв #10<br><span>Санкт-Петербург • Наследство</span></div></div>
+                    </div>
+                </div>
+
+                <!-- Row 2: направо -->
+                <div class="marquee-row marquee-right">
+                    <div class="marquee-track">
+                        <div class="review-video"><div class="play-btn">▶</div><div class="review-label">Отзыв #11<br><span>Краснодар • +1.2млн</span></div></div>
+                        <div class="review-video"><div class="play-btn">▶</div><div class="review-label">Отзыв #12<br><span>Улан-Батор • Первая страна</span></div></div>
+                        <div class="review-video"><div class="play-btn">▶</div><div class="review-label">Отзыв #13<br><span>Владивосток • Команда 90 чел.</span></div></div>
+                        <div class="review-video"><div class="play-btn">▶</div><div class="review-label">Отзыв #14<br><span>Дубай • Лидерские каникулы</span></div></div>
+                        <div class="review-video"><div class="play-btn">▶</div><div class="review-label">Отзыв #15<br><span>Тбилиси • EWA EXPERT</span></div></div>
+                        <div class="review-video"><div class="play-btn">▶</div><div class="review-label">Отзыв #16<br><span>Самара • 4 поколения</span></div></div>
+                        <div class="review-video"><div class="play-btn">▶</div><div class="review-label">Отзыв #17<br><span>Баку • AI Helper</span></div></div>
+                        <div class="review-video"><div class="play-btn">▶</div><div class="review-label">Отзыв #18<br><span>Казань • 2 авто + дом</span></div></div>
+                        <div class="review-video"><div class="play-btn">▶</div><div class="review-label">Отзыв #19<br><span>Хабаровск • Академия Лидеров</span></div></div>
+                        <div class="review-video"><div class="play-btn">▶</div><div class="review-label">Отзыв #20<br><span>Рига • Полная свобода</span></div></div>
+
+                        <!-- Дубликат -->
+                        <div class="review-video"><div class="play-btn">▶</div><div class="review-label">Отзыв #11<br><span>Краснодар • +1.2млн</span></div></div>
+                        <div class="review-video"><div class="play-btn">▶</div><div class="review-label">Отзыв #12<br><span>Улан-Батор • Первая страна</span></div></div>
+                        <div class="review-video"><div class="play-btn">▶</div><div class="review-label">Отзыв #13<br><span>Владивосток • Команда 90 чел.</span></div></div>
+                        <div class="review-video"><div class="play-btn">▶</div><div class="review-label">Отзыв #14<br><span>Дубай • Лидерские каникулы</span></div></div>
+                        <div class="review-video"><div class="play-btn">▶</div><div class="review-label">Отзыв #15<br><span>Тбилиси • EWA EXPERT</span></div></div>
+                        <div class="review-video"><div class="play-btn">▶</div><div class="review-label">Отзыв #16<br><span>Самара • 4 поколения</span></div></div>
+                        <div class="review-video"><div class="play-btn">▶</div><div class="review-label">Отзыв #17<br><span>Баку • AI Helper</span></div></div>
+                        <div class="review-video"><div class="play-btn">▶</div><div class="review-label">Отзыв #18<br><span>Казань • 2 авто + дом</span></div></div>
+                        <div class="review-video"><div class="play-btn">▶</div><div class="review-label">Отзыв #19<br><span>Хабаровск • Академия Лидеров</span></div></div>
+                        <div class="review-video"><div class="play-btn">▶</div><div class="review-label">Отзыв #20<br><span>Рига • Полная свобода</span></div></div>
+                    </div>
+                </div>
+
+                <!-- Row 3: налево -->
+                <div class="marquee-row marquee-left">
+                    <div class="marquee-track">
+                        <div class="review-video"><div class="play-btn">▶</div><div class="review-label">Отзыв #21<br><span>Омск • 120 партнёров</span></div></div>
+                        <div class="review-video"><div class="play-btn">▶</div><div class="review-label">Отзыв #22<br><span>Ташкент • EWA KIDS</span></div></div>
+                        <div class="review-video"><div class="play-btn">▶</div><div class="review-label">Отзыв #23<br><span>Москва • 3 поколения</span></div></div>
+                        <div class="review-video"><div class="play-btn">▶</div><div class="review-label">Отзыв #24<br><span>Алматы • Премия 2025</span></div></div>
+                        <div class="review-video"><div class="play-btn">▶</div><div class="review-label">Отзыв #25<br><span>Ереван • Полная свобода</span></div></div>
+                        <div class="review-video"><div class="play-btn">▶</div><div class="review-label">Отзыв #26<br><span>Красноярск • +450k оборот</span></div></div>
+                        <div class="review-video"><div class="play-btn">▶</div><div class="review-label">Отзыв #27<br><span>Душанбе • Лидер Pro</span></div></div>
+                        <div class="review-video"><div class="play-btn">▶</div><div class="review-label">Отзыв #28<br><span>Иркутск • 2 страны</span></div></div>
+                        <div class="review-video"><div class="play-btn">▶</div><div class="review-label">Отзыв #29<br><span>Воронеж • EWA SENSE</span></div></div>
+                        <div class="review-video"><div class="play-btn">▶</div><div class="review-label">Отзыв #30<br><span>Сочи • 7 ночей в Дубае</span></div></div>
+
+                        <!-- Дубликат -->
+                        <div class="review-video"><div class="play-btn">▶</div><div class="review-label">Отзыв #21<br><span>Омск • 120 партнёров</span></div></div>
+                        <div class="review-video"><div class="play-btn">▶</div><div class="review-label">Отзыв #22<br><span>Ташкент • EWA KIDS</span></div></div>
+                        <div class="review-video"><div class="play-btn">▶</div><div class="review-label">Отзыв #23<br><span>Москва • 3 поколения</span></div></div>
+                        <div class="review-video"><div class="play-btn">▶</div><div class="review-label">Отзыв #24<br><span>Алматы • Премия 2025</span></div></div>
+                        <div class="review-video"><div class="play-btn">▶</div><div class="review-label">Отзыв #25<br><span>Ереван • Полная свобода</span></div></div>
+                        <div class="review-video"><div class="play-btn">▶</div><div class="review-label">Отзыв #26<br><span>Красноярск • +450k оборот</span></div></div>
+                        <div class="review-video"><div class="play-btn">▶</div><div class="review-label">Отзыв #27<br><span>Душанбе • Лидер Pro</span></div></div>
+                        <div class="review-video"><div class="play-btn">▶</div><div class="review-label">Отзыв #28<br><span>Иркутск • 2 страны</span></div></div>
+                        <div class="review-video"><div class="play-btn">▶</div><div class="review-label">Отзыв #29<br><span>Воронеж • EWA SENSE</span></div></div>
+                        <div class="review-video"><div class="play-btn">▶</div><div class="review-label">Отзыв #30<br><span>Сочи • 7 ночей в Дубае</span></div></div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Bottom statement -->
+            <div class="reviews-bottom">
+                <div class="bottom-content">
+                    <h3>Наши партнёры и клиенты говорят: «Всё по-другому. Всё — по-настоящему»</h3>
+                    <p>Более 400 000 человек по 7 странам уже сделали выбор в пользу свободы, здоровья и настоящего дохода. Присоединяйся к тем, кто уже живёт на своём уровне.</p>
+                    <div class="bottom-cta">
+                        <button onclick="document.getElementById('openEliteFunnel').click()" class="btn-primary-hero">Я хочу в команду</button>
+                        <span class="or-text">или</span>
+                        <a href="#how" class="btn-secondary-hero">Посмотреть, как начать</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-disclaimer">
+                <strong>Внимание:</strong> Этот сайт является неофициальным прототипом и концептом для демонстрационных целей. 
+                Все права на бренд, товарные знаки, контент и дизайн принадлежат компании <strong>EWA PRODUCT</strong>. 
+                Официальный сайт: <a href="https://ewaproduct.com/" target="_blank" rel="noopener">https://ewaproduct.com/</a>. 
+                Это не коммерческий продукт и не имеет отношения к официальной деятельности компании.
+            </div>
+
+            <div class="footer-links">
+                <h4>Юридическая информация</h4>
+                <ul>
+                    <li><a href="#" onclick="showPolicyModal('privacy')">Политика конфиденциальности</a></li>
+                    <li><a href="#" onclick="showPolicyModal('terms')">Пользовательское соглашение</a></li>
+                    <li><a href="#" onclick="showPolicyModal('data')">Политика обработки персональных данных</a></li>
+                    <li><a href="#" onclick="showPolicyModal('cookies')">Политика использования файлов cookie</a></li>
+                    <li><a href="#" onclick="showPolicyModal('disclaimer')">Отказ от ответственности</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-bottom">
+                © 2026 EWA PRODUCT — неофициальный прототип. Все права принадлежат владельцам оригинального бренда.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Policy Modals -->
+    <div id="policyModal" class="policy-modal" onclick="if (event.target.id === 'policyModal') hidePolicyModal()">
+        <div class="policy-modal-content">
+            <button class="policy-close" onclick="hidePolicyModal()">×</button>
+            <h3 id="policyTitle"></h3>
+            <div id="policyContent"></div>
+            <div class="policy-footer">
+                <small>Этот документ является частью демонстрационного прототипа. 
+                Для актуальной информации обращайтесь на официальный сайт: 
+                <a href="https://ewaproduct.com/" target="_blank">ewaproduct.com</a></small>
+            </div>
+        </div>
+    </div>
+
+    <!-- БИОГРАФИЯ МОДАЛ ДЛЯ НАТАЛЬИ (точно как в предоставленном коде) -->
+    <div class="ambient-layer">
+        <div class="glow-sphere"></div>
+    </div>
+
+    <div class="biography-overlay" id="bioOverlay">
+        <div class="bio-window">
+            <button class="close-architect" id="closeBio">
+                <svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg>
+            </button>
+
+            <!-- ЛЕВАЯ СТОРОНА -->
+            <div class="bio-sidebar">
+                <div class="sidebar-header">
+                    <div class="brand-stamp">Evo-Product / Top Leader</div>
+                    <h2>Наталья<br>Касумова<span>История Траектории</span></h2>
+                </div>
+
+                <div class="navigation-scroller">
+                    <div class="nav-card active" data-target="narrative-1">
+                        <div class="icon-box">
+                            <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                        </div>
+                        <div class="nav-details">
+                            <div class="title">Истоки</div>
+                            <div class="subtitle">Мечта и импульс</div>
+                        </div>
+                    </div>
+
+                    <div class="nav-card" data-target="narrative-2">
+                        <div class="icon-box">
+                            <svg viewBox="0 0 24 24"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+                        </div>
+                        <div class="nav-details">
+                            <div class="title">Опыт 24/7</div>
+                            <div class="subtitle">12 лет бизнеса</div>
+                        </div>
+                    </div>
+
+                    <div class="nav-card" data-target="narrative-3">
+                        <div class="icon-box">
+                            <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                        </div>
+                        <div class="nav-details">
+                            <div class="title">Квантовый Скачок</div>
+                            <div class="subtitle">Экосистема Evo-Product</div>
+                        </div>
+                    </div>
+
+                    <div class="nav-card" data-target="narrative-4">
+                        <div class="icon-box">
+                            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        </div>
+                        <div class="nav-details">
+                            <div class="title">Наследие</div>
+                            <div class="subtitle">Пенсия по счету</div>
+                        </div>
+                    </div>
+                    
+                    <div class="nav-card" data-target="narrative-5">
+                        <div class="icon-box">
+                            <svg viewBox="0 0 24 24"><path d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14v-4z"/><rect x="3" y="6" width="12" height="12" rx="2" ry="2"/></svg>
+                        </div>
+                        <div class="nav-details">
+                            <div class="title">Жизнь Натальи</div>
+                            <div class="subtitle">Эстетика и лайфстайл</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="font-size: 0.75rem; letter-spacing: 0.1em; color: #52525b; text-transform: uppercase;">
+                    © Спроектировано для Digital Architecture
+                </div>
+            </div>
+
+            <!-- ПРАВАЯ СТОРОНА -->
+            <div class="bio-main-content">
+                <div class="narrative-tab active" id="narrative-1">
+                    <div class="tab-heading-meta">Глава I</div>
+                    <h3 class="tab-title">Характер, сформированный целью</h3>
+                    <div class="tab-text">
+                        <p>Наталья Сергеевна Касумова родилась <strong>26 апреля 1987 года</strong> и выросла в небольшом поселке с населением всего 14 тысяч человек. Но масштаб личности никогда не определяется местом рождения. Уже с третьего класса школы внутри нее зрело четкое понимание: ее ждет совершенно другая жизнь, свободная от рамок работы в найме.</p>
+                        <p>Ее юность была наполнена жесткой самодисциплиной и лидерством. Она профессионально занималась легкой атлетикой, завоевывая первые места на длинных дистанциях, развивала эстетику и голос через театральный вокал, и завоевала титул <strong>«Мисс Воен» по Красноярскому краю</strong>.</p>
+                        <div class="manifesto-quote">
+                            «Я видела родителей в найме и понимала, что выживание — это не мой путь. Каждый человек способен на квантовый рост, если уберет ограничения из своей головы».
+                        </div>
+                        <p>В 17 лет, взяв ответственность за свое будущее, она оставляет малую родину и переезжает в большой город возможностей.</p>
+                    </div>
+                </div>
+
+                <div class="narrative-tab" id="narrative-2">
+                    <div class="tab-heading-meta">Глава II</div>
+                    <h3 class="tab-title">Ловушка традиционной системы</h3>
+                    <div class="tab-text">
+                        <p>Большой город начался с жесткой практики. Четыре года Наталья досконально изучала рынок недвижимости в роли риэлтора, после чего выступила соучредителем и создала крупное, известное в Красноярске <strong>агентство недвижимости (ООО)</strong>.</p>
+                        <p><strong>12 лет жизни</strong> были отданы классическому бизнесу. Но за внешним фасадом статуса основателя скрывалась жесткая реальность: занятость в режиме 24/7. Наталья одновременно выполняла роли директора, юриста, ипотечного брокера, администратора и менеджера.</p>
+                        <div class="manifesto-quote">
+                            «Традиционный бизнес показал цикличную иллюзию: ты создаешь инфраструктуру, платишь огромную аренду, налоги, рекламу, обучаешь людей — а они уходят и открывают свои компании. Ты становишься обслуживающим персоналом для своего собственного дела».
+                        </div>
+                        <p>С рождением второго ребенка пришло осознание: бизнес забирает свободу, оставляя взамен лишь операционную рутину и расходы, съедающие чистую прибыль.</p>
+                    </div>
+                </div>
+
+                <div class="narrative-tab" id="narrative-3">
+                    <div class="tab-heading-meta">Глава III</div>
+                    <h3 class="tab-title">Эпоха Evo-Product</h3>
+                    <div class="tab-text">
+                        <p>В 2023 году, детально проанализировав рынок онлайн-проектов и инвестиций на предмет прозрачности и экологичности, Наталья принимает стратегическое решение и заходит в молодую продуктовую компанию <strong>Evo-Product</strong> абсолютным новичком в MLM.</p>
+                        <p>Ее математический расчет оправдался на 100%: в то время как старые корпорации стагнируют, старт в новой легальной компании открыл беспрецедентные масштабы для построения сети.</p>
+                        
+                        <div class="luxury-stats-grid">
+                            <div class="luxury-stat-card">
+                                <div class="stat-num">Топ-9</div>
+                                <div class="stat-desc">Лучших контрактов компании</div>
+                            </div>
+                            <div class="luxury-stat-card">
+                                <div class="stat-num">26k</div>
+                                <div class="stat-desc">Партнеров от Калининграда до Владивостока</div>
+                            </div>
+                            <div class="luxury-stat-card">
+                                <div class="stat-num">~1M ₽</div>
+                                <div class="stat-desc">Постоянного дохода ежемесячно</div>
+                            </div>
+                            <div class="luxury-stat-card">
+                                <div class="stat-num">6</div>
+                                <div class="stat-desc">Международных стран в структуре</div>
+                            </div>
+                        </div>
+
+                        <p style="margin-top: 2rem;">За этот период Наталья дважды выступала на огромных сценах перед аудиторией в 2000 человек, получила от компании премиальный автобонус — <strong>бесплатный Audi A5</strong> (с бюджетом 3 000 000 рублей) и вместе с мужем построила загородный дом мечты.</p>
+                    </div>
+                </div>
+
+                <div class="narrative-tab" id="narrative-4">
+                    <div class="tab-heading-meta">Глава IV</div>
+                    <h3 class="tab-title">Философия нового поколения</h3>
+                    <div class="tab-text">
+                        <p>Наталья не получила классического государственного диплома, пройдя альтернативный путь — обучение на практике у долларовых практиков и бизнес-тренеров. Ее опыт доказывает: реальная квалификация куется в действии, а не в кабинетах вузов.</p>
+                        <p>Во время развития бизнеса в Evo-Product у Натальи родился третий сын. Продукты и нутрицевтики компании помогли пройти этот этап с абсолютным здоровьем, подтвержденным врачами.</p>
+                        <div class="manifesto-quote">
+                            «Моя цель — построить пенсию по состоянию счета, а не по возрасту или разрушенному здоровью. Работать так, чтобы деньги поступали на счет ежечасно».
+                        </div>
+                        <p>Сегодня бизнес-система Натальи полностью автоматизирована и имеет юридическую гарантию: контракт в Evo-Product <strong>передается по наследству</strong>. Она формирует команду лидеров первого эшелона, готовых выйти на доходы от 500 000 рублей без финансовых рисков и вложений.</p>
+                    </div>
+                </div>
+
+                <div class="narrative-tab" id="narrative-5">
+                    <div class="tab-heading-meta">Глава V</div>
+                    <h3 class="tab-title">Эстетика свободы</h3>
+                    <div class="tab-text">
+                        <p>Результат системного подхода — это не только финансовая стабильность, но и свобода проживать каждый день по собственному сценарию. Путешествия, семья, премиальные автомобили и мощное комьюнити.</p>
+                    </div>
+
+                    <div class="marquee-wrapper">
+                        <div class="marquee-track-container">
+                            <div class="marquee-track track-left">
+                                <div class="marquee-video-placeholder"><span>Вставь видео 1</span></div>
+                                <div class="marquee-video-placeholder"><span>Вставь видео 2</span></div>
+                                <div class="marquee-video-placeholder"><span>Вставь видео 3</span></div>
+                                <div class="marquee-video-placeholder"><span>Вставь видео 4</span></div>
+                                <div class="marquee-video-placeholder"><span>Вставь видео 1</span></div>
+                                <div class="marquee-video-placeholder"><span>Вставь видео 2</span></div>
+                                <div class="marquee-video-placeholder"><span>Вставь видео 3</span></div>
+                                <div class="marquee-video-placeholder"><span>Вставь видео 4</span></div>
+                            </div>
+                        </div>
+
+                        <div class="marquee-track-container">
+                            <div class="marquee-track track-right">
+                                <div class="marquee-video-placeholder"><span>Вставь видео 5</span></div>
+                                <div class="marquee-video-placeholder"><span>Вставь видео 6</span></div>
+                                <div class="marquee-video-placeholder"><span>Вставь видео 7</span></div>
+                                <div class="marquee-video-placeholder"><span>Вставь видео 8</span></div>
+                                <div class="marquee-video-placeholder"><span>Вставь видео 5</span></div>
+                                <div class="marquee-video-placeholder"><span>Вставь видео 6</span></div>
+                                <div class="marquee-video-placeholder"><span>Вставь видео 7</span></div>
+                                <div class="marquee-video-placeholder"><span>Вставь видео 8</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    (function () {
+        var splash = document.getElementById('splash');
+        if (!splash) return;
+
+        function hideSplash() {
+            if (!splash) return;
+            splash.style.transition = 'opacity 420ms cubic-bezier(0.4, 0, 0.2, 1)';
+            splash.style.opacity = '0';
+            setTimeout(function () {
+                if (splash && splash.parentNode) splash.parentNode.removeChild(splash);
+                splash = null;
+            }, 480);
+        }
+
+        // Click / tap to skip intro immediately (nice UX)
+        splash.addEventListener('click', hideSplash, { once: true });
+
+        // Auto hide after delay (official timing)
+        setTimeout(hideSplash, 2050);
+    })();
+
+    /* === 3D Tilt + color hover для лидеров (Artem + Nataly) === */
+    (function() {
+        const cards = document.querySelectorAll('.leader-card');
+
+        cards.forEach(card => {
+            // Нам нужно обращаться именно к <img>, а не к контейнеру!
+            const img = card.querySelector('.leader-photo img');
+            if (!img) return;
+
+            let isHovering = false;
+
+            card.addEventListener('mouseenter', () => {
+                isHovering = true;
+                // Делаем реакцию картинки на мышь быстрой
+                img.style.transition = 'transform 0.1s linear';
+            });
+
+            card.addEventListener('mouseleave', () => {
+                isHovering = false;
+                // При убирании мыши картинка плавно возвращается в исходное положение
+                img.style.transition = 'transform 0.6s cubic-bezier(0.23, 1, 0.32, 1)';
+                // Обязательно оставляем scale(1.1), чтобы не было визуального скачка
+                img.style.transform = 'scale(1.1) rotateX(0deg) rotateY(0deg)';
+            });
+
+            card.addEventListener('mousemove', (e) => {
+                if (!isHovering) return;
+
+                // ИСПРАВЛЕНИЕ: Считаем координаты относительно ВСЕЙ КАРТОЧКИ (card),
+                // так как мы слушаем mousemove на всей карточке, а не только на фото.
+                const rect = card.getBoundingClientRect();
+                
+                const x = (e.clientX - rect.left) / rect.width;
+                const y = (e.clientY - rect.top) / rect.height;
+
+                // Настраиваем силу наклона (умножение на 20 = максимальный наклон 10 градусов)
+                const rotX = (0.5 - y) * 20;   // Наклон вверх/вниз
+                const rotY = (x - 0.5) * 20;   // Наклон влево/вправо
+
+                // ИСПРАВЛЕНИЕ: Применяем transform к IMG, сохраняя scale(1.1)
+                img.style.transform = `scale(1.1) rotateX(${rotX}deg) rotateY(${rotY}deg)`;
+            });
+        });
+    })();
+    </script>
+
+    <!-- Скрипт для биографии Натальи (точно как в коде) -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const natalyaBtn = document.getElementById('natalya-more');
+            const closeBtn = document.getElementById('closeBio');
+            const overlay = document.getElementById('bioOverlay');
+            const cards = document.querySelectorAll('.nav-card');
+            const tabs = document.querySelectorAll('.narrative-tab');
+
+            // Открытие по кнопке "Подробнее" у Натальи
+            if (natalyaBtn) {
+                natalyaBtn.addEventListener('click', () => {
+                    overlay.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                });
+            }
+
+            // Закрытие по кнопке X
+            if (closeBtn) {
+                closeBtn.addEventListener('click', () => {
+                    overlay.classList.remove('active');
+                    document.body.style.overflow = '';
+                });
+            }
+
+            // Закрытие по клику на фон
+            if (overlay) {
+                overlay.addEventListener('click', (e) => {
+                    if (e.target === overlay) {
+                        overlay.classList.remove('active');
+                        document.body.style.overflow = '';
+                    }
+                });
+            }
+
+            // Переключение табов
+            cards.forEach(card => {
+                card.addEventListener('click', () => {
+                    cards.forEach(c => c.classList.remove('active'));
+                    tabs.forEach(t => t.classList.remove('active'));
+
+                    card.classList.add('active');
+                    const targetId = card.getAttribute('data-target');
+                    const currentTab = document.getElementById(targetId);
+                    if (currentTab) currentTab.classList.add('active');
+                });
+            });
+        });
+    </script>
+
+<!-- ======================================================= -->
+<!-- ========== ELITE BLACK FUNNEL (ПОЛНЫЙ ЧЁРНЫЙ ЭКРАН) ==== -->
+<!-- ======================================================= -->
+<style>
+    :root {
+        --pink: #e00076;
+        --pink-light: #ff2a9a;
+    }
+
+    .elite-funnel-wrapper {
+        position: fixed;
+        inset: 0;
+        z-index: 999999;
+        display: none;
+        background: #000000;
+        font-family: 'Inter', system-ui, sans-serif;
+        color: #fff;
+        overflow-y: auto;
+    }
+    .elite-funnel-wrapper.active {
+        display: block;
+    }
+
+    .elite-close-btn {
+        position: fixed;
+        top: 28px;
+        right: 28px;
+        width: 52px;
+        height: 52px;
+        background: rgba(255,255,255,0.06);
+        border: 1px solid rgba(255,255,255,0.15);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        z-index: 100;
+        transition: all 0.2s ease;
+    }
+    .elite-close-btn:hover {
+        background: var(--pink);
+        border-color: var(--pink);
+        transform: rotate(90deg);
+    }
+    .elite-close-btn svg {
+        width: 22px;
+        height: 22px;
+        stroke: #fff;
+        stroke-width: 2;
+        fill: none;
+    }
+
+    .elite-container {
+        max-width: 1080px;
+        margin: 0 auto;
+        padding: 90px 24px 80px;
+    }
+
+    /* HERO */
+    .elite-hero {
+        text-align: center;
+        margin-bottom: 70px;
+    }
+    .elite-hero h1 {
+        font-size: 3.8rem;
+        font-weight: 800;
+        line-height: 1.05;
+        letter-spacing: -2.5px;
+        margin-bottom: 18px;
+    }
+    .elite-hero h1 span {
+        background: linear-gradient(90deg, #e00076, #ff2a9a);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+    .elite-hero .subtitle {
+        font-size: 1.35rem;
+        color: #888;
+        max-width: 620px;
+        margin: 0 auto;
+        line-height: 1.5;
+    }
+
+    /* ВИДЕО-ОБРАЩЕНИЕ В КОМАНДУ (presentation.mp4) */
+    .elite-video-container {
+        width: 100%;
+        max-width: 920px;
+        margin: 0 auto 70px;
+        aspect-ratio: 16 / 9;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 40px 100px rgba(0,0,0,0.7);
+        background: #000;
+        border: 1px solid #222;
+        position: relative;
+    }
+    .elite-video-container video {
+        width: 100%;
+        height: 100%;
+        display: block;
+        background: #000;
+    }
+
+    /* Кнопка запуска видео (оверлей) */
+    .video-play-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(180deg, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.65) 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        cursor: pointer;
+        z-index: 2;
+        transition: background 0.2s ease;
+    }
+    .video-play-overlay:hover {
+        background: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.78) 100%);
+    }
+    .video-play-overlay .play-circle {
+        width: 86px;
+        height: 86px;
+        background: rgba(255,255,255,0.95);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.6);
+        margin-bottom: 16px;
+    }
+    .video-play-overlay .play-circle::after {
+        content: '';
+        width: 0;
+        height: 0;
+        border-top: 16px solid transparent;
+        border-bottom: 16px solid transparent;
+        border-left: 26px solid #000;
+        margin-left: 5px;
+    }
+    .video-play-overlay .overlay-label {
+        font-size: 13px;
+        letter-spacing: 2.5px;
+        text-transform: uppercase;
+        color: #ddd;
+        font-weight: 600;
+        text-align: center;
+        padding: 0 24px;
+    }
+
+    /* POWER POINTS */
+    .elite-points {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 18px;
+        margin-bottom: 90px;
+    }
+    .elite-point {
+        background: #0a0a0a;
+        border: 1px solid #1f1f1f;
+        border-radius: 18px;
+        padding: 32px 26px;
+        transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+    .elite-point:hover {
+        transform: translateY(-4px);
+        border-color: #333;
+    }
+    .elite-point .num {
+        font-size: 13px;
+        font-weight: 700;
+        color: var(--pink);
+        letter-spacing: 1.5px;
+        margin-bottom: 12px;
+    }
+    .elite-point h3 {
+        font-size: 1.25rem;
+        font-weight: 700;
+        line-height: 1.3;
+        margin-bottom: 10px;
+    }
+    .elite-point p {
+        font-size: 0.95rem;
+        color: #777;
+        line-height: 1.55;
+    }
+
+    /* КРАСИВАЯ ФОРМА */
+    .elite-form-section {
+        max-width: 720px;
+        margin: 0 auto;
+    }
+    .elite-form-header {
+        text-align: center;
+        margin-bottom: 42px;
+    }
+    .elite-form-header h2 {
+        font-size: 2.1rem;
+        font-weight: 700;
+        letter-spacing: -0.5px;
+    }
+    .elite-form-header p {
+        color: #777;
+        margin-top: 10px;
+        font-size: 1.05rem;
+    }
+
+    .elite-form {
+        background: #0a0a0a;
+        border: 1px solid #1a1a1a;
+        border-radius: 24px;
+        padding: 48px 52px;
+        box-shadow: 0 30px 80px rgba(0,0,0,0.6);
+    }
+
+    .form-row {
+        margin-bottom: 26px;
+    }
+    .form-row label {
+        display: block;
+        font-size: 0.8rem;
+        font-weight: 600;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        color: #666;
+        margin-bottom: 9px;
+    }
+    .form-row input {
+        width: 100%;
+        background: #111;
+        border: 1px solid #222;
+        border-radius: 12px;
+        padding: 16px 20px;
+        font-size: 1.05rem;
+        color: #fff;
+        transition: all 0.2s ease;
+    }
+    .form-row input:focus {
+        outline: none;
+        border-color: var(--pink);
+        box-shadow: 0 0 0 4px rgba(224, 0, 118, 0.1);
+    }
+
+    /* КРАСИВЫЕ КАРТОЧКИ ОПЫТА */
+    .exp-label {
+        font-size: 0.8rem;
+        font-weight: 600;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        color: #666;
+        margin-bottom: 12px;
+    }
+    .experience-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+        margin-bottom: 12px;
+    }
+    .exp-card {
+        background: #111;
+        border: 1px solid #222;
+        border-radius: 14px;
+        padding: 18px 16px;
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        cursor: pointer;
+        transition: all 0.2s cubic-bezier(0.23, 1, 0.32, 1);
+        font-weight: 500;
+        color: #aaa;
+    }
+    .exp-card:hover {
+        border-color: #333;
+        color: #ddd;
+    }
+    .exp-card.active {
+        background: #1a0a12;
+        border-color: var(--pink);
+        color: #fff;
+        box-shadow: 0 0 0 1px var(--pink);
+    }
+    .exp-card .icon {
+        width: 38px;
+        height: 38px;
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(255,255,255,0.04);
+        border-radius: 10px;
+    }
+    .exp-card.active .icon {
+        background: rgba(224, 0, 118, 0.15);
+    }
+    .exp-card .icon svg {
+        width: 20px;
+        height: 20px;
+        stroke: #666;
+    }
+    .exp-card.active .icon svg {
+        stroke: var(--pink);
+    }
+
+    .exp-error {
+        color: #ff4d4d;
+        font-size: 0.85rem;
+        margin-top: 6px;
+        display: none;
+    }
+
+    /* TEXTAREA */
+    .form-row textarea {
+        width: 100%;
+        background: #111;
+        border: 1px solid #222;
+        border-radius: 14px;
+        padding: 18px 20px;
+        font-size: 1rem;
+        color: #fff;
+        min-height: 110px;
+        resize: vertical;
+        font-family: inherit;
+    }
+    .form-row textarea:focus {
+        outline: none;
+        border-color: var(--pink);
+        box-shadow: 0 0 0 4px rgba(224, 0, 118, 0.1);
+    }
+
+    .elite-submit-btn {
+        width: 100%;
+        background: linear-gradient(135deg, #e00076, #ff2a9a);
+        color: white;
+        border: none;
+        padding: 18px;
+        font-size: 1.05rem;
+        font-weight: 700;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        border-radius: 14px;
+        cursor: pointer;
+        margin-top: 12px;
+        transition: all 0.25s ease;
+        box-shadow: 0 8px 30px rgba(224, 0, 118, 0.35);
+    }
+    .elite-submit-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 15px 40px rgba(224, 0, 118, 0.45);
+    }
+
+    /* SUCCESS */
+    .elite-success {
+        display: none;
+        text-align: center;
+        padding: 60px 20px;
+    }
+    .elite-success .check {
+        width: 92px;
+        height: 92px;
+        margin: 0 auto 28px;
+        background: rgba(0, 255, 136, 0.1);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .elite-success .check svg {
+        width: 52px;
+        height: 52px;
+        stroke: #00ff88;
+        stroke-width: 2.5;
+    }
+    .elite-success h3 {
+        font-size: 2rem;
+        margin-bottom: 12px;
+    }
+    .elite-success p {
+        color: #777;
+        max-width: 420px;
+        margin: 0 auto;
+        line-height: 1.6;
+    }
+
+    #eliteConfetti {
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        z-index: 99999999;
+    }
+
+    @media (max-width: 768px) {
+        .elite-hero h1 { font-size: 2.6rem; }
+        .elite-points { grid-template-columns: 1fr; }
+        .elite-form { padding: 36px 28px; }
+        .experience-grid { grid-template-columns: 1fr; }
+    }
+</style>
+
+<div class="elite-funnel-wrapper" id="eliteFunnel">
+    <!-- Кнопка закрытия -->
+    <button class="elite-close-btn" id="closeEliteFunnel">
+        <svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg>
+    </button>
+
+    <div class="elite-container">
+        <!-- HERO -->
+        <div class="elite-hero">
+            <h1>Ты не ищешь<br>ещё одну работу.<br>Ты ищешь <span>выход</span>.</h1>
+            <p class="subtitle">Прямой доступ в команду Натальи Касумовой.<br>Система, которая уже принесла миллионы тем, кто решил играть по-другому.</p>
+        </div>
+
+        <!-- ВИДЕО-ОБРАЩЕНИЕ В КОМАНДУ -->
+        <div class="elite-video-container">
+            <video id="eliteVideo" controls playsinline preload="metadata">
+                <source src="presentation.mp4" type="video/mp4">
+                Ваш браузер не поддерживает воспроизведение видео.
+            </video>
+            <!-- Оверлей с кнопкой запуска видео -->
+            <div class="video-play-overlay" id="videoPlayOverlay">
+                <div class="play-circle"></div>
+                <div class="overlay-label">Нажми, чтобы посмотреть видео-обращение</div>
+            </div>
+        </div>
+
+        <!-- СИЛЬНЫЕ ПУНКТЫ -->
+        <div class="elite-points">
+            <div class="elite-point">
+                <div class="num">01</div>
+                <h3>Доход без потолка</h3>
+                <p>Ты строишь актив, который платит тебе даже когда ты спишь. Средний чек топов команды — от 700к до 1,5млн ₽/мес.</p>
+            </div>
+            <div class="elite-point">
+                <div class="num">02</div>
+                <h3>Автомобиль и свобода</h3>
+                <p>Премиальные авто (Audi, BMW, Mercedes) полностью оплачивает компания. Ты выбираешь уровень жизни, а не выживаешь.</p>
+            </div>
+            <div class="elite-point">
+                <div class="num">03</div>
+                <h3>Бизнес по наследству</h3>
+                <p>26 000 человек в 6 странах. Структура, которую можно официально передать детям. Это уже не работа. Это капитал.</p>
+            </div>
+        </div>
+
+        <!-- ФОРМА -->
+        <div class="elite-form-section">
+            <div class="elite-form-header">
+                <h2>Получить персональный план запуска</h2>
+                <p>Оставь заявку. Мы свяжемся лично и покажем, как именно ты можешь начать.</p>
+            </div>
+
+            <div class="elite-form" id="eliteFormBox">
+                <div id="eliteFormContent">
+                    <form id="eliteSubmitForm">
+                        <div class="form-row">
+                            <label>Твой Telegram</label>
+                            <input type="text" id="tgInput" placeholder="@username" required>
+                        </div>
+
+                        <div class="form-row">
+                            <label>Номер телефона</label>
+                            <input type="tel" id="phoneInput" placeholder="+7 (999) 123-45-67" required>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="exp-label">Какой у тебя сейчас опыт?</div>
+                            <div class="experience-grid">
+                                <div class="exp-card" data-exp="newbie">
+                                    <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
+                                    <span>Новичок, без опыта</span>
+                                </div>
+                                <div class="exp-card" data-exp="business">
+                                    <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></div>
+                                    <span>Вёл свой бизнес</span>
+                                </div>
+                                <div class="exp-card" data-exp="mlm">
+                                    <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></div>
+                                    <span>Был опыт в MLM</span>
+                                </div>
+                                <div class="exp-card" data-exp="leader">
+                                    <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
+                                    <span>Уже веду команду</span>
+                                </div>
+                            </div>
+                            <input type="hidden" id="hiddenExpValue" value="">
+                            <div class="exp-error" id="expError">Выбери один из вариантов выше</div>
+                        </div>
+
+                        <div class="form-row">
+                            <label>Почему ты рассматриваешь этот бизнес именно сейчас? (не обязательно)</label>
+                            <textarea id="whyInput" placeholder="Расскажи честно..."></textarea>
+                        </div>
+
+                        <button type="submit" class="elite-submit-btn">Отправить заявку</button>
+                    </form>
+                </div>
+
+                <!-- Экран успеха -->
+                <div class="elite-success" id="eliteSuccess">
+                    <div class="check">
+                        <svg viewBox="0 0 24 24" fill="none"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M22 4L12 14.01l-3-3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </div>
+                    <h3>Заявка отправлена</h3>
+                    <p>Мы получили твою заявку. В ближайшее время напишем в Telegram и договоримся о личном разборе.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<canvas id="eliteConfetti"></canvas>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const closeBtn = document.getElementById('closeEliteFunnel');
+    const funnel = document.getElementById('eliteFunnel');
+
+    // Поддерживаем несколько кнопок: id в хедере + класс в других местах (герой и т.д.)
+    const openBtns = document.querySelectorAll('#openEliteFunnel, .js-open-elite-funnel');
+    openBtns.forEach((openBtn) => {
+        if (openBtn) {
+            openBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                funnel.classList.add('active');
+                document.body.style.overflow = 'hidden';
+
+                // При открытии воронки показываем оверлей с кнопкой запуска видео (без автоплея)
+                const video = document.getElementById('eliteVideo');
+                const overlay = document.getElementById('videoPlayOverlay');
+                if (video) video.pause();
+                if (overlay) overlay.style.display = '';
+            });
+        }
+    });
+    if (closeBtn) {
+        closeBtn.addEventListener('click', () => {
+            funnel.classList.remove('active');
+            document.body.style.overflow = '';
+
+            const video = document.getElementById('eliteVideo');
+            const overlay = document.getElementById('videoPlayOverlay');
+            if (video) video.pause();
+            if (overlay) overlay.style.display = '';
+        });
+    }
+
+    // === Запуск видео по кнопке (только после клика на "Хочу в команду") ===
+    const eliteVideo = document.getElementById('eliteVideo');
+    const videoOverlay = document.getElementById('videoPlayOverlay');
+
+    function startEliteVideo() {
+        if (!eliteVideo || !videoOverlay) return;
+        videoOverlay.style.display = 'none';
+        eliteVideo.muted = false;   // пользователь сам запустил — включаем звук
+        eliteVideo.play().catch(() => {});
+    }
+
+    if (videoOverlay) {
+        videoOverlay.addEventListener('click', startEliteVideo);
+    }
+
+    if (eliteVideo) {
+        // Если видео закончилось — возвращаем кнопку запуска
+        eliteVideo.addEventListener('ended', () => {
+            if (videoOverlay) videoOverlay.style.display = '';
+        });
+    }
+
+    // Интерактивные карточки опыта
+    const expCards = document.querySelectorAll('.exp-card');
+    const hiddenExp = document.getElementById('hiddenExpValue');
+    const expError = document.getElementById('expError');
+
+    expCards.forEach(card => {
+        card.addEventListener('click', () => {
+            expCards.forEach(c => c.classList.remove('active'));
+            card.classList.add('active');
+            hiddenExp.value = card.dataset.exp;
+            if (expError) expError.style.display = 'none';
+        });
+    });
+
+    // Форма
+    const form = document.getElementById('eliteSubmitForm');
+    const formContent = document.getElementById('eliteFormContent');
+    const success = document.getElementById('eliteSuccess');
+
+    if (form) {
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            if (!hiddenExp.value) {
+                expError.style.display = 'block';
+                return;
+            }
+
+            formContent.style.display = 'none';
+            success.style.display = 'block';
+
+            triggerConfetti();
+        });
+    }
+
+    // Конфетти
+    function triggerConfetti() {
+        const canvas = document.getElementById('eliteConfetti');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const particles = [];
+        const colors = ['#e00076', '#fff', '#ff2a9a', '#00ff88'];
+
+        for (let i = 0; i < 180; i++) {
+            particles.push({
+                x: canvas.width / 2,
+                y: canvas.height / 2,
+                r: Math.random() * 5 + 3,
+                dx: Math.random() * 28 - 14,
+                dy: Math.random() * -26 - 6,
+                color: colors[Math.floor(Math.random() * colors.length)],
+                tilt: Math.random() * 10 - 5,
+                tiltAngleIncrement: Math.random() * 0.08 + 0.04,
+                tiltAngle: 0
+            });
+        }
+
+        let id;
+        function render() {
+            id = requestAnimationFrame(render);
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            particles.forEach((p, i) => {
+                p.tiltAngle += p.tiltAngleIncrement;
+                p.y += (Math.cos(p.tiltAngle) + 1 + p.r / 2) / 2;
+                p.x += Math.sin(p.tiltAngle) * 1.8 + p.dx;
+                p.y += p.dy;
+                p.dy += 0.45;
+
+                ctx.beginPath();
+                ctx.lineWidth = p.r;
+                ctx.strokeStyle = p.color;
+                ctx.moveTo(p.x + p.tilt, p.y);
+                ctx.lineTo(p.x + p.tilt + p.r, p.y + p.r);
+                ctx.stroke();
+
+                if (p.y > canvas.height + 30) particles.splice(i, 1);
+            });
+
+            if (particles.length === 0) {
+                cancelAnimationFrame(id);
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+            }
+        }
+        render();
+    }
+
+    window.addEventListener('resize', () => {
+        const c = document.getElementById('eliteConfetti');
+        if (c) {
+            c.width = window.innerWidth;
+            c.height = window.innerHeight;
+        }
+    });
+});
+</script>
+
+<script>
+    // Универсальный скрипт для стеклянных секций (Почему EWA, Как начать, История)
+    document.addEventListener('DOMContentLoaded', () => {
+        // Ищем все наши новые стеклянные блоки
+        const glassContainers = document.querySelectorAll('.js-glass-container');
+        
+        glassContainers.forEach(container => {
+            const navCards = container.querySelectorAll('.glass-nav-card');
+            const tabs = container.querySelectorAll('.glass-tab');
+            
+            navCards.forEach(card => {
+                card.addEventListener('click', () => {
+                    // Убираем активность у всех карточек ВНУТРИ этого конкретного блока
+                    navCards.forEach(c => c.classList.remove('active'));
+                    // Убираем активность у всех табов ВНУТРИ этого блока
+                    tabs.forEach(t => t.classList.remove('active'));
+                    
+                    // Задаем активность нажатой
+                    card.classList.add('active');
+                    const targetId = card.getAttribute('data-target');
+                    const targetTab = document.getElementById(targetId);
+                    
+                    if (targetTab) {
+                        targetTab.classList.add('active');
+                    }
+                });
+            });
+        });
+    });
+</script>
+
+<script>
+    // === EPIC ANIMATED COUNTERS + TAB ENTRANCE FOR HISTORY ===
+    function animateCounter(el, target, duration = 1400) {
+        const start = 0;
+        const increment = target / (duration / 16);
+        let current = start;
+
+        const timer = setInterval(() => {
+            current += increment;
+            if (current >= target) {
+                // Nice formatting for big numbers
+                let display = target;
+                if (target >= 100000) {
+                    display = Math.round(target / 1000) + 'k';
+                } else if (target >= 1000) {
+                    display = Math.round(target / 1000) + 'k';
+                } else {
+                    display = target.toLocaleString('ru-RU');
+                }
+                el.textContent = display;
+                el.classList.add('count-finished');
+                setTimeout(() => el.classList.remove('count-finished'), 1200);
+                clearInterval(timer);
+            } else {
+                let display = Math.floor(current);
+                if (target >= 1000) {
+                    display = Math.floor(current / 1000) + 'k';
+                } else {
+                    display = display.toLocaleString('ru-RU');
+                }
+                el.textContent = display;
+            }
+        }, 16);
+    }
+
+    function triggerHistoryStats(tab) {
+        if (!tab) return;
+
+        const nums = tab.querySelectorAll('.h-num[data-target]');
+        nums.forEach(numEl => {
+            const target = parseInt(numEl.getAttribute('data-target'), 10);
+            if (!isNaN(target)) {
+                numEl.textContent = '0';
+                // slight delay stagger
+                setTimeout(() => {
+                    animateCounter(numEl, target);
+                }, 80);
+            }
+        });
+
+        // Stagger the event items
+        const events = tab.querySelectorAll('.history-event');
+        events.forEach((ev, i) => {
+            ev.style.opacity = '0';
+            ev.style.transform = 'translateY(12px)';
+            setTimeout(() => {
+                ev.style.transition = 'all 0.45s cubic-bezier(0.23, 1, 0.32, 1)';
+                ev.style.transitionDelay = (i * 35) + 'ms';
+                ev.style.opacity = '1';
+                ev.style.transform = 'translateY(0)';
+            }, 120);
+        });
+
+    }
+
+    // Hook into the existing glass tab system for history
+    document.addEventListener('DOMContentLoaded', () => {
+        const historyContainer = document.querySelector('#history .js-glass-container');
+        if (!historyContainer) return;
+
+        const navCards = historyContainer.querySelectorAll('.glass-nav-card');
+        const tabs = historyContainer.querySelectorAll('.glass-tab');
+
+        navCards.forEach(card => {
+            card.addEventListener('click', () => {
+                const targetId = card.getAttribute('data-target');
+                const targetTab = document.getElementById(targetId);
+
+                if (targetTab && targetTab.classList.contains('active')) {
+                    // already active — re-trigger counters for fun
+                    triggerHistoryStats(targetTab);
+                }
+            });
+        });
+
+        // Trigger counters on initial load for the active year
+        const activeTab = historyContainer.querySelector('.glass-tab.active');
+        if (activeTab) {
+            setTimeout(() => {
+                triggerHistoryStats(activeTab);
+            }, 650);
+        }
+    });
+
+    // Bonus slider toggle (Autobonus <-> Housing)
+    let showingCar = true;
+    function toggleBonus() {
+        const panels = document.getElementById('bonus-panels');
+        const title = document.getElementById('bonus-main-title');
+        const desc = document.getElementById('bonus-main-desc');
+        const btn = document.getElementById('bonus-nav-btn');
+
+        if (showingCar) {
+            panels.style.transform = 'translateX(-50%)';
+            title.textContent = 'Жилищная программа EWA';
+            desc.textContent = 'Получи квартиру или дом мечты за счет компании. Программа для топ-лидеров, которые строят масштабный бизнес.';
+            btn.innerHTML = '← Автобонус EWA';
+            showingCar = false;
+        } else {
+            panels.style.transform = 'translateX(0)';
+            title.textContent = 'Автобонус EWA';
+            desc.textContent = 'Получи премиальный автомобиль за счет компании. Программа для лидеров, которые строят масштабный бизнес.';
+            btn.innerHTML = 'Жилищная программа →';
+            showingCar = true;
+        }
+    }
+</script>
+
+<!-- ======================================================= -->
+
+<style>
+/* Footer Policies (added for legal compliance) */
+footer {
+    background: #0a0a0a;
+    border-top: 1px solid #222;
+    padding: 40px 20px 20px;
+    font-size: 0.9rem;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer-disclaimer {
+    background: rgba(224, 0, 118, 0.08);
+    border: 1px solid rgba(224, 0, 118, 0.2);
+    padding: 16px 20px;
+    border-radius: 12px;
+    margin-bottom: 24px;
+    font-size: 0.85rem;
+    line-height: 1.5;
+}
+
+.footer-disclaimer a {
+    color: var(--accent);
+    text-decoration: underline;
+}
+
+.footer-links h4 {
+    font-size: 1rem;
+    margin-bottom: 12px;
+    color: #ccc;
+}
+
+.footer-links ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px 24px;
+}
+
+.footer-links a {
+    color: #aaa;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.footer-links a:hover {
+    color: #fff;
+    text-decoration: underline;
+}
+
+.footer-bottom {
+    margin-top: 24px;
+    padding-top: 16px;
+    border-top: 1px solid #222;
+    color: #666;
+    font-size: 0.8rem;
+    text-align: center;
+}
+
+/* Policy Modal */
+.policy-modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.85);
+    overflow: auto;
+}
+
+.policy-modal-content {
+    background: #111;
+    margin: 5% auto;
+    padding: 32px;
+    border: 1px solid #333;
+    border-radius: 16px;
+    width: 90%;
+    max-width: 720px;
+    position: relative;
+    color: #ddd;
+    line-height: 1.6;
+}
+
+.policy-close {
+    position: absolute;
+    top: 12px;
+    right: 16px;
+    font-size: 28px;
+    background: none;
+    border: none;
+    color: #888;
+    cursor: pointer;
+    line-height: 1;
+}
+
+.policy-close:hover {
+    color: #fff;
+}
+
+.policy-modal h3 {
+    margin-top: 0;
+    color: #fff;
+    font-size: 1.4rem;
+}
+
+.policy-footer {
+    margin-top: 24px;
+    padding-top: 16px;
+    border-top: 1px solid #333;
+    font-size: 0.8rem;
+    color: #888;
+}
+
+.policy-footer a {
+    color: var(--accent);
+}
+</style>
+
+<script>
+function showPolicyModal(type) {
+    const modal = document.getElementById('policyModal');
+    const title = document.getElementById('policyTitle');
+    const content = document.getElementById('policyContent');
+
+    let html = '';
+    let t = '';
+
+    if (type === 'privacy') {
+        t = 'Политика конфиденциальности';
+        html = `<p>Мы уважаем вашу конфиденциальность. Данный сайт собирает минимальный объём данных, необходимых для демонстрации функционала (например, для работы модальных окон и анимаций).</p>
+        <p>Мы не передаём персональные данные третьим лицам. Все данные обрабатываются только в рамках этого прототипа.</p>
+        <p><strong>Официальная политика:</strong> Ознакомьтесь с актуальной версией на официальном сайте EWA PRODUCT: <a href="https://ewaproduct.com/" target="_blank">ewaproduct.com</a>.</p>`;
+    } else if (type === 'terms') {
+        t = 'Пользовательское соглашение';
+        html = `<p>Используя этот сайт, вы соглашаетесь с тем, что он является демонстрационным прототипом.</p>
+        <p>Сайт не является официальным ресурсом компании и не предназначен для коммерческого использования или заключения сделок.</p>
+        <p><strong>Важно:</strong> Все права принадлежат EWA PRODUCT. Оригинал: <a href="https://ewaproduct.com/" target="_blank">https://ewaproduct.com/</a>.</p>`;
+    } else if (type === 'data') {
+        t = 'Политика обработки персональных данных';
+        html = `<p>В соответствии с законодательством РФ (ФЗ-152 "О персональных данных") мы обрабатываем данные только с вашего согласия и в минимально необходимом объёме.</p>
+        <p>Вы можете запросить удаление любых данных, связанных с вашим посещением этого прототипа.</p>
+        <p>Полная актуальная политика доступна на официальном сайте: <a href="https://ewaproduct.com/" target="_blank">ewaproduct.com</a>.</p>`;
+    } else if (type === 'cookies') {
+        t = 'Политика использования файлов cookie';
+        html = `<p>Этот сайт использует технические cookie для корректной работы анимаций, модальных окон и переключателей (например, слайдер бонусов и табы).</p>
+        <p>Мы не используем рекламные или аналитические cookie третьих лиц.</p>
+        <p>Вы можете отключить cookie в настройках браузера. Подробности на официальном сайте EWA PRODUCT: <a href="https://ewaproduct.com/" target="_blank">ewaproduct.com</a>.</p>`;
+    } else if (type === 'disclaimer') {
+        t = 'Отказ от ответственности';
+        html = `<p><strong>Это неофициальный прототип.</strong></p>
+        <p>Вся информация на этом сайте носит исключительно демонстрационный характер и может не соответствовать актуальным условиям компании EWA PRODUCT.</p>
+        <p>Компания EWA PRODUCT не несёт ответственности за содержание этого концепта. Для получения актуальной и официальной информации посетите <a href="https://ewaproduct.com/" target="_blank">официальный сайт</a>.</p>
+        <p>Все права на бренд EWA PRODUCT, логотипы, продукты и маркетинговые материалы принадлежат их законным владельцам.</p>`;
+    }
+
+    title.textContent = t;
+    content.innerHTML = html;
+    modal.style.display = 'block';
+}
+
+function hidePolicyModal() {
+    document.getElementById('policyModal').style.display = 'none';
+}
+
+// Закрытие по Escape
+document.addEventListener('keydown', function(e) {
+    if (e.key === "Escape") {
+        const modal = document.getElementById('policyModal');
+        if (modal.style.display === 'block') hidePolicyModal();
+    }
+});
+</script>
+
+<style>
+    /* Стили для огромного блока "Узнать о компании" */
+    .about-company-section {
+        background: #0a0a0a;
+        padding: 60px 0;
+    }
+    .about-company-header {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 40px 40px;
+        text-align: center;
+    }
+    .about-company-header .badge {
+        display: inline-block;
+        background: rgba(224, 0, 118, 0.1);
+        color: var(--accent);
+        padding: 6px 18px;
+        border-radius: 50px;
+        font-size: 0.8rem;
+        font-weight: 700;
+        letter-spacing: 2px;
+        margin-bottom: 16px;
+    }
+    .about-company-header h2 {
+        font-size: 3rem;
+        font-weight: 800;
+        margin-bottom: 16px;
+        color: #fff;
+    }
+    .about-company-header p {
+        font-size: 1.1rem;
+        color: #a1a1aa;
+        max-width: 620px;
+        margin: 0 auto 24px;
+    }
+    .about-nav {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+    }
+    .about-prev, .about-next {
+        background: rgba(255,255,255,0.05);
+        border: 1px solid rgba(255,255,255,0.1);
+        color: #fff;
+        padding: 10px 20px;
+        border-radius: 9999px;
+        cursor: pointer;
+        font-size: 0.9rem;
+        transition: all 0.2s;
+    }
+    .about-prev:hover, .about-next:hover {
+        background: var(--accent);
+        border-color: var(--accent);
+        transform: translateY(-1px);
+    }
+</body>
+</html>
