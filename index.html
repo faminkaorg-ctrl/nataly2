@@ -1987,6 +1987,505 @@
     position: relative;
     z-index: 1;
 }
+
+/* =========================================
+   НОВЫЙ БЛОК: ВИЗУАЛЬНАЯ ФИЛОСОФИЯ (3 фото с пролистыванием)
+   Замена "Философия превосходства". Отлично на мобильных.
+========================================= */
+.vision-section {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 70px 20px 90px;
+}
+
+.vision-header {
+    text-align: center;
+    margin-bottom: 32px;
+}
+.vision-header h2 {
+    font-size: 1.65rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #a1a1aa;
+    margin-bottom: 0;
+}
+
+
+.carousel-wrapper {
+    position: relative;
+    max-width: 1080px;
+    margin: 0 auto;
+}
+
+.carousel-viewport {
+    overflow: hidden;
+    border-radius: 22px;
+    background: #0a0a0b;
+    box-shadow: 0 25px 70px -15px rgba(0, 0, 0, 0.55);
+}
+
+.carousel-track {
+    display: flex;
+    transition: transform 0.55s cubic-bezier(0.32, 0.72, 0, 1);
+    will-change: transform;
+}
+
+.carousel-slide {
+    flex: 0 0 100%;
+    min-width: 100%;
+    box-sizing: border-box;
+    padding: 0;
+}
+
+.slide-visual {
+    position: relative;
+    background: #111113;
+    overflow: hidden;
+}
+
+.slide-visual img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: contain; /* сохраняем весь дизайн инфографики */
+    background: #0f0f10;
+}
+
+
+
+/* Controls */
+.carousel-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+    margin-top: 26px;
+}
+
+.carousel-btn {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.055);
+    border: 1px solid rgba(255,255,255,0.12);
+    color: #fff;
+    font-size: 20px;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.23, 1, 0.32, 1);
+    user-select: none;
+}
+
+.carousel-btn:hover {
+    background: var(--accent);
+    border-color: var(--accent);
+    transform: translateY(-1px);
+}
+
+.carousel-btn:active {
+    transform: scale(0.96);
+}
+
+.carousel-dots {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+}
+
+.carousel-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 9999px;
+    background: rgba(255,255,255,0.22);
+    cursor: pointer;
+    transition: all 0.25s ease;
+    border: none;
+    padding: 0;
+}
+
+.carousel-dot.active {
+    background: var(--accent);
+    width: 28px;
+    height: 8px;
+}
+
+/* Отличная мобильная адаптация */
+@media (max-width: 900px) {
+    .vision-section {
+        padding: 45px 16px 60px;
+    }
+    .vision-header h2 {
+        font-size: 1.35rem;
+        letter-spacing: 1.5px;
+    }
+    .carousel-viewport {
+        border-radius: 18px;
+    }
+    .detail-btn {
+        padding: 11px 28px;
+        font-size: 0.82rem;
+    }
+    .carousel-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 17px;
+    }
+    .carousel-controls {
+        gap: 12px;
+        margin-top: 18px;
+    }
+}
+
+/* Ещё компактнее на очень маленьких экранах */
+@media (max-width: 480px) {
+    .detail-btn {
+        padding: 10px 24px;
+        font-size: 0.78rem;
+    }
+}
+
+/* =========================================
+   КНОПКИ "ПОДРОБНЕЕ" под фото в карусели
+========================================= */
+/* Кнопки "Подробнее" внутри слайдов карусели */
+.detail-btn {
+    margin: 14px auto 12px;
+    display: block;
+    background: #27272a;
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    padding: 12px 34px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 1.1px;
+    text-transform: uppercase;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.detail-btn:hover {
+    background: var(--accent);
+    border-color: var(--accent);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 30px -10px rgba(224, 0, 118, 0.45);
+}
+
+.detail-btn:active {
+    transform: translateY(-1px) scale(0.985);
+}
+
+/* =========================================
+   КРАСИВОЕ МОДАЛЬНОЕ ОКНО с полноценной анимацией
+   (открывается по кнопке "Подробнее" под фото)
+========================================= */
+.deep-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.deep-modal.active {
+    display: flex;
+}
+
+/* Полупрозрачный фон с лёгким блюром */
+.modal-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.82);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    opacity: 0;
+    transition: opacity 0.28s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.deep-modal.active .modal-backdrop {
+    opacity: 1;
+}
+
+/* Само окно */
+.modal-window {
+    position: relative;
+    width: 100%;
+    max-width: 1040px;
+    max-height: 92vh;
+    background: #0f0f11;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 
+        0 40px 120px -10px rgba(0, 0, 0, 0.75),
+        0 0 0 1px rgba(255, 255, 255, 0.04) inset;
+    display: flex;
+    flex-direction: column;
+
+    /* Анимация появления */
+    opacity: 0;
+    transform: scale(0.96) translateY(30px);
+    transition: all 0.32s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.deep-modal.active .modal-window {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+}
+
+/* Кнопка закрытия */
+.modal-close {
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    z-index: 20;
+    width: 42px;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(20, 20, 22, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 50%;
+    color: #fff;
+    font-size: 26px;
+    line-height: 1;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    backdrop-filter: blur(6px);
+}
+
+.modal-close:hover {
+    background: var(--accent);
+    border-color: var(--accent);
+    transform: rotate(90deg);
+}
+
+/* Фотка в модалке */
+.modal-photo {
+    width: 100%;
+    background: #0a0a0b;
+    flex-shrink: 0;
+}
+
+.modal-photo img {
+    width: 100%;
+    height: auto;
+    max-height: 380px;
+    object-fit: contain;
+    display: block;
+}
+
+/* Прокручиваемая область с контентом */
+.modal-body {
+    padding: 42px 48px 56px;
+    overflow-y: auto;
+    flex: 1;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Типографика внутри окна (удобно читать) */
+.modal-body .deep-title {
+    font-size: 1.95rem;
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    line-height: 1.15;
+    margin-bottom: 14px;
+    color: #fff;
+}
+
+.modal-body .deep-lead {
+    font-size: 1.08rem;
+    color: #b8b8c0;
+    line-height: 1.7;
+    max-width: 720px;
+    margin-bottom: 36px;
+}
+
+.modal-body .deep-section {
+    margin-bottom: 42px;
+}
+
+.modal-body .deep-section h3 {
+    font-size: 1.18rem;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 12px;
+    letter-spacing: -0.01em;
+}
+
+.modal-body .deep-section p {
+    color: #c5c5c9;
+    font-size: 1.01rem;
+    line-height: 1.72;
+    margin-bottom: 14px;
+}
+
+.modal-body .deep-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 16px;
+    margin-top: 20px;
+}
+
+.modal-body .deep-card {
+    background: #18181b;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 14px;
+    padding: 20px 18px;
+}
+
+.modal-body .deep-card h4 {
+    font-size: 0.98rem;
+    font-weight: 600;
+    margin-bottom: 7px;
+    color: #fff;
+}
+
+.modal-body .deep-card p {
+    font-size: 0.92rem;
+    line-height: 1.55;
+    color: #a1a1aa;
+    margin: 0;
+}
+
+.modal-body .deep-quote {
+    border-left: 3px solid var(--accent);
+    padding-left: 22px;
+    margin: 32px 0;
+    font-size: 1.1rem;
+    font-style: italic;
+    color: #d8d8e0;
+    line-height: 1.6;
+}
+
+.modal-body .deep-stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 28px;
+    margin: 28px 0 12px;
+}
+
+.modal-body .deep-stat {
+    flex: 1;
+    min-width: 140px;
+}
+
+.modal-body .deep-stat .num {
+    font-size: 2.35rem;
+    font-weight: 700;
+    color: var(--accent);
+    line-height: 1;
+}
+
+.modal-body .deep-stat .label {
+    font-size: 0.8rem;
+    color: #777;
+    margin-top: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+}
+
+.modal-body .deep-cta {
+    margin-top: 40px;
+    text-align: center;
+}
+
+.modal-body .deep-cta .btn {
+    display: inline-block;
+    background: linear-gradient(135deg, #e00076, #ff2a9a);
+    color: #fff;
+    padding: 14px 38px;
+    border-radius: 999px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    text-decoration: none;
+    letter-spacing: 0.6px;
+    transition: all 0.2s ease;
+}
+
+.modal-body .deep-cta .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 28px -6px rgba(224, 0, 118, 0.45);
+}
+
+/* ================== МОБИЛЬНАЯ АДАПТАЦИЯ ================== */
+@media (max-width: 900px) {
+    .deep-modal {
+        padding: 12px;
+    }
+
+    .modal-window {
+        max-height: 96vh;
+        border-radius: 20px;
+    }
+
+    .modal-photo img {
+        max-height: 260px;
+    }
+
+    .modal-body {
+        padding: 28px 22px 42px;
+    }
+
+    .modal-body .deep-title {
+        font-size: 1.55rem;
+    }
+
+    .modal-body .deep-lead {
+        font-size: 0.98rem;
+        line-height: 1.6;
+    }
+
+    .modal-body .deep-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .modal-body .deep-stats {
+        gap: 20px;
+    }
+
+    .modal-body .deep-stat .num {
+        font-size: 2rem;
+    }
+
+    .modal-close {
+        top: 14px;
+        right: 14px;
+        width: 38px;
+        height: 38px;
+        font-size: 24px;
+    }
+}
+
+@media (max-width: 480px) {
+    .modal-photo img {
+        max-height: 210px;
+    }
+
+    .modal-body {
+        padding: 22px 16px 36px;
+    }
+
+    .modal-body .deep-title {
+        font-size: 1.38rem;
+    }
+
+    .modal-body .deep-lead {
+        font-size: 0.93rem;
+    }
+
+    .modal-body .deep-section p {
+        font-size: 0.95rem;
+    }
+}
     </style>
 </head>
 <body>
@@ -2072,70 +2571,69 @@
         </div>
     </div>
 
-    <!-- BENEFITS -->
-<section class="glass-section-wrapper" id="benefits">
-    <div class="glass-section-header">
-        <h2>Философия превосходства</h2>
-        <p>EWA PRODUCT — это не просто компания. Это экосистема, где биохакинг встречается с прогрессивной бизнес-моделью.</p>
+    <!-- ВИЗУАЛЬНАЯ ФИЛОСОФИЯ: 3 фото с пролистыванием (замена старого блока "Философия превосходства") -->
+<section class="vision-section" id="benefits">
+    <div class="vision-header">
+        <h2>Философия в образах</h2>
     </div>
 
-    <div class="glass-window js-glass-container">
-        <div class="glass-sidebar">
-            <div class="glass-nav-list">
-                <div class="glass-nav-card active" data-target="ewa-tab-1">
-                    <div class="icon-box">01</div>
-                    <div class="glass-nav-details">
-                        <div class="title">Биохакинг</div>
-                        <div class="subtitle">Инновационный продукт</div>
+    <div class="carousel-wrapper">
+        <div class="carousel-viewport">
+            <div class="carousel-track" id="vision-track">
+                <!-- Slide 1: nata1 -->
+                <div class="carousel-slide">
+                    <div class="slide-visual">
+                        <img src="nata1.jpeg" alt="EWA — Международная компания, основанная в России в 2022 году. Представлена в 6 странах">
                     </div>
+                    <button class="detail-btn" data-detail="global">Подробнее</button>
                 </div>
-                <div class="glass-nav-card" data-target="ewa-tab-2">
-                    <div class="icon-box">02</div>
-                    <div class="glass-nav-details">
-                        <div class="title">Умная экономика</div>
-                        <div class="subtitle">Товарный кэшбэк до 25%</div>
+
+                <!-- Slide 2: nata2 -->
+                <div class="carousel-slide">
+                    <div class="slide-visual">
+                        <img src="nata2.jpeg" alt="EWA — Глобальная сеть: 400 000 партнёров и продукция в 50 странах">
                     </div>
+                    <button class="detail-btn" data-detail="network">Подробнее</button>
                 </div>
-                <div class="glass-nav-card" data-target="ewa-tab-3">
-                    <div class="icon-box">03</div>
-                    <div class="glass-nav-details">
-                        <div class="title">Абсолютный масштаб</div>
-                        <div class="subtitle">Глобальная экспансия</div>
+
+                <!-- Slide 3: nata3 -->
+                <div class="carousel-slide">
+                    <div class="slide-visual">
+                        <img src="nata3.jpeg" alt="Фундамент бизнеса — продукт, который продаёт себя сам. Инновационные нутрицевтики и активация мозга">
                     </div>
+                    <button class="detail-btn" data-detail="product">Подробнее</button>
                 </div>
             </div>
         </div>
 
-        <div class="glass-main-content">
-            <div class="glass-tab active" id="ewa-tab-1">
-                <div class="glass-tab-meta">Фундамент бизнеса</div>
-                <h3 class="glass-tab-title">Продукт, который продает себя сам</h3>
-                <div class="glass-tab-text">
-                    <p>Мы отказались от масс-маркета. Основа EWA PRODUCT — это <strong>инновационные нутрицевтики и биохакинг</strong>. Мы создаем комплексы для активации мозга, бесконечной энергии и абсолютного фокуса.</p>
-                    <p>Наш продукт — это ресурс. Когда продукт дает реальный, физически ощутимый результат за считанные дни (как Brain Storm или Shaker), ваш бизнес строится органично, без агрессивных продаж.</p>
-                </div>
-            </div>
-
-            <div class="glass-tab" id="ewa-tab-2">
-                <div class="glass-tab-meta">Инфраструктура</div>
-                <h3 class="glass-tab-title">Математика без потолка</h3>
-                <div class="glass-tab-text">
-                    <p>Самая прогрессивная система выплат в индустрии. Мы внедрили <strong>мощный кэшбэк до 25%</strong>, чтобы даже новички видели живые деньги с первого дня.</p>
-                    <p>Система устроена так, что она щедро вознаграждает тех, кто строит глубину и ширину. Прозрачный маркетинг-план, никаких скрытых условий. Вы создаете товарооборот — компания делится максимальным процентом прибыли.</p>
-                </div>
-            </div>
-
-            <div class="glass-tab" id="ewa-tab-3">
-                <div class="glass-tab-meta">География</div>
-                <h3 class="glass-tab-title">Стирая границы</h3>
-                <div class="glass-tab-text">
-                    <p>Твой бизнес больше не привязан к одному городу или стране. Официальное присутствие в <strong>7 странах</strong> и развитая сеть из складов и ПВЗ позволяют масштабироваться онлайн.</p>
-                    <p>Наше IT-решение и логистика позволяют регистрировать партнеров из других часовых поясов и получать доход, пока вы спите. Это настоящая архитектура пассивного дохода.</p>
-                </div>
-            </div>
+        <!-- Controls -->
+        <div class="carousel-controls">
+            <button class="carousel-btn prev" id="vision-prev" aria-label="Предыдущий слайд">←</button>
+            <div class="carousel-dots" id="vision-dots"></div>
+            <button class="carousel-btn next" id="vision-next" aria-label="Следующий слайд">→</button>
         </div>
     </div>
 </section>
+
+<!-- МОДАЛЬНОЕ ОКНО с красивой анимацией (открывается по "Подробнее") -->
+<div id="deep-modal" class="deep-modal">
+    <div class="modal-backdrop"></div>
+    
+    <div class="modal-window">
+        <!-- Кнопка закрытия -->
+        <button class="modal-close" id="modal-close" aria-label="Закрыть">×</button>
+
+        <!-- Большая фотка в шапке окна -->
+        <div class="modal-photo">
+            <img id="modal-photo" src="" alt="">
+        </div>
+
+        <!-- Прокручиваемый контент -->
+        <div class="modal-body" id="modal-body">
+            <!-- Сюда JS вставляет детальный рассказ -->
+        </div>
+    </div>
+</div>
 
 <section class="glass-section-wrapper" id="how">
     <div class="glass-section-header">
@@ -2392,6 +2890,7 @@
                             </div>
 
                             <div class="autobonus-step">
+                                <div class="step-num">04</div>
                                 <div class="step-info">
                                     <h4>Выбор жилья</h4>
                                     <p>Выбирай квартиру или загородный дом. Компания выдает сертификат на жилье стоимостью до 10 миллионов рублей.</p>
@@ -3398,6 +3897,200 @@
     })();
     </script>
 
+    <!-- Скрипт красивого модального окна с анимацией (Подробнее под фото) -->
+    <script>
+    (function () {
+        const modal = document.getElementById('deep-modal');
+        const photo = document.getElementById('modal-photo');
+        const body = document.getElementById('modal-body');
+        const closeBtn = document.getElementById('modal-close');
+
+        if (!modal || !photo || !body) return;
+
+        // Тот же богатый контент, что и раньше (удобно читать)
+        const contents = {
+            global: `
+                <h2 class="deep-title">Международная компания, рождённая в России</h2>
+                <p class="deep-lead">В 2022 году в России была основана EWA. Сегодня это официально зарегистрированная компания в шести странах с постоянно растущей географией. Мы не просто «вышли на рынки» — мы построили настоящую трансграничную инфраструктуру.</p>
+
+                <div class="deep-section">
+                    <h3>Шесть стран — шесть точек силы</h3>
+                    <div class="deep-grid">
+                        <div class="deep-card"><h4>🇷🇺 Россия</h4><p>Родина компании. Здесь началась история и здесь сосредоточен самый мощный фундамент.</p></div>
+                        <div class="deep-card"><h4>🇰🇿 Казахстан</h4><p>Ключевой рынок Центральной Азии с огромным потенциалом и сильными партнёрами.</p></div>
+                        <div class="deep-card"><h4>🇧🇾 Беларусь</h4><p>Надёжный и близкий партнёр в едином экономическом пространстве.</p></div>
+                        <div class="deep-card"><h4>🇺🇿 Узбекистан</h4><p>Один из самых динамично растущих рынков региона.</p></div>
+                        <div class="deep-card"><h4>🇰🇬 Кыргызстан</h4><p>Стратегическая точка для развития в горных и отдалённых регионах.</p></div>
+                        <div class="deep-card"><h4>🇦🇲 Армения</h4><p>Культурно и экономически важный мост между Европой и Азией.</p></div>
+                    </div>
+                </div>
+
+                <div class="deep-section">
+                    <h3>Почему глобальность — это не просто цифры</h3>
+                    <p>Когда у тебя есть официальное присутствие в нескольких странах, твой бизнес перестаёт зависеть от одной экономики, одного курса валюты и одной политической ситуации. Партнёр в любой из этих стран может строить команду и получать доход, пока другие спят.</p>
+                    <p>Наша IT-платформа, склады и логистика уже настроены так, чтобы человек из Алматы мог спокойно работать с клиентами из Еревана или Минска. Это и есть настоящая архитектура свободы.</p>
+                </div>
+
+                <div class="deep-quote">
+                    «Мы не экспортируем продукт. Мы экспортируем возможность — возможность жить и зарабатывать без границ.»
+                </div>
+
+                <div class="deep-section">
+                    <h3>Что это даёт лично тебе</h3>
+                    <div class="deep-stats">
+                        <div class="deep-stat"><div class="num">6</div><div class="label">стран с официальным присутствием</div></div>
+                        <div class="deep-stat"><div class="num">37</div><div class="label">офисов и складов</div></div>
+                        <div class="deep-stat"><div class="num">∞</div><div class="label">возможностей масштаба</div></div>
+                    </div>
+                </div>
+
+                <div class="deep-cta">
+                    <a href="#leaders" class="btn">Хочу стать частью этой истории</a>
+                </div>
+            `,
+
+            network: `
+                <h2 class="deep-title">Сила 400 000 партнёров</h2>
+                <p class="deep-lead">Более четырёхсот тысяч человек по всему миру уже выбрали EWA. Это не просто «база клиентов». Это живая, дышащая сеть, которая растёт сама собой благодаря эффекту дупликации.</p>
+
+                <div class="deep-section">
+                    <h3>Как работает настоящая сеть</h3>
+                    <p>Каждый новый партнёр — это не нагрузка, а усиление. Когда человек присоединяется, он получает готовую систему, продукт, который уже доказал свою эффективность, и команду, которая заинтересована в его успехе.</p>
+                    <p>Продукция компании сегодня представлена в 50 странах. Это значит, что даже если ты находишься в небольшом городе, твой потенциальный рынок — практически весь мир.</p>
+                </div>
+
+                <div class="deep-grid">
+                    <div class="deep-card">
+                        <h4>Эффект дупликации</h4>
+                        <p>Ты не продаёшь в одиночку. Каждый человек, которого ты привёл, начинает повторять твои действия и приводить своих. Система работает на автомате.</p>
+                    </div>
+                    <div class="deep-card">
+                        <h4>Поддержка на всех уровнях</h4>
+                        <p>Личные наставники, система обучения EWA SKILLS, регулярные встречи и разборы. Ты никогда не остаёшься один.</p>
+                    </div>
+                    <div class="deep-card">
+                        <h4>Прозрачный маркетинг-план</h4>
+                        <p>Честные цифры, понятные условия, кэшбэк до 25% с первого дня. Никаких скрытых потолков и «звёздочек».</p>
+                    </div>
+                </div>
+
+                <div class="deep-quote">
+                    «400 000 — это не количество людей. Это количество историй, которые уже изменились в лучшую сторону.»
+                </div>
+
+                <div class="deep-section">
+                    <h3>Почему это важно именно сейчас</h3>
+                    <p>В мире, где традиционный найм становится всё менее стабильным, а собственный бизнес требует огромных вложений, сетевая модель с сильным продуктом и международной инфраструктурой даёт редкое сочетание: низкий порог входа + практически неограниченный потолок.</p>
+                </div>
+
+                <div class="deep-cta">
+                    <a href="#leaders" class="btn">Присоединиться к сообществу</a>
+                </div>
+            `,
+
+            product: `
+                <h2 class="deep-title">Продукт, который продаёт себя сам</h2>
+                <p class="deep-lead">В основе всей философии EWA лежит один простой, но мощный принцип: если человек получает реальный, ощутимый результат от продукта — ему не нужно ничего «продавать». Он сам становится лучшим продавцом.</p>
+
+                <div class="deep-section">
+                    <h3>Почему мы отказались от масс-маркета</h3>
+                    <p>Мы не делаем «ещё одну БАД». Мы создаём инновационные нутрицевтики и биоактивные комплексы, которые работают на уровне клеток и нервной системы. Brain Storm, Shaker, комплексы для восстановления энергии и фокуса — это инструменты, а не просто «витаминки».</p>
+                </div>
+
+                <div class="deep-grid">
+                    <div class="deep-card">
+                        <h4>Активация мозга</h4>
+                        <p>Улучшение когнитивных функций, памяти, концентрации. Многие партнёры отмечают, что уже через несколько дней работы с продуктом мышление становится заметно clearer.</p>
+                    </div>
+                    <div class="deep-card">
+                        <h4>Безграничная энергия</h4>
+                        <p>Не искусственный подъём, а стабильный ресурс, который позволяет работать, тренироваться и жить на высоком уровне без выгорания.</p>
+                    </div>
+                    <div class="deep-card">
+                        <h4>Абсолютный фокус</h4>
+                        <p>Когда тело и мозг работают синхронно, появляется то самое состояние потока, в котором строятся большие результаты.</p>
+                    </div>
+                </div>
+
+                <div class="deep-quote">
+                    «Когда человек сам чувствует разницу через 3–7 дней — ему не нужно верить тебе на слово. Он уже верит своему телу.»
+                </div>
+
+                <div class="deep-section">
+                    <h3>Как это работает на бизнес</h3>
+                    <p>Ты сначала пробуешь продукт на себе. Получаешь результат. Потом начинаешь рассказывать свою историю. Люди видят изменения и хотят то же самое. Продажа превращается в рекомендацию. А рекомендация — в команду.</p>
+                    <p>Это и есть главный секрет органического роста EWA. Продукт продаёт себя сам, а ты просто помогаешь людям его найти.</p>
+                </div>
+
+                <div class="deep-cta">
+                    <a href="#autobonus" class="btn">Узнать, как продукт меняет жизни</a>
+                </div>
+            `
+        };
+
+        let isOpen = false;
+
+        function openModal(type) {
+            let imgSrc = '';
+            if (type === 'global') imgSrc = 'nata1.jpeg';
+            else if (type === 'network') imgSrc = 'nata2.jpeg';
+            else if (type === 'product') imgSrc = 'nata3.jpeg';
+
+            photo.src = imgSrc;
+            photo.alt = type;
+
+            body.innerHTML = contents[type] || '<p>Контент готовится...</p>';
+
+            // Показываем модалку + анимация
+            modal.style.display = 'flex';
+            // Даём браузеру время на reflow перед добавлением класса
+            requestAnimationFrame(() => {
+                modal.classList.add('active');
+            });
+
+            // Блокируем прокрутку страницы
+            document.body.style.overflow = 'hidden';
+            isOpen = true;
+        }
+
+        function closeModal() {
+            modal.classList.remove('active');
+
+            // Ждём окончания анимации, потом прячем
+            setTimeout(() => {
+                modal.style.display = 'none';
+                document.body.style.overflow = '';
+                isOpen = false;
+            }, 300);
+        }
+
+        // Кнопки "Подробнее" в карусели
+        document.querySelectorAll('.detail-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const type = btn.getAttribute('data-detail');
+                openModal(type);
+            });
+        });
+
+        // Закрытие
+        if (closeBtn) closeBtn.addEventListener('click', closeModal);
+
+        // Клик по фону (backdrop)
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal || e.target.classList.contains('modal-backdrop')) {
+                closeModal();
+            }
+        });
+
+        // Esc
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && isOpen) {
+                closeModal();
+            }
+        });
+    })();
+    </script>
+
     <!-- Скрипт для биографии Натальи (точно как в коде) -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
@@ -3446,6 +4139,126 @@
                 });
             });
         });
+    </script>
+
+    <!-- Скрипт карусели визуальной философии (nata1/nata2/nata3) -->
+    <script>
+    (function () {
+        const track = document.getElementById('vision-track');
+        const prevBtn = document.getElementById('vision-prev');
+        const nextBtn = document.getElementById('vision-next');
+        const dotsContainer = document.getElementById('vision-dots');
+
+        if (!track || !prevBtn || !nextBtn || !dotsContainer) return;
+
+        const slides = track.children;
+        const total = slides.length;
+        let current = 0;
+        let isDragging = false;
+        let startX = 0;
+        let currentTranslate = 0;
+        let prevTranslate = 0;
+
+        // Создаём точки
+        for (let i = 0; i < total; i++) {
+            const dot = document.createElement('button');
+            dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+            dot.setAttribute('aria-label', 'Слайд ' + (i + 1));
+            dot.addEventListener('click', () => goToSlide(i));
+            dotsContainer.appendChild(dot);
+        }
+
+        const dots = dotsContainer.querySelectorAll('.carousel-dot');
+
+        function updateCarousel(animate = true) {
+            const offset = -current * 100;
+            track.style.transition = animate ? 'transform 0.55s cubic-bezier(0.32, 0.72, 0, 1)' : 'none';
+            track.style.transform = `translateX(${offset}%)`;
+
+            // Обновляем точки
+            dots.forEach((dot, idx) => {
+                dot.classList.toggle('active', idx === current);
+            });
+        }
+
+        function goToSlide(index) {
+            current = (index + total) % total;
+            updateCarousel(true);
+        }
+
+        function nextSlide() {
+            goToSlide(current + 1);
+        }
+
+        function prevSlide() {
+            goToSlide(current - 1);
+        }
+
+        // Кнопки
+        prevBtn.addEventListener('click', prevSlide);
+        nextBtn.addEventListener('click', nextSlide);
+
+        // Клавиатура (стрелки)
+        document.addEventListener('keydown', (e) => {
+            if (document.activeElement && document.activeElement.tagName === 'INPUT') return;
+            if (e.key === 'ArrowLeft') prevSlide();
+            if (e.key === 'ArrowRight') nextSlide();
+        });
+
+        // === TOUCH / DRAG для отличного пролистывания на телефоне ===
+        function getPositionX(e) {
+            return e.type.includes('mouse') ? e.pageX : e.touches[0].clientX;
+        }
+
+        function dragStart(e) {
+            isDragging = true;
+            startX = getPositionX(e);
+            prevTranslate = -current * 100;
+            track.style.transition = 'none';
+        }
+
+        function drag(e) {
+            if (!isDragging) return;
+            const currentX = getPositionX(e);
+            const diff = ((currentX - startX) / track.parentElement.offsetWidth) * 100;
+            currentTranslate = prevTranslate + diff;
+            track.style.transform = `translateX(${currentTranslate}%)`;
+        }
+
+        function dragEnd() {
+            if (!isDragging) return;
+            isDragging = false;
+
+            const movedBy = currentTranslate - prevTranslate;
+
+            // Если сдвинули больше 18% — меняем слайд
+            if (movedBy < -18 && current < total - 1) {
+                current++;
+            } else if (movedBy > 18 && current > 0) {
+                current--;
+            }
+
+            updateCarousel(true);
+        }
+
+        // Touch события (мобильные)
+        track.addEventListener('touchstart', dragStart, { passive: true });
+        track.addEventListener('touchmove', drag, { passive: true });
+        track.addEventListener('touchend', dragEnd);
+
+        // Мышь (десктоп, для удобства)
+        track.addEventListener('mousedown', dragStart);
+        window.addEventListener('mousemove', drag);
+        window.addEventListener('mouseup', dragEnd);
+        // Предотвращаем выделение текста при драге
+        track.addEventListener('dragstart', (e) => e.preventDefault());
+
+        // Инициализация
+        updateCarousel(false);
+
+        // Небольшой хинт: на мобильных можно просто свайпать
+        // (ничего дополнительно не выводим, чтобы не засорять)
+    })();
     </script>
 
 <!-- ======================================================= -->
